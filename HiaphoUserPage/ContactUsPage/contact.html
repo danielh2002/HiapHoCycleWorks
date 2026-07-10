@@ -1,0 +1,415 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact Us - HIAP HO CYCLE WORKS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Link to your new CSS file -->
+<link rel="stylesheet" href="contact.css">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#410002",
+                      "tertiary-fixed-dim": "#ffb4ab",
+                      "on-secondary-container": "#b4b5b5",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline-variant": "#444748",
+                      "inverse-primary": "#5f5e5e",
+                      "surface-container": "#1f2020",
+                      "on-surface-variant": "#c4c7c7",
+                      "on-error": "#690005",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "tertiary-container": "#2f0001",
+                      "secondary-container": "#454747",
+                      "surface-container-low": "#1b1c1c",
+                      "on-tertiary": "#690006",
+                      "on-background": "#e4e2e1",
+                      "on-primary-container": "#7e7d7d",
+                      "secondary": "#c6c6c7",
+                      "on-tertiary-container": "#f12b2c",
+                      "on-primary": "#313030",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "tertiary-fixed": "#ffdad6",
+                      "primary-fixed": "#e5e2e1",
+                      "inverse-on-surface": "#303030",
+                      "surface-bright": "#393939",
+                      "on-primary-fixed-variant": "#474646",
+                      "background": "#131313",
+                      "surface": "#131313",
+                      "inverse-surface": "#e4e2e1",
+                      "outline": "#8e9192",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#121212",
+                      "on-secondary": "#2f3131",
+                      "surface-tint": "#c8c6c5",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary-fixed-variant": "#454747",
+                      "error": "#ffb4ab",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "primary": "#c8c6c5",
+                      "surface-container-highest": "#353535",
+                      "surface-variant": "#353535",
+                      "surface-dim": "#131313",
+                      "on-tertiary-fixed-variant": "#93000d",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e4e2e1",
+                      "tertiary": "#ffb4ab"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "sm": "12px",
+                      "md": "24px",
+                      "lg": "48px",
+                      "margin-mobile": "16px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "xl": "80px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background">
+<!-- TopNavBar -->
+<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0" id="top-nav">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
+  
+  <!-- Left: Branding -->
+  <div class="flex-1 flex items-center">
+    <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="../HomePage/home.html">
+      <img alt="Hiap Ho Cycle Works Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
+      <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
+    </a>
+  </div>
+
+  <!-- Center: Navigation Links -->
+  <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
+    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="../HomePage/home.html">Home</a>
+    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="../AboutUsPage/about.html">About</a>
+    <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="contact.html">Contact</a>
+  </div>
+
+  <!-- Right: Primary Action -->
+  <div class="flex-1 flex justify-end items-center gap-sm">
+    <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
+      <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
+    </a>
+    
+    <!-- Mobile Menu Button -->
+    <button aria-label="Menu" class="md:hidden text-on-surface p-xs hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
+      <span class="material-symbols-outlined text-[28px]">menu</span>
+    </button>
+  </div>
+</div>
+</nav>
+
+<!-- Main Content -->
+<main class="flex-grow flex flex-col bg-background">
+<!-- Header Section -->
+<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl border-b border-outline-variant flex flex-col md:flex-row gap-xl items-center">
+<div class="md:w-1/2 flex flex-col gap-md border-l-4 border-on-tertiary-container pl-6">
+<h1 class="font-display-lg text-display-lg text-on-surface uppercase tracking-tighter">Main HQ </br>(Boulevard Branch)</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Ready to upgrade your ride or need expert advice? Visit Hiap Ho Cycle Works today. Our team of mechanical specialists is standing by.
+                </p>
+</div>
+<div class="md:w-1/2 w-full bg-surface-container border border-outline-variant overflow-hidden relative md:h-[600px] p-2">
+<!-- Updated with your HQ Image -->
+<img alt="Hiap Ho Cycle Works HQ storefront" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90" src="../ImageStorage/Boulevardshop.png">
+</div>
+</section>
+
+<!-- Details & Form Section -->
+<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 lg:grid-cols-12 gap-gutter bg-background border-b border-outline-variant">
+<!-- Contact Info -->
+<div class="lg:col-span-5 flex flex-col gap-xl">
+<div class="flex flex-col gap-4">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max mb-2">Visit the Shop</h3>
+    
+    <!-- HQ Card -->
+    <div class="flex flex-col gap-6 p-md bg-surface-container border border-outline-variant relative rounded-md">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
+        <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-on-surface-variant mt-1">location_on</span>
+            <div>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">HQ & Service Center</p>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 2397, Boulevard Commercial Centre<br>98000 Miri, Sarawak</p>
+            </div>
+        </div>
+        <div class="h-px w-full bg-outline-variant"></div>
+        <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
+            <div>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
+                <p class="font-label-md text-label-md text-on-surface-variant mt-1">085427880</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permy Branch Card -->
+    <div class="flex flex-col gap-6 p-md bg-surface-container border border-outline-variant relative rounded-md mt-2">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
+        <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-on-surface-variant mt-1">store</span>
+            <div>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Hiap Ho Cycle Works (Permy)</p>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 5562 (6), Ground floor, Pusat Bandar<br>Bandar Baru Permyjaya, 98000 Miri, Sarawak</p>
+            </div>
+        </div>
+        <div class="h-px w-full bg-outline-variant"></div>
+        <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
+            <div>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
+                <p class="font-label-md text-label-md text-on-surface-variant mt-1">085651134</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="flex flex-col gap-6">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Operating Hours</h3>
+<div class="flex flex-col gap-0 border border-outline-variant bg-surface-container rounded-md overflow-hidden">
+<div class="flex justify-between items-center p-4 border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface">Monday - Friday</span>
+<span class="font-label-md text-label-md text-on-surface-variant">09:00 - 19:00</span>
+</div>
+<div class="flex justify-between items-center p-4 border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface">Saturday</span>
+<span class="font-label-md text-label-md text-on-surface-variant">10:00 - 17:00</span>
+</div>
+<div class="flex justify-between items-center p-4">
+<span class="font-body-md text-body-md text-on-surface">Sunday & Public Holidays</span>
+<span class="font-label-md text-label-md text-on-tertiary-container">CLOSED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vertical Divider (Desktop) -->
+<div class="hidden lg:block lg:col-span-1 relative">
+<div class="absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant"></div>
+</div>
+<!-- Inquiry Form -->
+<div class="lg:col-span-6 flex flex-col gap-6">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Send a Message</h3>
+<form class="flex flex-col gap-6 mt-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="name">Name</label>
+<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="name" placeholder="John Doe" type="text" required>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="email">Email</label>
+<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="email" placeholder="john@example.com" type="email" required>
+</div>
+<!-- Phone Number Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="phone">Phone Number</label>
+<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="phone" placeholder="+60 12-345 6789" type="tel" required>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="subject">Subject</label>
+<select class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors appearance-none rounded-md" id="subject">
+<option>General Inquiry</option>
+<option>Service Booking</option>
+<option>Parts Availability</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="message">Message</label>
+<textarea class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors resize-none rounded-md" id="message" placeholder="How can we help?" rows="5" required></textarea>
+</div>
+<button class="bg-on-tertiary-container text-white font-label-md text-label-md px-8 py-3 uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 w-full md:w-auto self-start flex items-center justify-center gap-2 border border-on-tertiary-container mt-2 active:scale-95 rounded-md" type="submit">
+                        Submit Inquiry
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+</div>
+</section>
+
+<!-- Permy Branch Showcase Section -->
+<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl border-b border-outline-variant grid grid-cols-1 md:grid-cols-12 gap-xl items-center bg-background">
+    <div class="md:col-span-5 flex flex-col gap-md">
+        <h2 class="font-display-lg text-display-lg text-on-surface uppercase tracking-tighter">OUR PERMY<br>BRANCH</h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+            Expanding our legacy of mechanical precision to Bandar Baru Permyjaya. Visit our second location for the same expert service and premium selection you trust.
+        </p>
+    </div>
+    <div class="md:col-span-7 w-full h-[450px] bg-surface-container border border-outline-variant overflow-hidden p-2 rounded-md">
+        <img alt="Hiap Ho Cycle Works Permy Branch" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90" src="../ImageStorage/Permyshop.png">
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="w-full min-h-[600px] relative border-b border-outline-variant overflow-hidden flex items-center justify-center py-xl">
+    
+    <!-- Background Map Image -->
+    <div class="absolute inset-0 bg-surface-container-highest z-10 opacity-20 pointer-events-none"></div>
+    <img class="absolute inset-0 w-full h-full object-cover opacity-20" alt="Galaxy background" src="../ImageStorage/galaxy.jpg">
+    
+    <!-- Wrapped Cards in a Flexbox container for equal height -->
+    <div class="relative z-20 flex flex-col md:flex-row gap-8 w-full max-w-screen-lg px-margin-mobile md:px-margin-desktop items-stretch justify-center">
+        
+        <!-- HQ Floating Info Card -->
+        <div class="flex-1 bg-background/95 backdrop-blur-md p-lg border border-outline-variant flex flex-col items-center text-center shadow-2xl rounded-md">
+            <span class="material-symbols-outlined text-[40px] text-on-tertiary-container mb-sm">location_on</span>
+            
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider mb-xs">
+                Hiap Ho Cycle Works
+            </h4>
+            
+            <p class="font-body-md text-body-md text-on-surface-variant mb-xs">
+                Lot 2397, Boulevard Commercial Centre<br>
+                98000 Miri, Sarawak
+            </p>
+            
+            <p class="font-label-md text-label-md text-on-surface mb-2 flex items-center justify-center gap-xs">
+                <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
+                085427880
+            </p>
+
+            <p class="font-label-md text-label-md text-on-surface mb-lg flex items-center justify-center gap-xs">
+                <!-- Changed to a schedule icon -->
+                <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
+                9:00AM - 6:00PM
+            </p>
+            
+            <!-- mt-auto pushes button to bottom -->
+            <a href="https://maps.app.goo.gl/idssrBAnKYFJ4jwU7" target="_blank" rel="noopener noreferrer" class="mt-auto bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
+                <span class="material-symbols-outlined text-[20px]">directions</span>
+                Get Directions
+            </a>
+        </div>
+
+        <!-- Permy Floating Info Card -->
+        <div class="flex-1 bg-background/95 backdrop-blur-md p-lg border border-outline-variant flex flex-col items-center text-center shadow-2xl rounded-md">
+            <span class="material-symbols-outlined text-[40px] text-on-tertiary-container mb-sm">location_on</span>
+            
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider mb-xs">
+                Hiap Ho Cycle Works (Permy)
+            </h4>
+            
+            <p class="font-body-md text-body-md text-on-surface-variant mb-xs">
+                Lot 5562 (6), Ground floor, Pusat Bandar<br>
+                Bandar Baru Permyjaya, 98000 Miri, Sarawak
+            </p>
+            
+            <p class="font-label-md text-label-md text-on-surface mb-2 flex items-center justify-center gap-xs">
+                <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
+                085651134
+            </p>
+
+            <p class="font-label-md text-label-md text-on-surface mb-lg flex items-center justify-center gap-xs">
+                <!-- Changed to a schedule icon -->
+                <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
+                9:30AM - 7:00PM
+            </p>
+            
+            <!-- mt-auto pushes button to bottom -->
+            <a href="https://maps.app.goo.gl/eFBDMQnkCBHAok339" target="_blank" rel="noopener noreferrer" class="mt-auto bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
+                <span class="material-symbols-outlined text-[20px]">directions</span>
+                Get Directions
+            </a>
+        </div>
+    </div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden"><div class="grid grid-cols-1 md:grid-cols-12 gap-xl px-margin-mobile md:px-margin-desktop py-xl w-full max-w-screen-2xl mx-auto z-10 relative"><div class="md:col-span-4 flex flex-col gap-md"><div class="flex items-center gap-sm"><img alt="Hiap Ho Cycle Works Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63"><span class="font-headline-md text-on-surface uppercase tracking-tighter">HIAP HO CYCLE WORKS</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-xs">LEGACY OF MECHANICAL PRECISION. Serving the cycling community with unmatched expertise since 1982.</p><div class="flex gap-sm mt-2"><a class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md" href="#"><span class="material-symbols-outlined">share</span></a><a class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md" href="#"><span class="material-symbols-outlined">mail</span></a></div></div><div class="md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-gutter"><div class="flex flex-col gap-4"><span class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Company</span><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">About Us</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Our Services</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Contact</a></div><div class="flex flex-col gap-4"><span class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Support</span><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Shipping Info</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Store Locator</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Warranty</a></div><div class="flex flex-col gap-4"><span class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Legal</span><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Privacy Policy</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-tertiary-container transition-colors" href="#">Terms of Service</a></div></div></div><div class="border-t border-outline-variant px-margin-mobile md:px-margin-desktop py-md max-w-screen-2xl mx-auto flex justify-between items-center z-10 relative"><p class="font-label-md text-[12px] text-on-surface-variant uppercase">© 2026 HIAP HO CYCLE WORKS. ALL RIGHTS RESERVED.</p></div></footer>
+
+</body></html>

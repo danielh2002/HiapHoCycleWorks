@@ -1,0 +1,23 @@
+.slat-divider {
+    position: relative;
+}
+
+.slat-divider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: theme('colors.surface-container-high');
+}
+
+.slat-bg {
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 11px,
+        theme('colors.surface-container-high') 11px,
+        theme('colors.surface-container-high') 12px
+    );
+}
