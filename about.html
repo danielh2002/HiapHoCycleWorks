@@ -164,27 +164,41 @@
       </script>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white">
-<!-- Top Navigation -->
+<!-- TopNavBar for About Page -->
 <nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0" id="top-nav">
 <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
-<!-- Left: Branding -->
-<div class="flex-1 flex items-center">
-<a class="flex items-center gap-sm group" href="#">
-<img alt="Hiap Ho Cycle Works Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
-<span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block">HIAP HO CYCLE WORKS</span>
-</a>
-</div>
-<!-- Center: Navigation Links -->
-<div class="hidden md:flex items-center justify-center gap-gutter flex-1">
-    <a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 px-sm py-xs font-label-md text-label-md uppercase" href="../HomePage/home.html">Home</a>
-    <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-200" href="about.html">About</a>
-    <a class="text-on-surface-variant hover:text-on-surface transition-all duration-200 px-sm py-xs font-label-md text-label-md uppercase" href="../ContactUsPage/contact.html">Contact</a>
-</div>
-<!-- Right: Primary Action -->
-<div class="flex-1 flex justify-end items-center gap-sm">
-<button class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors border border-on-tertiary-container items-center gap-xs active:scale-95 duration-100"><span class="material-symbols-outlined text-[20px]">build</span>Contact Us Now</button>
-<button aria-label="Menu" class="md:hidden text-on-surface p-xs"><span class="material-symbols-outlined text-[20px]">build</span>Contact Us Now</button>
-</div>
+  
+  <!-- Left: Branding -->
+  <div class="flex-1 flex items-center">
+    <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="index.html">
+      <img alt="Hiap Ho Cycle Works Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
+      <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
+    </a>
+  </div>
+
+  <!-- Center: Navigation Links -->
+  <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
+    <!-- Home (Inactive) -->
+    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="index.html">Home</a>
+    
+    <!-- About (Active) -->
+    <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="about.html">About</a>
+    
+    <!-- Contact (Inactive) -->
+    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
+  </div>
+
+  <!-- Right: Primary Action -->
+  <div class="flex-1 flex justify-end items-center gap-sm">
+    <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
+      <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
+    </a>
+    
+    <!-- Mobile Menu Button -->
+    <button aria-label="Menu" class="md:hidden text-on-surface p-xs hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
+      <span class="material-symbols-outlined text-[28px]">menu</span>
+    </button>
+  </div>
 </div>
 </nav>
 <main class="flex-grow">
