@@ -229,23 +229,61 @@
 
 <!-- DYNAMIC BRANDS SHOWCASE SECTION (UPDATED DYNAMIC LOGO MAX HEIGHT CONTAINER) -->
 <section class="py-xl bg-background border-b border-outline-variant">
-<div class="flex flex-col items-center justify-center mb-xl px-4 mt-lg w-full">
-    
+  
+  <div class="flex flex-col items-center justify-center mb-xl px-4 mt-lg w-full">
     <!-- Styled Heading with Accent Lines -->
     <div class="flex items-center gap-4 mb-6">
-        <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
-        <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest text-center">
-            Authorized Dealer For
-        </h2>
-        <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
+      <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
+      <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest text-center">
+        Authorized Dealer For
+      </h2>
+      <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
     </div>
     
     <!-- Prominent Description -->
     <p class="font-headline-md text-headline-md text-on-surface text-center max-w-3xl leading-relaxed">
-        We proudly carry a wide range of premium bicycles, components, and replacement parts to suit every rider's needs.
+      We proudly carry a wide range of premium bicycles, components, and replacement parts to suit every rider's needs.
     </p>
-    
-</div>
+  </div>
+
+  <!-- THE DYNAMIC CONTAINER -->
+  <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
+    <!-- Make sure the ID here matches what your fetch() script is looking for! -->
+    <div id="brands-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+      
+      <!-- Your JavaScript will automatically generate and inject the <img> tags here -->
+      
+    </div>
+  </div>
+  
+</section>
+
+<!-- DYNAMIC BRANDS SHOWCASE SECTION -->
+<section class="py-xl bg-background border-b border-outline-variant">
+    <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
+        
+        <!-- Header & Description Group -->
+        <div class="flex flex-col items-center justify-center mb-xl">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
+                <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest text-center">
+                    Authorized Dealer For
+                </h2>
+                <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
+            </div>
+            
+            <p class="font-headline-md text-headline-md text-on-surface text-center max-w-3xl leading-relaxed mb-lg">
+                We proudly carry a wide range of premium bicycles, components, and replacement parts to suit every rider's needs.
+            </p>
+        </div>
+
+        <!-- Target container for the backend API values -->
+        <div id="brands-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+            <!-- JavaScript will inject content here -->
+            <p class="col-span-full text-on-surface-variant font-label-md uppercase text-xs tracking-wider">Loading Brands...</p>
+        </div>
+        
+    </div>
 </section>
 
 <!-- Social Media / Connect Section -->
