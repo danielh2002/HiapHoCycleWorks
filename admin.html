@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard | Hiap Ho Cycle Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+    <script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "on-error": "#690005", "secondary-fixed-dim": "#c6c6c7", "on-primary": "#313030", "secondary": "#c6c6c7", "on-secondary-container": "#b4b5b5", "surface-variant": "#353535", "inverse-on-surface": "#303030", "background": "#131313", "on-secondary": "#2f3131", "on-tertiary-fixed": "#410002", "tertiary-fixed": "#ffdad6", "surface-dim": "#131313", "primary": "#c8c6c5", "on-surface": "#e4e2e1", "surface-bright": "#393939", "surface-container-high": "#2a2a2a", "inverse-surface": "#e4e2e1", "tertiary-container": "#2f0001", "outline-variant": "#444748", "on-tertiary": "#690006", "on-primary-container": "#7e7d7d", "outline": "#8e9192", "primary-fixed-dim": "#c8c6c5", "primary-container": "#121212", "error": "#ffb4ab", "surface-tint": "#c8c6c5", "on-primary-fixed-variant": "#474646", "tertiary": "#ffb4ab", "surface-container": "#1f2020", "error-container": "#93000a", "on-primary-fixed": "#1c1b1b", "secondary-fixed": "#e2e2e2", "on-secondary-fixed-variant": "#454747", "on-background": "#e4e2e1", "surface-container-highest": "#353535", "surface-container-lowest": "#0e0e0e", "secondary-container": "#454747", "on-error-container": "#ffdad6", "tertiary-fixed-dim": "#ffb4ab", "primary-fixed": "#e5e2e1", "on-tertiary-container": "#f12b2c", "surface": "#131313", "on-tertiary-fixed-variant": "#93000d", "surface-container-low": "#1b1c1c", "on-surface-variant": "#c4c7c7", "inverse-primary": "#5f5e5e", "on-secondary-fixed": "#1a1c1c"
+                        },
+                        "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                        "spacing": { "xs": "4px", "base": "8px", "lg": "48px", "sm": "12px", "md": "24px", "margin-desktop": "64px", "margin-mobile": "16px", "gutter": "24px", "xl": "80px" },
+                        "fontFamily": { "headline-lg-mobile": ["Hanken Grotesk"], "body-md": ["Inter"], "body-lg": ["Inter"], "label-md": ["JetBrains Mono"], "headline-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"] }
+                    }
+                }
+            }
+        } catch (_e) { }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+
+    <!-- === LOGIN SCREEN OVERLAY === -->
+    <div id="loginScreen" class="fixed inset-0 z-[100] flex items-center justify-center bg-background bg-opacity-95 backdrop-blur-sm transition-opacity duration-500">
+        <div class="bg-surface-container-low border border-outline-variant p-lg max-w-md w-full mx-4 shadow-2xl relative overflow-hidden">
+            <!-- Decorative accent -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-on-tertiary-container"></div>
+            
+            <div class="text-center mb-8">
+                <span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-2">admin_panel_settings</span>
+                <h2 class="font-display-lg text-headline-lg uppercase text-on-surface tracking-tighter">System Access</h2>
+                <p class="font-label-md text-xs text-on-surface-variant uppercase tracking-widest mt-1">Authorized Personnel Only</p>
+            </div>
+
+            <form id="loginForm" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label class="font-label-md text-xs uppercase text-on-surface-variant tracking-widest">Username</label>
+                    <input type="text" id="adminUser" class="bg-surface-container-high border border-outline-variant px-4 py-3 font-body-md text-on-surface outline-none focus:border-on-tertiary-container transition-colors" required autocomplete="off">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label class="font-label-md text-xs uppercase text-on-surface-variant tracking-widest">Password</label>
+                    <input type="password" id="adminPass" class="bg-surface-container-high border border-outline-variant px-4 py-3 font-body-md text-on-surface outline-none focus:border-on-tertiary-container transition-colors" required>
+                </div>
+                <p id="loginError" class="hidden text-on-tertiary-container font-label-md text-xs uppercase mt-2 text-center">Invalid Credentials</p>
+                
+                <button type="submit" class="mt-4 bg-on-surface text-background font-label-md text-sm uppercase font-bold py-3 hover:bg-on-surface-variant transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">lock_open</span> Authenticate
+                </button>
+                <a href="index.html" class="text-center font-label-md text-xs text-on-surface-variant hover:text-on-surface uppercase mt-4 transition-colors">Return to Site</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- === MAIN DASHBOARD CONTENT (HIDDEN UNTIL LOGGED IN) === -->
+    <div id="dashboardContent" class="hidden flex-col flex-grow w-full">
+        <header class="bg-background border-b border-outline-variant sticky top-0 z-50">
+            <div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-screen-2xl mx-auto">
+                <h1 class="font-headline-lg text-headline-lg uppercase tracking-tighter text-on-surface">HIAP HO CYCLE WORKS</h1>
+                <nav class="hidden md:flex items-center gap-md">
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-xs" href="index.html">
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Back to Site
+                    </a>
+                    <div class="h-6 w-[1px] bg-outline-variant"></div>
+                    <button onclick="logout()" class="flex items-center gap-sm text-on-error hover:text-tertiary transition-colors">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="font-label-md text-label-md uppercase">Lock System</span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-screen-xl mx-auto w-full px-margin-desktop py-xl">
+            <div class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+                <div>
+                    <p class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest mb-xs">Management Console</p>
+                    <h2 class="font-display-lg text-display-lg uppercase italic">Admin Dashboard</h2>
+                </div>
+                <div class="bg-surface-container border border-outline-variant px-md py-sm flex items-center gap-md">
+                    <div class="flex flex-col">
+                        <span class="font-label-md text-[10px] text-on-surface-variant uppercase">Status</span>
+                        <span class="font-label-md text-label-md text-green-500">Live Connection</span>
+                    </div>
+                    <button onclick="refreshData()" class="text-on-surface hover:text-on-tertiary-container transition-colors" title="Force Refresh Data">
+                        <span class="material-symbols-outlined">refresh</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mb-8 border-b border-outline-variant pb-4">
+                <button id="tabBtn-inquiries" onclick="showTab('inquiries')" class="px-6 py-2 bg-on-surface text-background font-bold uppercase rounded transition">Inquiries</button>
+                <button id="tabBtn-addWorker" onclick="showTab('addWorker')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Add Worker</button>
+                <button id="tabBtn-manageWorkers" onclick="showTab('manageWorkers')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Workers</button>
+                <button id="tabBtn-brands" onclick="showTab('brands')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Brands</button>
+            </div>
+
+            <div class="flex flex-col gap-gutter">
+                
+                <!-- INQUIRIES TAB -->
+                <section id="inquiriesTab" class="bg-surface-container-low border border-outline-variant slat-divider">
+                    <div class="p-lg border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-md">
+                        <h3 class="font-headline-md text-headline-md uppercase">Customer Inquiries</h3>
+                    </div>
+                    <div class="overflow-x-auto industrial-scrollbar">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-high">
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Date</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Contact Info</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Subject</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inquiryTableBody" class="divide-y divide-outline-variant">
+                                <tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">Loading Inquiries...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ADD WORKER TAB -->
+                <section id="addWorkerTab" class="hidden bg-surface-container-low border border-outline-variant p-lg slat-divider overflow-hidden relative">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
+                            <h3 class="font-headline-md text-headline-md uppercase">Register New Personnel</h3>
+                            <span class="material-symbols-outlined text-outline">person_add</span>
+                        </div>
+                        
+                        <form id="workerForm" class="space-y-md">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Worker Name</label>
+                                    <input id="wName" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant" placeholder="Full legal name" type="text" required>
+                                </div>
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Designation / Title</label>
+                                    <input id="wTitle" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant" placeholder="e.g. Master Mechanic" type="text" required>
+                                </div>
+                            </div>
+                            <div class="space-y-xs">
+                                <label class="font-label-md text-label-md uppercase text-on-surface-variant">Contact Number</label>
+                                <input id="wPhone" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant" placeholder="+60 12-345 6789" type="tel" required>
+                            </div>
+                            <div class="space-y-xs">
+                                <label class="font-label-md text-label-md uppercase text-on-surface-variant">Professional Biography</label>
+                                <textarea id="wDesc" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant resize-none" placeholder="Brief history of mechanical expertise..." rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="pt-md grid grid-cols-1 md:grid-cols-2 gap-md border-t border-outline-variant">
+                                <div class="flex flex-col gap-4 bg-surface-container p-4 border border-outline-variant rounded">
+                                    <div class="flex justify-between items-center">
+                                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Profile Photo</label>
+                                        <button id="upload_widget" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-on-surface hover:text-background transition-all" type="button">
+                                            Choose File
+                                        </button>
+                                    </div>
+                                    <input type="hidden" id="wImage" value="">
+                                    <div id="imagePreviewContainer" class="hidden flex flex-col items-center gap-2">
+                                        <img id="imagePreview" src="" alt="Worker Preview" class="w-32 h-32 object-cover border-2 border-on-tertiary-container rounded-full">
+                                        <p class="font-label-md text-[10px] text-green-500 uppercase">Image Attached</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-end">
+                                    <button class="w-full bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md uppercase font-bold hover:brightness-110 active:scale-95 transition-all" type="submit">
+                                        Save to Database
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- MANAGE WORKERS TAB -->
+                <section id="manageWorkersTab" class="hidden bg-surface-container-low border border-outline-variant slat-divider">
+                    <div class="p-lg border-b border-outline-variant flex justify-between items-center">
+                        <h3 class="font-headline-md text-headline-md uppercase">Active Roster</h3>
+                    </div>
+                    <div class="overflow-x-auto industrial-scrollbar">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-high">
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30 w-24">Photo</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Personnel Info</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Contact</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Biography</th>
+                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="workerTableBody" class="divide-y divide-outline-variant">
+                                 <tr><td colspan="5" class="p-8 text-center text-on-surface-variant uppercase">Loading Workers...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- MANAGE BRANDS TAB -->
+                <section id="brandsTab" class="hidden flex-col gap-gutter">
+                    <div class="bg-surface-container-low border border-outline-variant p-lg slat-divider overflow-hidden relative">
+                        <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
+                            <h3 class="font-headline-md text-headline-md uppercase">Add New Brand</h3>
+                            <span class="material-symbols-outlined text-outline">sell</span>
+                        </div>
+                        
+                        <form id="brandForm" class="space-y-md">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Brand Name</label>
+                                    <input id="bName" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant" placeholder="e.g. Shimano, Marin" type="text" required>
+                                </div>
+                                
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Category</label>
+                                    <select id="bCategorySelect" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all appearance-none" required>
+                                        <option value="" disabled selected>Loading categories...</option>
+                                    </select>
+                                    <input id="bCategoryNew" class="hidden w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface transition-all placeholder:text-outline-variant mt-2" placeholder="Type new category..." type="text">
+                                </div>
+                            </div>
+                            
+                            <div class="pt-md grid grid-cols-1 md:grid-cols-2 gap-md border-t border-outline-variant">
+                                <div class="flex flex-col gap-4 bg-surface-container p-4 border border-outline-variant rounded">
+                                    <div class="flex justify-between items-center">
+                                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Brand Logo/Picture</label>
+                                        <button id="upload_brand_widget" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-on-surface hover:text-background transition-all" type="button">
+                                            Choose Image
+                                        </button>
+                                    </div>
+                                    <input type="hidden" id="bImage" value="">
+                                    <div id="brandImagePreviewContainer" class="hidden flex flex-col items-center gap-2">
+                                        <img id="brandImagePreview" src="" alt="Brand Preview" class="h-24 w-auto object-contain border border-outline-variant p-2 bg-white rounded">
+                                        <p class="font-label-md text-[10px] text-green-500 uppercase" id="brandUploadStatus">Image Attached</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-end">
+                                    <button class="w-full bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md uppercase font-bold hover:brightness-110 active:scale-95 transition-all" type="submit">
+                                        Save Brand
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-surface-container-low border border-outline-variant slat-divider">
+                        <div class="p-lg border-b border-outline-variant flex justify-between items-center">
+                            <h3 class="font-headline-md text-headline-md uppercase">Active Brands</h3>
+                        </div>
+                        <div class="overflow-x-auto industrial-scrollbar">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-surface-container-high">
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30 w-32">Logo</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Brand Name</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Category</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="brandTableBody" class="divide-y divide-outline-variant">
+                                    <tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">Loading Brands...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="bg-surface-container-lowest border-t border-outline-variant mt-xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-lg w-full max-w-screen-2xl mx-auto">
+                <div class="md:col-span-1">
+                    <p class="font-headline-md text-headline-md text-on-surface uppercase mb-sm">HIAP HO</p>
+                    <p class="font-label-md text-[10px] text-on-surface-variant leading-relaxed uppercase">© 2026 HIAP HO CYCLE WORKS. LEGACY OF MECHANICAL PRECISION.</p>
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <span class="font-label-md text-label-md uppercase font-bold mb-xs">System Status</span>
+                    <div class="flex items-center gap-xs">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-on-surface-variant font-label-md text-sm">API Connected</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- END OF DASHBOARD CONTENT -->
+
+<script>
+    // --- 0. LOGIN LOGIC ---
+    // Change these values to set your own username and password!
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'hiapho123';
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = document.getElementById('adminUser').value;
+        const pass = document.getElementById('adminPass').value;
+        const errorMsg = document.getElementById('loginError');
+
+        if (user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+            // Hide login screen, show dashboard
+            document.getElementById('loginScreen').classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+                document.getElementById('dashboardContent').classList.add('flex');
+                // Load data only after successful login
+                refreshData(); 
+            }, 500);
+        } else {
+            errorMsg.classList.remove('hidden');
+            document.getElementById('adminPass').value = ''; // clear password field
+        }
+    });
+
+    function logout() {
+        document.getElementById('dashboardContent').classList.add('hidden');
+        document.getElementById('dashboardContent').classList.remove('flex');
+        
+        const loginScreen = document.getElementById('loginScreen');
+        loginScreen.classList.remove('hidden');
+        
+        // Reset form
+        document.getElementById('loginForm').reset();
+        document.getElementById('loginError').classList.add('hidden');
+
+        // Fade back in
+        setTimeout(() => {
+            loginScreen.classList.remove('opacity-0', 'pointer-events-none');
+        }, 50);
+    }
+
+    // --- 1. TAB SWITCHING LOGIC ---
+    function showTab(tabName) {
+        document.getElementById('inquiriesTab').classList.add('hidden');
+        document.getElementById('addWorkerTab').classList.add('hidden');
+        document.getElementById('manageWorkersTab').classList.add('hidden');
+        document.getElementById('brandsTab').classList.add('hidden');
+        
+        ['inquiries', 'addWorker', 'manageWorkers', 'brands'].forEach(btn => {
+            const el = document.getElementById('tabBtn-' + btn);
+            el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
+            el.classList.add('bg-surface-container-high', 'text-on-surface');
+        });
+
+        document.getElementById(tabName + 'Tab').classList.remove('hidden');
+        const activeBtn = document.getElementById('tabBtn-' + tabName);
+        activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface');
+        activeBtn.classList.add('bg-on-surface', 'text-background', 'font-bold');
+    }
+
+    // --- 2. CATEGORY DROPDOWN LOGIC ---
+    const categorySelect = document.getElementById('bCategorySelect');
+    const categoryNewInput = document.getElementById('bCategoryNew');
+
+    categorySelect.addEventListener('change', (e) => {
+        if (e.target.value === 'addNew') {
+            categoryNewInput.classList.remove('hidden');
+            categoryNewInput.required = true;
+        } else {
+            categoryNewInput.classList.add('hidden');
+            categoryNewInput.required = false;
+            categoryNewInput.value = ''; 
+        }
+    });
+
+    // --- 3. CLOUDINARY UPLOADS ---
+    let uploadedImageUrl = "";
+    const workerWidget = cloudinary.createUploadWidget({
+        cloudName: 'gkdibcl3', 
+        uploadPreset: 'hiapho_preset' 
+    }, (error, result) => { 
+        if (!error && result && result.event === "success") { 
+            uploadedImageUrl = result.info.secure_url;
+            document.getElementById('wImage').value = uploadedImageUrl;
+            document.getElementById('imagePreview').src = uploadedImageUrl;
+            document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        }
+    });
+    document.getElementById("upload_widget").addEventListener("click", () => workerWidget.open(), false);
+
+    let uploadedBrandImageUrl = "";
+    const brandWidget = cloudinary.createUploadWidget({
+        cloudName: 'gkdibcl3', 
+        uploadPreset: 'hiapho_preset' 
+    }, (error, result) => { 
+        if (!error && result && result.event === "success") { 
+            uploadedBrandImageUrl = result.info.secure_url;
+            document.getElementById('bImage').value = uploadedBrandImageUrl;
+            document.getElementById('brandImagePreview').src = uploadedBrandImageUrl;
+            document.getElementById('brandImagePreviewContainer').classList.remove('hidden');
+        }
+    });
+    document.getElementById("upload_brand_widget").addEventListener("click", () => brandWidget.open(), false);
+
+
+    // --- 4. SUBMIT FORMS ---
+    document.getElementById('workerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const oldText = submitBtn.innerText;
+        submitBtn.innerText = "Saving...";
+
+        const newWorker = {
+            name: document.getElementById('wName').value,
+            title: document.getElementById('wTitle').value,
+            description: document.getElementById('wDesc').value,
+            phone: document.getElementById('wPhone').value,
+            imageUrl: document.getElementById('wImage').value
+        };
+
+        try {
+            const res = await fetch('/api/workers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newWorker)
+            });
+            if(res.ok) {
+                alert('Personnel successfully registered.');
+                e.target.reset(); 
+                document.getElementById('imagePreviewContainer').classList.add('hidden');
+                loadWorkers(); 
+                showTab('manageWorkers');
+            }
+        } catch (err) { alert("Error saving worker."); } 
+        finally { submitBtn.innerText = oldText; }
+    });
+
+    document.getElementById('brandForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const oldText = submitBtn.innerText;
+        submitBtn.innerText = "Saving...";
+
+        // Determine final category string
+        let finalCategory = categorySelect.value;
+        if (finalCategory === 'addNew') {
+            finalCategory = categoryNewInput.value;
+        }
+
+        const newBrand = {
+            name: document.getElementById('bName').value,
+            category: finalCategory,
+            imageUrl: document.getElementById('bImage').value
+        };
+
+        try {
+            const res = await fetch('/api/brands', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBrand)
+            });
+            if(res.ok) {
+                alert('Brand successfully added.');
+                e.target.reset(); 
+                categoryNewInput.classList.add('hidden');
+                document.getElementById('brandImagePreviewContainer').classList.add('hidden');
+                loadBrands(); 
+            }
+        } catch (err) { alert("Error saving brand."); } 
+        finally { submitBtn.innerText = oldText; }
+    });
+
+
+    // --- 5. FETCH DATA ---
+    async function loadWorkers() {
+        try {
+            const res = await fetch('/api/workers', { cache: 'no-store' });
+            const data = await res.json();
+            const tbody = document.getElementById('workerTableBody');
+            if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant uppercase">No personnel found</td></tr>'; return; }
+            tbody.innerHTML = data.map(w => `
+                <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
+                    <td class="px-lg py-lg border-r border-outline-variant/30">
+                        <div class="w-14 h-14 bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden rounded-full">
+                            ${w.imageUrl ? `<img src="${w.imageUrl}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-outline-variant">person</span>`}
+                        </div>
+                    </td>
+                    <td class="px-lg py-lg border-r border-outline-variant/30"><span class="font-bold text-lg">${w.name}</span></td>
+                    <td class="px-lg py-lg font-label-md text-xs border-r border-outline-variant/30 uppercase text-on-surface-variant">${w.title}</td>
+                    <td class="px-lg py-lg font-label-md text-sm border-r border-outline-variant/30 text-on-surface-variant">${w.phone}</td>
+                    <td class="px-lg py-lg text-on-surface-variant max-w-sm text-sm border-r border-outline-variant/30">${w.description}</td>
+                    <td class="px-lg py-lg text-center"><button onclick="deleteWorker(${w.id})" class="text-on-error hover:text-white bg-error-container/20 hover:bg-error-container border border-on-error/30 px-3 py-1 rounded transition-colors font-label-md text-xs uppercase">Terminate</button></td>
+                </tr>
+            `).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    async function loadBrands() {
+        try {
+            const res = await fetch('/api/brands', { cache: 'no-store' });
+            const data = await res.json();
+            
+            const tbody = document.getElementById('brandTableBody');
+            if (!data || data.length === 0) { 
+                tbody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">No brands found</td></tr>'; 
+                
+                // If no data, reset category dropdown to just Add New
+                categorySelect.innerHTML = '<option value="" disabled selected>Select a category</option><option value="addNew" class="text-on-tertiary-container font-bold">+ Add New Category...</option>';
+                return; 
+            }
+
+            // Extract unique categories from fetched brands
+            const uniqueCategories = [...new Set(data.map(b => b.category))].filter(Boolean);
+            
+            // Re-populate Category Dropdown dynamically
+            categorySelect.innerHTML = '<option value="" disabled selected>Select an existing category</option>';
+            uniqueCategories.forEach(cat => {
+                categorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+            });
+            categorySelect.innerHTML += '<option value="addNew" class="text-on-tertiary-container font-bold">+ Add New Category...</option>';
+
+            // Populate Brand Table
+            tbody.innerHTML = data.map(b => `
+                <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
+                    <td class="px-lg py-lg border-r border-outline-variant/30">
+                        <div class="w-20 h-12 bg-white flex items-center justify-center p-1 rounded border border-outline-variant">
+                            ${b.imageUrl ? `<img src="${b.imageUrl}" class="max-w-full max-h-full object-contain">` : `<span class="material-symbols-outlined text-black">sell</span>`}
+                        </div>
+                    </td>
+                    <td class="px-lg py-lg font-bold border-r border-outline-variant/30 text-lg">${b.name}</td>
+                    <td class="px-lg py-lg font-label-md text-sm border-r border-outline-variant/30 text-on-surface-variant">${b.category}</td>
+                    <td class="px-lg py-lg text-center"><button onclick="deleteBrand(${b.id})" class="text-on-error hover:text-white bg-error-container/20 hover:bg-error-container border border-on-error/30 px-3 py-1 rounded transition-colors font-label-md text-xs uppercase">Remove</button></td>
+                </tr>
+            `).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    async function loadInquiries() {
+        try {
+            const res = await fetch('/api/inquiries', { cache: 'no-store' });
+            const data = await res.json();
+            const tbody = document.getElementById('inquiryTableBody');
+            if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">No pending inquiries</td></tr>'; return; }
+            tbody.innerHTML = data.map(inq => `
+                <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
+                    <td class="px-lg py-lg font-label-md text-label-md border-r border-outline-variant/30 text-on-surface-variant">${inq.date || 'N/A'}</td>
+                    <td class="px-lg py-lg border-r border-outline-variant/30">
+                        <div class="flex flex-col"><span class="font-bold">${inq.name}</span><span class="font-label-md text-xs text-on-surface-variant lowercase">${inq.email}</span></div>
+                    </td>
+                    <td class="px-lg py-lg font-bold border-r border-outline-variant/30">${inq.subject}</td>
+                    <td class="px-lg py-lg text-on-surface-variant max-w-md">${inq.message}</td>
+                </tr>
+            `).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    // --- 6. DELETION LOGIC ---
+    window.deleteWorker = async function(id) {
+        if(confirm("Permanently remove this personnel record?")) {
+            await fetch(`/api/workers?id=${id}`, { method: 'DELETE' });
+            loadWorkers();
+        }
+    }
+
+    window.deleteBrand = async function(id) {
+        if(confirm("Permanently remove this brand?")) {
+            await fetch(`/api/brands?id=${id}`, { method: 'DELETE' });
+            loadBrands(); 
+        }
+    }
+
+    window.refreshData = function() {
+        loadWorkers();
+        loadInquiries();
+        loadBrands();
+    }
+</script>
+</body>
+</html>

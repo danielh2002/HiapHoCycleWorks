@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1783830092498,
+    "name": "MARIN",
+    "category": "MTB",
+    "imageUrl": "https://res.cloudinary.com/gkdibcl3/image/upload/v1783830082/qf6ijtvpjk5qgfuyr7hq.png"
+  },
+  {
+    "id": 1783839096299,
+    "name": "SCOTT",
+    "category": "BICYCLE",
+    "imageUrl": "https://res.cloudinary.com/gkdibcl3/image/upload/v1783839092/qpwgdfzes59w9eqo5hp2.png"
+  },
+  {
+    "id": 1783839113725,
+    "name": "POLYGON",
+    "category": "BICYCLE",
+    "imageUrl": "https://res.cloudinary.com/gkdibcl3/image/upload/v1783839110/pzidd1l7lsbm7prkpaiq.png"
+  }
+]

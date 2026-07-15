@@ -161,7 +161,7 @@
       },
           },
         }
-      </script>
+    </script>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white">
 <!-- TopNavBar for About Page -->
@@ -301,43 +301,24 @@
 </div>
 </div>
 </section>
-<!-- The Faces Behind the Business -->
+
+<!-- The Faces Behind the Business (Now Dynamic) -->
 <section class="w-full px-margin-mobile md:px-margin-desktop py-xl max-w-screen-2xl mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-lg border-b border-surface-container-high pb-sm">
-<div>
-<h2 class="font-headline-lg text-headline-lg uppercase">THE ENGINEERS.</h2>
-<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-xs">Faces behind the business</p>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Team Member 1 -->
-<div class="group bg-surface-container-low border border-surface-container-high rounded-DEFAULT overflow-hidden">
-<div class="h-64 w-full bg-surface-container relative overflow-hidden border-b border-surface-container-high">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A stoic portrait of a master bicycle mechanic in a dark workshop setting. The lighting is harsh and directional, highlighting the grease and experience on his hands and face. He is wearing a dark charcoal apron. The background is blurred, showing silhouettes of bicycle frames. Industrial, high-contrast aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9WE8aiPIt4f9IIj9LtkuaybkOIta069GiiBa_z6O90Lxz0JAxXc2ow4_So9JfMbflWEKwpUvNGMoVrKCQaflUkhnCw-6kC7GCln1H8rQ8OMafR-G1SaB2UffVxY-t1jJEDhQS4C_1WPCKNaG3w9sN_CrAVk8aSS1xpdI82kL6AHWzuhtaoaYcBFBPKfz--UMEB69kcIYpTFSWBMsWB5AhHeeyw4H2JHZ88ms0e9_KG7Oj6ZrN3aMZ_kouMl6d_M_3jZwkbVxrzJqW">
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-headline-md">K. T. Lim</h4>
-<p class="font-label-md text-label-md text-on-tertiary-container uppercase mb-sm">Master Technician &amp; Founder</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">
-                            With over 40 years of hands-on experience, Lim is the structural pillar of Hiap Ho. His diagnostic precision is unmatched.
-                        </p>
-</div>
-</div>
-<!-- Team Member 2 -->
-<div class="group bg-surface-container-low border border-surface-container-high rounded-DEFAULT overflow-hidden">
-<div class="h-64 w-full bg-surface-container relative overflow-hidden border-b border-surface-container-high">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A focused portrait of a younger bicycle mechanic examining a wheel hub. The scene is lit with cool, artificial light, casting deep shadows in the background. The mechanic is wearing a dark branded t-shirt. The overall tone is professional, serious, and mechanically focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLrW2a-acMN4Jhg4LS1o8iWK0PenaUjVtYupU9YW6zxW7Ea-Qc54LSI57jE-uHWM7WIN0B_af_-CrqKsMKz2L4Y9dNPfAgNAz78q6gMDhlXcf7HIq0O3ah72GsUnfLk69TR0gzb4NW_-w1LC4uT48yjpsl-cs9L0BK1Pv5hGzg4k7evYXTOhvo7plhAatKPfhK07F2M1MmF5QXtOFaPK_xlgWgZf1oqBzyRpFRgst4AmegrpOZsyCGzgEKoCQClsb8-LU8OdMq8hHA">
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-headline-md">David Chen</h4>
-<p class="font-label-md text-label-md text-on-tertiary-container uppercase mb-sm">Lead Service Specialist</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">
-                            Specializing in modern drivetrains and suspension systems, David ensures our heritage shop remains at the cutting edge of tech.
-                        </p>
-</div>
-</div>
+    <div class="flex flex-col md:flex-row justify-between items-end mb-lg border-b border-surface-container-high pb-sm">
+        <div>
+            <h2 class="font-headline-lg text-headline-lg uppercase">THE ENGINEERS.</h2>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-xs">Faces behind the business</p>
+        </div>
+    </div>
+    
+    <!-- Empty Container to be populated by JS -->
+    <div id="team-container" class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <!-- Temporary Loading Text -->
+        <p class="text-on-surface-variant col-span-3 text-center uppercase tracking-widest font-label-md">Loading Engineers...</p>
+    </div>
 </section>
 </main>
+
 <footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden"><div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-12 gap-lg">
   <div class="md:col-span-4 flex flex-col gap-md">
     <div class="flex items-center gap-sm">
@@ -386,6 +367,52 @@
                 nav.classList.remove('bg-surface-container-lowest');
             }
         });
+
+        // --- FETCH DYNAMIC TEAM MEMBERS FROM API ---
+        async function loadTeamMembers() {
+            try {
+                // Fetch the same endpoint used by the Admin Dashboard
+                const res = await fetch('/api/workers');
+                const data = await res.json();
+                const container = document.getElementById('team-container');
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = '<p class="text-on-surface-variant col-span-3 text-center uppercase tracking-widest font-label-md">No engineers found in the roster.</p>';
+                    return;
+                }
+
+                // Map the data into the exact HTML structure you already styled
+                container.innerHTML = data.map(worker => `
+                    <div class="group bg-surface-container-low border border-surface-container-high rounded-DEFAULT overflow-hidden flex flex-col">
+                        <div class="h-64 w-full bg-surface-container relative overflow-hidden border-b border-surface-container-high flex items-center justify-center">
+                            ${worker.imageUrl 
+                                ? `<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="${worker.imageUrl}" alt="${worker.name}">` 
+                                : `<span class="material-symbols-outlined text-[64px] text-on-surface-variant">person</span>`
+                            }
+                        </div>
+                        <div class="p-md flex flex-col flex-grow">
+                            <h4 class="font-headline-md text-headline-md">${worker.name}</h4>
+                            <p class="font-label-md text-label-md text-on-tertiary-container uppercase mb-2">${worker.title}</p>
+                            
+                            <div class="flex items-center gap-2 mb-sm text-on-surface-variant hover:text-on-surface transition-colors w-max">
+                                <span class="material-symbols-outlined text-[18px]">call</span>
+                                <a href="tel:${worker.phone}" class="font-label-md text-label-md tracking-wider">${worker.phone}</a>
+                            </div>
+
+                            <p class="font-body-md text-body-md text-on-surface-variant text-sm whitespace-pre-line border-t border-surface-container-high pt-sm mt-sm flex-grow">
+                                ${worker.description}
+                            </p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading team members:', error);
+                document.getElementById('team-container').innerHTML = '<p class="text-on-error col-span-3 text-center uppercase tracking-widest font-label-md">Unable to connect to the personnel database.</p>';
+            }
+        }
+
+        // Initialize the fetch when the page loads
+        loadTeamMembers();
     </script>
 
 </body></html>

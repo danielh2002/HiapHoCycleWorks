@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Jonathan",
+    "title": "Master Technician & Founder",
+    "description": "40 years of experience in precision bicycle mechanics.",
+    "phone": "085-427880",
+    "imageUrl": ""
+  },
+  {
+    "id": 1783764666408,
+    "name": "Test",
+    "title": "Test",
+    "description": "Test",
+    "phone": "Test",
+    "imageUrl": ""
+  },
+  {
+    "id": 1783765910505,
+    "name": "Test",
+    "title": "123",
+    "description": "123",
+    "phone": "123",
+    "imageUrl": ""
+  },
+  {
+    "id": 1783766802478,
+    "name": "Test",
+    "title": "Test",
+    "description": "Test123",
+    "phone": "Test",
+    "imageUrl": "https://res.cloudinary.com/gkdibcl3/image/upload/v1783766795/omr5nhalcoqaao2r7j98.jpg"
+  }
+]
