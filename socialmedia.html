@@ -10,8 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     
+    <!-- Required to make Embeds render correctly -->
     <script async src="//www.instagram.com/embed.js"></script>
     <script async src="https://www.tiktok.com/embed.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -39,13 +41,29 @@
     </script>
     <style>
         .slat-bg { background-image: repeating-linear-gradient(90deg, transparent, transparent 31px, #1E1E1E 31px, #1E1E1E 32px); }
-        /* Forces embeds to look clean inside their containers */
-        .embed-wrapper iframe, .embed-wrapper blockquote { margin: 0 auto !important; max-width: 100% !important; border-radius: 8px; }
+        
+        /* Forces embeds to look clean inside their containers and not stretch out */
+        .embed-wrapper { display: flex; justify-content: center; }
+        .embed-wrapper iframe, .embed-wrapper blockquote, .embed-wrapper > div { margin: 0 auto !important; max-width: 100% !important; width: 100% !important; border-radius: 16px !important; }
+        
+        /* Fade In Up Animation for Staggered Load */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white">
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white relative overflow-x-hidden">
 
-<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0 relative" id="top-nav">
+<!-- Ambient Background Glows -->
+<div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-on-tertiary-container/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] bg-outline-variant/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+<!-- Required for some Facebook embeds -->
+<div id="fb-root"></div>
+
+<!-- TopNavBar -->
+<nav class="bg-background/80 backdrop-blur-xl w-full border-b border-white/5 z-50 sticky top-0 relative" id="top-nav">
     <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-4 md:py-md max-w-screen-2xl mx-auto">
       
       <div class="flex-1 flex items-center">
@@ -59,67 +77,110 @@
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="index.html">Home</a>
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="catalog.html">Catalog</a>
-        
         <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="social.html">Social Feed</a>
       </div>
     
       <div class="flex-1 flex justify-end items-center gap-sm">
-        <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
+        <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-white/10 items-center gap-xs active:scale-95 rounded-md shadow-lg shadow-on-tertiary-container/20">
           <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
         </a>
-        
         <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden text-on-surface p-2 hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
           <span class="material-symbols-outlined text-[28px]">menu</span>
         </button>
       </div>
     </div>
 
+    <!-- Mobile Menu Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant flex flex-col items-center py-6 gap-6 shadow-2xl z-40">
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="index.html">Home</a>
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="about.html">About</a>
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="catalog.html">Catalog</a>
-        
         <a class="text-on-surface font-label-md text-label-md uppercase tracking-widest border-b border-on-tertiary-container pb-1" href="social.html">Social Feed</a>
-        
         <a href="contact.html" class="w-11/12 mt-4 bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md text-center uppercase tracking-wider rounded-md active:scale-95 transition-transform">
             Contact Us Now
         </a>
     </div>
 </nav>
 
-<main class="flex-grow w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl flex flex-col gap-12 md:gap-xl">
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl flex flex-col gap-12 md:gap-xl relative z-10">
     
+    <!-- Hero Header -->
     <header class="flex flex-col gap-4 border-l-4 border-on-tertiary-container pl-4 md:pl-md">
-        <h1 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[64px] text-on-surface uppercase tracking-tighter">SOCIAL FEED</h1>
+        <h1 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[64px] text-on-surface uppercase tracking-tighter drop-shadow-lg">SOCIAL FEED</h1>
         <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-2xl">
             Stay connected with the HIAP HO community. Latest builds, shop updates, and ride reports straight from our mechanical bays to your feed.
         </p>
     </header>
 
-    <section class="flex flex-col gap-8 w-full border-t border-surface-container-high pt-8">
+    <!-- Pulsing Skeleton Loader -->
+    <div id="loading-indicator" class="w-full flex flex-col gap-12 border-t border-white/5 pt-12">
+        <div class="inline-flex items-center gap-4 bg-surface-container-high/30 backdrop-blur-md border border-white/5 pl-2 pr-6 py-2 rounded-full w-max">
+            <div class="p-2 bg-outline-variant/20 rounded-full animate-pulse"><div class="w-6 h-6"></div></div>
+            <div class="h-4 w-32 bg-outline-variant/30 rounded animate-pulse"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 w-full">
+            <div class="w-full h-[400px] bg-surface-container-low/50 border border-white/5 rounded-2xl animate-pulse"></div>
+            <div class="w-full h-[400px] bg-surface-container-low/50 border border-white/5 rounded-2xl animate-pulse hidden md:block"></div>
+            <div class="w-full h-[400px] bg-surface-container-low/50 border border-white/5 rounded-2xl animate-pulse hidden xl:block"></div>
+        </div>
+    </div>
+
+    <!-- SEPARATED FEED SECTIONS -->
+    <div id="feeds-wrapper" class="hidden flex-col gap-20 w-full border-t border-white/5 pt-12">
         
-        <div class="flex items-center gap-4">
-            <span class="material-symbols-outlined text-on-tertiary-container">dynamic_feed</span>
-            <h2 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">LIVE BROADCAST</h2>
-        </div>
-
-        <div id="social-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-gutter items-start">
-            <div class="col-span-full py-12 flex flex-col items-center justify-center gap-4 bg-surface-container-low border border-surface-container-high rounded-md">
-                <span class="material-symbols-outlined text-[48px] text-outline-variant animate-pulse">sync</span>
-                <p class="text-on-surface-variant uppercase font-label-md tracking-wider text-sm">Syncing latest transmissions...</p>
+        <!-- FACEBOOK SECTION -->
+        <section id="facebook-section" class="hidden flex-col w-full">
+            <!-- Glassmorphic Header Badge -->
+            <div class="inline-flex items-center gap-4 mb-8 bg-surface-container-high/30 backdrop-blur-md border border-white/5 pl-2 pr-6 py-2 rounded-full w-max shadow-lg">
+                <div class="p-2 bg-[#1877F2]/20 border border-[#1877F2]/30 rounded-full">
+                    <svg class="w-6 h-6 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </div>
+                <h2 class="font-headline-md text-[18px] md:text-[20px] text-on-surface uppercase tracking-widest">Facebook</h2>
             </div>
-        </div>
+            <div id="fb-feed-container" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 justify-items-center w-full"></div>
+        </section>
 
-        <div class="flex justify-center mt-8">
-            <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" class="w-full md:w-auto px-12 bg-transparent border-2 border-on-surface text-on-surface font-label-md text-label-md py-4 uppercase tracking-widest hover:bg-on-surface hover:text-surface-container-lowest transition-colors text-center rounded-sm">
-                Follow Official Instagram
-            </a>
-        </div>
-    </section>
+        <!-- INSTAGRAM SECTION -->
+        <section id="instagram-section" class="hidden flex-col w-full">
+            <div class="inline-flex items-center gap-4 mb-8 bg-surface-container-high/30 backdrop-blur-md border border-white/5 pl-2 pr-6 py-2 rounded-full w-max shadow-lg">
+                <div class="p-2 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full opacity-90 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                </div>
+                <h2 class="font-headline-md text-[18px] md:text-[20px] text-on-surface uppercase tracking-widest">Instagram</h2>
+            </div>
+            <div id="ig-feed-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 justify-items-center w-full"></div>
+        </section>
+
+        <!-- TIKTOK SECTION -->
+        <section id="tiktok-section" class="hidden flex-col w-full">
+            <div class="inline-flex items-center gap-4 mb-8 bg-surface-container-high/30 backdrop-blur-md border border-white/5 pl-2 pr-6 py-2 rounded-full w-max shadow-lg">
+                <div class="p-2 bg-[#00f2fe]/20 border border-[#00f2fe]/40 rounded-full">
+                    <svg class="w-6 h-6 text-[#00f2fe]" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
+                </div>
+                <h2 class="font-headline-md text-[18px] md:text-[20px] text-on-surface uppercase tracking-widest">TikTok</h2>
+            </div>
+            <div id="tiktok-feed-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 justify-items-center w-full"></div>
+        </section>
+        
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden w-full py-20 flex flex-col items-center justify-center gap-4 bg-surface-container/30 backdrop-blur-md border border-white/5 rounded-2xl mt-8">
+        <span class="material-symbols-outlined text-[48px] text-outline-variant">cell_tower</span>
+        <p class="text-on-surface-variant uppercase font-label-md tracking-wider text-sm">No live transmissions found.</p>
+    </div>
+
+    <div class="flex justify-center mt-8 w-full border-t border-white/5 pt-12">
+        <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" class="w-full md:w-auto px-12 bg-transparent border border-white/20 text-on-surface font-label-md text-label-md py-4 uppercase tracking-widest hover:bg-white hover:text-background hover:border-white hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 text-center rounded-full">
+            Follow Official Instagram
+        </a>
+    </div>
 
 </main>
 
-<footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden mt-auto">
+<!-- Standardized Footer -->
+<footer class="bg-surface-container-lowest border-t border-white/5 w-full relative overflow-hidden mt-auto z-10">
     <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-lg">
       <div class="md:col-span-5 flex flex-col gap-6 md:gap-md text-center md:text-left">
         <div class="flex items-center justify-center md:justify-start gap-3 md:gap-sm">
@@ -127,7 +188,6 @@
           <span class="font-headline-md text-[18px] md:text-headline-md text-on-surface uppercase tracking-tighter">HIAP HO CYCLE WORKS</span>
         </div>
         <p class="font-label-md text-xs md:text-label-md text-on-tertiary-container tracking-widest uppercase md:border-l-2 md:border-on-tertiary-container md:pl-sm">Legacy of Mechanical Precision</p>
-        <p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto md:mx-0">Your trusted local destination for premium cycling equipment and expert mechanical services since 1984.</p>
       </div>
       
       <div class="md:col-span-4 md:col-start-9 flex flex-col gap-4 md:gap-sm items-center md:items-start mt-4 md:mt-0">
@@ -135,65 +195,85 @@
         <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-sm">
           <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
           <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg></a>
+          <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md"><svg class="w-6 h-6 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg></a>
         </div>
       </div>
     </div>
-    
-    <div class="border-t border-outline-variant py-6 md:py-4">
-      <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop flex justify-center md:justify-between items-center text-center">
+    <div class="border-t border-white/5 py-6 md:py-4">
+      <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop flex justify-center items-center text-center">
         <p class="font-label-md text-[10px] md:text-[12px] text-on-surface-variant uppercase">© 2026 HIAP HO CYCLE WORKS. ALL RIGHTS RESERVED.</p>
       </div>
     </div>
 </footer>
 
 <script>
-    // --- MOBILE MENU LOGIC ---
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+    menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-    // --- FETCH DYNAMIC SOCIAL POSTS FROM SUPABASE ---
     async function loadSocialFeed() {
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const feedsWrapper = document.getElementById('feeds-wrapper');
+        const emptyState = document.getElementById('empty-state');
+        
         try {
             const res = await fetch('/api/socials', { cache: 'no-store' });
             const posts = await res.json();
-            const container = document.getElementById('social-feed-container');
+            
+            loadingIndicator.classList.add('hidden');
 
             if (!posts || posts.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-16 flex flex-col items-center justify-center gap-4 bg-surface-container-low border border-surface-container-high rounded-md">
-                        <span class="material-symbols-outlined text-[48px] text-outline-variant">cell_tower</span>
-                        <p class="text-on-surface-variant uppercase font-label-md tracking-wider text-sm">No live transmissions found.</p>
-                    </div>`;
+                emptyState.classList.remove('hidden');
                 return;
             }
 
-            // Map and inject the raw HTML blocks stored in the database
-            container.innerHTML = posts.map(post => `
-                <div class="embed-wrapper bg-white rounded-lg shadow-xl overflow-hidden self-start">
-                    ${post.embed_code}
-                </div>
-            `).join('');
+            const fbPosts = posts.filter(p => p.platform.toLowerCase() === 'facebook');
+            const igPosts = posts.filter(p => p.platform.toLowerCase() === 'instagram');
+            const ttPosts = posts.filter(p => p.platform.toLowerCase() === 'tiktok');
 
-            // CRITICAL: Force the respective platform scripts to parse the newly injected HTML into interactive widgets
+            // Render function with modern hover states & staggered animations
+            const renderSection = (postsArray, containerId, sectionId, hoverGlowClass) => {
+                const section = document.getElementById(sectionId);
+                const container = document.getElementById(containerId);
+                
+                if (postsArray.length > 0) {
+                    section.classList.remove('hidden');
+                    section.classList.add('flex');
+                    
+                    container.innerHTML = postsArray.map((post, index) => `
+                        <div class="embed-wrapper w-full max-w-[500px] bg-white rounded-2xl border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${hoverGlowClass} opacity-0" style="animation: fadeInUp 0.6s ease-out ${index * 0.15}s forwards; overflow: hidden;">
+                            ${post.embed_code}
+                        </div>
+                    `).join('');
+                } else {
+                    section.classList.add('hidden');
+                    section.classList.remove('flex');
+                    container.innerHTML = '';
+                }
+            };
+
+            // Apply different colored shadow glows based on the social platform!
+            renderSection(fbPosts, 'fb-feed-container', 'facebook-section', 'hover:shadow-blue-500/20');
+            renderSection(igPosts, 'ig-feed-container', 'instagram-section', 'hover:shadow-pink-500/20');
+            renderSection(ttPosts, 'tiktok-feed-container', 'tiktok-section', 'hover:shadow-cyan-500/20');
+            
+            feedsWrapper.classList.remove('hidden');
+            feedsWrapper.classList.add('flex');
+
             setTimeout(() => {
                 if (window.instgrm) { window.instgrm.Embeds.process(); }
-                // Add checks for other platforms if needed later (e.g., TikTok)
+                if (window.FB) { window.FB.XFBML.parse(); }
             }, 500);
 
         } catch (error) {
-            console.error('Error fetching social feed:', error);
-            document.getElementById('social-feed-container').innerHTML = `
-                <div class="col-span-full py-12 flex flex-col items-center justify-center gap-4 border border-error-container bg-error-container/10 rounded-md">
-                    <span class="material-symbols-outlined text-[48px] text-on-error">warning</span>
-                    <p class="text-on-error font-label-md uppercase text-xs">Signal Lost: Database Connection Error</p>
-                </div>`;
+            loadingIndicator.classList.add('hidden');
+            emptyState.innerHTML = `
+                <span class="material-symbols-outlined text-[48px] text-on-error">warning</span>
+                <p class="text-on-error font-label-md uppercase text-xs">Signal Lost: Database Connection Error</p>`;
+            emptyState.classList.remove('hidden');
         }
     }
 
-    // Initialize layout population
     loadSocialFeed();
 </script>
 
