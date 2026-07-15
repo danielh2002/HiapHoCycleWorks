@@ -228,31 +228,15 @@
 <section class="py-xl bg-surface-container-lowest border-b border-outline-variant"><div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-3 gap-lg"><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">build</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Expert Mechanics</h3><p class="font-body-md text-on-surface-variant">Decades of experience in precision tuning and complex repairs for all types of bicycles.</p></div><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">groups</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Community First</h3><p class="font-body-md text-on-surface-variant">We don't just sell bikes; we support the local cycling culture through rides and events.</p></div><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">verified</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Premium Selection</h3><p class="font-body-md text-on-surface-variant">Hand-picked inventory from the world's leading brands, ensuring quality in every ride.</p></div></div></div></section>
 
 
-<!-- DYNAMIC BRANDS SHOWCASE SECTION -->
+<!-- DYNAMIC BRANDS SHOWCASE SECTION (UPDATED DYNAMIC LOGO MAX HEIGHT CONTAINER) -->
 <section class="py-xl bg-background border-b border-outline-variant">
     <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase mb-lg tracking-widest text-center">Authorized Dealer For</h2>
         
-        <!-- Header & Description Group -->
-        <div class="flex flex-col items-center justify-center mb-xl">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
-                <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest text-center">
-                    Authorized Dealer For
-                </h2>
-                <div class="h-px w-12 md:w-24 bg-outline-variant"></div>
-            </div>
-            
-            <p class="font-headline-md text-headline-md text-on-surface text-center max-w-3xl leading-relaxed mb-lg">
-                We proudly carry a wide range of premium bicycles, components, and replacement parts to suit every rider's needs.
-            </p>
-        </div>
-
         <!-- Target container for the backend API values -->
-        <div id="brands-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
-            <!-- JavaScript will inject content here -->
-            <p class="col-span-full text-on-surface-variant font-label-md uppercase text-xs tracking-wider">Loading Brands...</p>
+        <div id="brand-logos-container" class="flex flex-wrap justify-center gap-xl items-center opacity-60 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500">
+            <p class="text-on-surface-variant uppercase font-label-md tracking-wider text-sm">Loading Brands...</p>
         </div>
-        
     </div>
 </section>
 
