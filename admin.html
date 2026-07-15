@@ -30,7 +30,6 @@
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col relative">
 
-    <!-- === LOGIN SCREEN OVERLAY === -->
     <div id="loginScreen" class="fixed inset-0 z-[100] flex items-center justify-center bg-background bg-opacity-95 backdrop-blur-sm transition-opacity duration-500">
         <div class="bg-surface-container-low border border-outline-variant p-lg max-w-md w-full mx-4 shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-on-tertiary-container"></div>
@@ -59,7 +58,6 @@
         </div>
     </div>
 
-    <!-- === MAIN DASHBOARD CONTENT === -->
     <div id="dashboardContent" class="hidden flex-col flex-grow w-full">
         <header class="bg-background border-b border-outline-variant sticky top-0 z-50">
             <div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-screen-2xl mx-auto">
@@ -95,7 +93,6 @@
                 </div>
             </div>
 
-            <!-- TABS -->
             <div class="flex flex-wrap gap-4 mb-8 border-b border-outline-variant pb-4">
                 <button id="tabBtn-inquiries" onclick="showTab('inquiries')" class="px-6 py-2 bg-on-surface text-background font-bold uppercase rounded transition">Inquiries</button>
                 <button id="tabBtn-addWorker" onclick="showTab('addWorker')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Add Worker</button>
@@ -105,28 +102,36 @@
 
             <div class="flex flex-col gap-gutter">
                 
-                <!-- INQUIRIES TAB (UPDATED WITH DATE FILTER & ACTION) -->
                 <section id="inquiriesTab" class="bg-surface-container-low border border-outline-variant slat-divider">
-                    <div class="p-lg border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-md">
+                    <div class="p-lg border-b border-outline-variant flex flex-col xl:flex-row xl:items-center justify-between gap-6">
                         <h3 class="font-headline-md text-headline-md uppercase">Customer Inquiries</h3>
-                        <!-- NEW DATE FILTER -->
-                        <div class="flex items-center gap-2">
-                            <label class="font-label-md text-xs uppercase text-on-surface-variant tracking-widest">Filter Date:</label>
-                            <input type="date" id="inquiryDateFilter" class="bg-surface-container border border-outline-variant px-3 py-2 font-label-md text-on-surface outline-none focus:border-on-tertiary-container transition-colors" onchange="filterInquiries()">
-                            <button onclick="clearInquiryFilter()" class="text-on-surface-variant hover:text-white bg-surface-container hover:bg-outline-variant border border-outline-variant px-3 py-2 rounded transition" title="Clear Filter">
-                                <span class="material-symbols-outlined text-sm">close</span>
-                            </button>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 bg-background border border-outline-variant p-2 rounded">
+                            <label class="font-label-md text-[11px] uppercase text-on-surface-variant tracking-widest pl-2">Filter By:</label>
+                            
+                            <div class="flex items-center gap-2">
+                                <input type="date" id="inquiryDateFilter" class="bg-surface-container border border-outline-variant px-3 py-2 font-label-md text-on-surface text-xs outline-none focus:border-on-tertiary-container transition-colors cursor-pointer" onchange="filterInquiries()" title="Select Exact Day">
+                                
+                                <span class="font-label-md text-[10px] text-outline uppercase px-1">OR</span>
+                                
+                                <input type="month" id="inquiryMonthFilter" class="bg-surface-container border border-outline-variant px-3 py-2 font-label-md text-on-surface text-xs outline-none focus:border-on-tertiary-container transition-colors cursor-pointer" onchange="filterInquiries()" title="Select Month & Year">
+                                
+                                <button onclick="clearInquiryFilter()" class="ml-2 text-on-surface-variant hover:text-white bg-surface-container hover:bg-outline-variant border border-outline-variant p-2 rounded transition flex items-center justify-center" title="Clear Filters">
+                                    <span class="material-symbols-outlined text-[16px]">close</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="overflow-x-auto industrial-scrollbar">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse table-fixed min-w-[800px]">
                             <thead>
                                 <tr class="bg-surface-container-high">
-                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Date</th>
-                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Contact Info</th>
-                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Subject</th>
-                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Message</th>
-                                    <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant text-center">Action</th>
+                                    <th class="w-[12%] px-4 py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Date</th>
+                                    <th class="w-[20%] px-4 py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Contact Info</th>
+                                    <th class="w-[18%] px-4 py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Subject</th>
+                                    <th class="w-[40%] px-4 py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Message</th>
+                                    <th class="w-[10%] px-4 py-md font-label-md text-label-md uppercase text-on-surface-variant text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="inquiryTableBody" class="divide-y divide-outline-variant">
@@ -136,7 +141,6 @@
                     </div>
                 </section>
 
-                <!-- ADD WORKER TAB -->
                 <section id="addWorkerTab" class="hidden bg-surface-container-low border border-outline-variant p-lg slat-divider overflow-hidden relative">
                     <div class="relative z-10">
                         <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
@@ -188,7 +192,6 @@
                     </div>
                 </section>
 
-                <!-- MANAGE WORKERS TAB (UPDATED WITH EDIT BUTTON) -->
                 <section id="manageWorkersTab" class="hidden bg-surface-container-low border border-outline-variant slat-divider">
                     <div class="p-lg border-b border-outline-variant flex justify-between items-center">
                         <h3 class="font-headline-md text-headline-md uppercase">Active Roster</h3>
@@ -211,7 +214,6 @@
                     </div>
                 </section>
 
-                <!-- MANAGE BRANDS TAB (UPDATED WITH EDIT BUTTON) -->
                 <section id="brandsTab" class="hidden flex-col gap-gutter">
                     <div class="bg-surface-container-low border border-outline-variant p-lg slat-divider overflow-hidden relative">
                         <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
@@ -298,11 +300,7 @@
                 </div>
             </div>
         </footer>
-    </div> <!-- END OF DASHBOARD CONTENT -->
-
-
-    <!-- === EDIT WORKER MODAL === -->
-    <div id="editWorkerModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
+    </div> <div id="editWorkerModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
         <div class="bg-surface-container border border-outline-variant p-lg max-w-2xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
             <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
                 <h3 class="font-headline-md text-headline-md uppercase text-on-surface">Edit Personnel Info</h3>
@@ -351,7 +349,6 @@
         </div>
     </div>
 
-    <!-- === EDIT BRAND MODAL === -->
     <div id="editBrandModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
         <div class="bg-surface-container border border-outline-variant p-lg max-w-2xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
             <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
@@ -399,7 +396,7 @@
     const ADMIN_USERNAME = 'admin';
     const ADMIN_PASSWORD = 'hiapho123';
 
-    // GLOBAL DATA STORES (For filtering and editing)
+    // GLOBAL DATA STORES
     let allInquiries = [];
     let allWorkers = [];
     let allBrands = [];
@@ -465,7 +462,6 @@
     // --- 3. CLOUDINARY UPLOADS ---
     const cloudinaryConfig = { cloudName: 'gkdibcl3', uploadPreset: 'hiapho_preset' };
 
-    // New Worker Image
     document.getElementById("upload_widget").addEventListener("click", () => {
         cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
             if (!err && res && res.event === "success") { 
@@ -476,7 +472,6 @@
         }).open();
     }, false);
 
-    // New Brand Image
     document.getElementById("upload_brand_widget").addEventListener("click", () => {
         cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
             if (!err && res && res.event === "success") { 
@@ -487,7 +482,6 @@
         }).open();
     }, false);
 
-    // Edit Worker Image
     document.getElementById("upload_edit_worker_widget").addEventListener("click", () => {
         cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
             if (!err && res && res.event === "success") { 
@@ -497,7 +491,6 @@
         }).open();
     }, false);
 
-    // Edit Brand Image
     document.getElementById("upload_edit_brand_widget").addEventListener("click", () => {
         cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
             if (!err && res && res.event === "success") { 
@@ -624,7 +617,7 @@
         } catch(e) { console.error(e); }
     }
 
-    // Render Inquiries separated so we can filter them easily
+    // --- UPDATED RENDER INQUIRIES WITH FIXED TEXT OVERFLOW ---
     function renderInquiries(data) {
         const tbody = document.getElementById('inquiryTableBody');
         if (!data || data.length === 0) { 
@@ -633,31 +626,63 @@
         }
         tbody.innerHTML = data.map(inq => `
             <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
-                <td class="px-lg py-lg font-label-md text-label-md border-r border-outline-variant/30 text-on-surface-variant">${inq.date || 'N/A'}</td>
-                <td class="px-lg py-lg border-r border-outline-variant/30">
-                    <div class="flex flex-col"><span class="font-bold">${inq.name}</span><span class="font-label-md text-xs text-on-surface-variant lowercase">${inq.email}</span></div>
+                <td class="px-4 py-lg font-label-md text-xs md:text-sm border-r border-outline-variant/30 text-on-surface-variant truncate">${inq.date || 'N/A'}</td>
+                <td class="px-4 py-lg border-r border-outline-variant/30 truncate">
+                    <div class="flex flex-col"><span class="font-bold">${inq.name}</span><span class="font-label-md text-[10px] text-on-surface-variant lowercase">${inq.email}</span></div>
                 </td>
-                <td class="px-lg py-lg font-bold border-r border-outline-variant/30">${inq.subject}</td>
-                <td class="px-lg py-lg text-on-surface-variant max-w-md border-r border-outline-variant/30">${inq.message}</td>
-                <td class="px-lg py-lg text-center"><button onclick="deleteInquiry(${inq.id})" class="text-green-500 hover:text-white bg-green-900/20 hover:bg-green-700 border border-green-500/30 px-3 py-1 rounded transition-colors font-label-md text-xs uppercase">Resolve</button></td>
+                <td class="px-4 py-lg font-bold border-r border-outline-variant/30 truncate">${inq.subject}</td>
+                
+                <td class="px-4 py-lg text-on-surface-variant text-sm border-r border-outline-variant/30 break-all whitespace-normal">${inq.message}</td>
+                
+                <td class="px-4 py-lg text-center"><button onclick="deleteInquiry(${inq.id})" class="text-green-500 hover:text-white bg-green-900/20 hover:bg-green-700 border border-green-500/30 px-3 py-2 rounded transition-colors font-label-md text-xs uppercase flex items-center justify-center gap-1 mx-auto"><span class="material-symbols-outlined text-sm">done</span> Resolve</button></td>
             </tr>
         `).join('');
     }
 
-    // --- 6. INQUIRY FILTERING ---
+    // --- 6. ADVANCED INQUIRY FILTERING (SOLVES DATE MISMATCH) ---
     function filterInquiries() {
-        const filterDate = document.getElementById('inquiryDateFilter').value;
-        if (!filterDate) {
+        const exactDate = document.getElementById('inquiryDateFilter').value; // HTML gives YYYY-MM-DD
+        const monthYear = document.getElementById('inquiryMonthFilter').value; // HTML gives YYYY-MM
+
+        if (!exactDate && !monthYear) {
             renderInquiries(allInquiries);
             return;
         }
-        // Basic match: check if the string contains the selected date string
-        const filtered = allInquiries.filter(inq => inq.date && inq.date.includes(filterDate));
+
+        const filtered = allInquiries.filter(inq => {
+            if (!inq.date) return false;
+
+            // Attempt to turn the DB date string into a real Date Object
+            const inqDateObj = new Date(inq.date);
+            
+            // If the date format from the DB is weird and can't be parsed, fallback to simple string search
+            if (isNaN(inqDateObj.getTime())) {
+                if (exactDate && !inq.date.includes(exactDate)) return false;
+                if (monthYear && !inq.date.includes(monthYear)) return false;
+                return true;
+            }
+
+            // Convert DB date into HTML formats so they match perfectly
+            const inqYear = inqDateObj.getFullYear();
+            const inqMonth = String(inqDateObj.getMonth() + 1).padStart(2, '0');
+            const inqDay = String(inqDateObj.getDate()).padStart(2, '0');
+
+            const formattedDate = `${inqYear}-${inqMonth}-${inqDay}`;
+            const formattedMonth = `${inqYear}-${inqMonth}`;
+
+            // Check filters
+            if (exactDate && formattedDate !== exactDate) return false;
+            if (monthYear && formattedMonth !== monthYear) return false;
+
+            return true;
+        });
+
         renderInquiries(filtered);
     }
 
     function clearInquiryFilter() {
         document.getElementById('inquiryDateFilter').value = '';
+        document.getElementById('inquiryMonthFilter').value = '';
         renderInquiries(allInquiries);
     }
 
@@ -697,7 +722,6 @@
         };
 
         try {
-            // Using PUT for updates
             const res = await fetch('/api/workers', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedWorker) });
             if(res.ok) {
                 closeEditWorkerModal();

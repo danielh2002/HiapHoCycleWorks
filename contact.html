@@ -1,527 +1,379 @@
-<!DOCTYPE html><html class="dark" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Contact Us - HIAP HO CYCLE WORKS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<!-- Link to your new CSS file -->
-<link rel="stylesheet" href="contact.css">
-<script id="tailwind-config">
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Contact Us - HIAP HO CYCLE WORKS</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contact.css">
+    <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-tertiary-fixed": "#410002",
-                      "tertiary-fixed-dim": "#ffb4ab",
-                      "on-secondary-container": "#b4b5b5",
-                      "error-container": "#93000a",
-                      "secondary-fixed": "#e2e2e2",
-                      "outline-variant": "#444748",
-                      "inverse-primary": "#5f5e5e",
-                      "surface-container": "#1f2020",
-                      "on-surface-variant": "#c4c7c7",
-                      "on-error": "#690005",
-                      "secondary-fixed-dim": "#c6c6c7",
-                      "tertiary-container": "#2f0001",
-                      "secondary-container": "#454747",
-                      "surface-container-low": "#1b1c1c",
-                      "on-tertiary": "#690006",
-                      "on-background": "#e4e2e1",
-                      "on-primary-container": "#7e7d7d",
-                      "secondary": "#c6c6c7",
-                      "on-tertiary-container": "#f12b2c",
-                      "on-primary": "#313030",
-                      "primary-fixed-dim": "#c8c6c5",
-                      "tertiary-fixed": "#ffdad6",
-                      "primary-fixed": "#e5e2e1",
-                      "inverse-on-surface": "#303030",
-                      "surface-bright": "#393939",
-                      "on-primary-fixed-variant": "#474646",
-                      "background": "#131313",
-                      "surface": "#131313",
-                      "inverse-surface": "#e4e2e1",
-                      "outline": "#8e9192",
-                      "on-primary-fixed": "#1c1b1b",
-                      "on-error-container": "#ffdad6",
-                      "primary-container": "#121212",
-                      "on-secondary": "#2f3131",
-                      "surface-tint": "#c8c6c5",
-                      "surface-container-high": "#2a2a2a",
-                      "on-secondary-fixed-variant": "#454747",
-                      "error": "#ffb4ab",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "primary": "#c8c6c5",
-                      "surface-container-highest": "#353535",
-                      "surface-variant": "#353535",
-                      "surface-dim": "#131313",
-                      "on-tertiary-fixed-variant": "#93000d",
-                      "surface-container-lowest": "#0e0e0e",
-                      "on-surface": "#e4e2e1",
-                      "tertiary": "#ffb4ab"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "spacing": {
-                      "gutter": "24px",
-                      "margin-desktop": "64px",
-                      "sm": "12px",
-                      "md": "24px",
-                      "lg": "48px",
-                      "margin-mobile": "16px",
-                      "base": "8px",
-                      "xs": "4px",
-                      "xl": "80px"
-              },
-              "fontFamily": {
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "label-md": [
-                              "JetBrains Mono"
-                      ],
-                      "display-lg": [
-                              "Hanken Grotesk"
-                      ],
-                      "headline-lg": [
-                              "Hanken Grotesk"
-                      ],
-                      "headline-lg-mobile": [
-                              "Hanken Grotesk"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ],
-                      "headline-md": [
-                              "Hanken Grotesk"
-                      ]
-              },
-              "fontSize": {
-                      "body-md": [
-                              "16px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "label-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "20px",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "display-lg": [
-                              "48px",
-                              {
-                                      "lineHeight": "56px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "800"
-                              }
-                      ],
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "40px",
-                                      "letterSpacing": "-0.01em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "28px",
-                              {
-                                      "lineHeight": "36px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "body-lg": [
-                              "18px",
-                              {
-                                      "lineHeight": "28px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-md": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "700"
-                              }
-                      ]
-              }
-      },
-          },
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#410002", "tertiary-fixed-dim": "#ffb4ab", "on-secondary-container": "#b4b5b5", "error-container": "#93000a", "secondary-fixed": "#e2e2e2", "outline-variant": "#444748", "inverse-primary": "#5f5e5e", "surface-container": "#1f2020", "on-surface-variant": "#c4c7c7", "on-error": "#690005", "secondary-fixed-dim": "#c6c6c7", "tertiary-container": "#2f0001", "secondary-container": "#454747", "surface-container-low": "#1b1c1c", "on-tertiary": "#690006", "on-background": "#e4e2e1", "on-primary-container": "#7e7d7d", "secondary": "#c6c6c7", "on-tertiary-container": "#f12b2c", "on-primary": "#313030", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed": "#ffdad6", "primary-fixed": "#e5e2e1", "inverse-on-surface": "#303030", "surface-bright": "#393939", "on-primary-fixed-variant": "#474646", "background": "#131313", "surface": "#131313", "inverse-surface": "#e4e2e1", "outline": "#8e9192", "on-primary-fixed": "#1c1b1b", "on-error-container": "#ffdad6", "primary-container": "#121212", "on-secondary": "#2f3131", "surface-tint": "#c8c6c5", "surface-container-high": "#2a2a2a", "on-secondary-fixed-variant": "#454747", "error": "#ffb4ab", "on-secondary-fixed": "#1a1c1c", "primary": "#c8c6c5", "surface-container-highest": "#353535", "surface-variant": "#353535", "surface-dim": "#131313", "on-tertiary-fixed-variant": "#93000d", "surface-container-lowest": "#0e0e0e", "on-surface": "#e4e2e1", "tertiary": "#ffb4ab"
+                    },
+                    "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    "spacing": { "gutter": "24px", "margin-desktop": "64px", "sm": "12px", "md": "24px", "lg": "48px", "margin-mobile": "16px", "base": "8px", "xs": "4px", "xl": "80px" },
+                    "fontFamily": { "body-md": ["Inter"], "label-md": ["JetBrains Mono"], "display-lg": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "body-lg": ["Inter"], "headline-md": ["Hanken Grotesk"] },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                },
+            },
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background">
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white">
+
 <!-- TopNavBar for Contact Page -->
-<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0" id="top-nav">
-<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
-  
-  <!-- Left: Branding -->
-  <div class="flex-1 flex items-center">
-    <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="index.html">
-      <img alt="Hiap Ho Cycle Works Logo" class="h-8 md:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
-      <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
-    </a>
-  </div>
+<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0 relative" id="top-nav">
+    <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
+      
+      <!-- Left: Branding -->
+      <div class="flex-1 flex items-center">
+        <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="index.html">
+          <img alt="Hiap Ho Cycle Works Logo" class="h-10 md:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
+          <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
+        </a>
+      </div>
+    
+      <!-- Center: Navigation Links -->
+      <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
+        <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="contact.html">Contact</a>
+      </div>
+    
+      <!-- Right: Primary Action -->
+      <div class="flex-1 flex justify-end items-center gap-sm">
+        <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
+          <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden text-on-surface p-2 hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
+          <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+      </div>
+    </div>
 
-  <!-- Center: Navigation Links -->
-  <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
-    <!-- Home (Inactive) -->
-    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="index.html">Home</a>
-    
-    <!-- About (Inactive) -->
-    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
-    
-    <!-- Contact (Active) -->
-    <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="contact.html">Contact</a>
-  </div>
-
-  <!-- Right: Primary Action -->
-  <div class="flex-1 flex justify-end items-center gap-sm">
-    <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
-      <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
-    </a>
-    
-    <!-- Mobile Menu Button -->
-    <button aria-label="Menu" class="md:hidden text-on-surface p-xs hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
-      <span class="material-symbols-outlined text-[28px]">menu</span>
-    </button>
-  </div>
-</div>
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant flex flex-col items-center py-6 gap-6 shadow-2xl z-40">
+        <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="index.html">Home</a>
+        <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="about.html">About</a>
+        <a class="text-on-surface font-label-md text-label-md uppercase tracking-widest border-b border-on-tertiary-container pb-1" href="contact.html">Contact</a>
+        <a href="contact.html" class="w-11/12 mt-4 bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md text-center uppercase tracking-wider rounded-md active:scale-95 transition-transform">
+            Contact Us Now
+        </a>
+    </div>
 </nav>
 
 <!-- Main Content -->
 <main class="flex-grow flex flex-col bg-background">
-<!-- Header Section -->
-<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl border-b border-outline-variant flex flex-col md:flex-row gap-xl items-center">
-<div class="md:w-1/2 flex flex-col gap-md border-l-4 border-on-tertiary-container pl-6">
-<h1 class="font-display-lg text-display-lg text-on-surface uppercase tracking-tighter">Main HQ </br>(Boulevard Branch)</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                    Ready to upgrade your ride or need expert advice? Visit Hiap Ho Cycle Works today. Our team of mechanical specialists is standing by.
-                </p>
-</div>
-<div class="md:w-1/2 w-full bg-surface-container border border-outline-variant overflow-hidden relative md:h-[600px] p-2">
-<!-- Updated with your HQ Image -->
-<img alt="Hiap Ho Cycle Works HQ storefront" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90" src="../HiaphoUserPage/ImageStorage/Boulevardshop.png">
-</div>
-</section>
+    <!-- Header Section (RESPONSIVE HEIGHT & TEXT) -->
+    <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl border-b border-outline-variant flex flex-col md:flex-row gap-8 md:gap-xl items-center">
+        <div class="w-full md:w-1/2 flex flex-col gap-4 md:gap-md border-l-4 border-on-tertiary-container pl-6">
+            <h1 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[64px] xl:text-[50px] lg:leading-[40px] xl:leading-[80px] text-on-surface uppercase tracking-tighter">
+                Main HQ <br>(Boulevard Branch)
+            </h1>
+            <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-xl">
+                Ready to upgrade your ride or need expert advice? Visit Hiap Ho Cycle Works today. Our team of mechanical specialists is standing by.
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 bg-surface-container border border-outline-variant overflow-hidden relative h-[300px] md:h-[600px] p-2 rounded-md">
+            <img alt="Hiap Ho Cycle Works HQ storefront" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90 rounded-sm" src="../HiaphoUserPage/ImageStorage/Boulevardshop.png">
+        </div>
+    </section>
 
-<!-- Details & Form Section -->
-<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 lg:grid-cols-12 gap-gutter bg-background border-b border-outline-variant">
-<!-- Contact Info -->
-<div class="lg:col-span-5 flex flex-col gap-xl">
-<div class="flex flex-col gap-4">
-<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max mb-2">Visit the Shop</h3>
-    
-    <!-- HQ Card -->
-    <div class="flex flex-col gap-6 p-md bg-surface-container border border-outline-variant relative rounded-md">
-        <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
-        <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-on-surface-variant mt-1">location_on</span>
-            <div>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">HQ & Service Center</p>
-                <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 2397, Boulevard Commercial Centre<br>98000 Miri, Sarawak</p>
+    <!-- Details & Form Section -->
+    <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-gutter bg-background border-b border-outline-variant">
+        <!-- Contact Info -->
+        <div class="col-span-1 lg:col-span-5 flex flex-col gap-10 md:gap-xl">
+            <div class="flex flex-col gap-4">
+                <h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max mb-2">Visit the Shop</h3>
+                
+                <!-- HQ Card -->
+                <div class="flex flex-col gap-6 p-6 md:p-md bg-surface-container border border-outline-variant relative rounded-md">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-on-surface-variant mt-1">location_on</span>
+                        <div>
+                            <p class="font-body-md text-body-md text-on-surface font-semibold">HQ & Service Center</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 2397, Boulevard Commercial Centre<br>98000 Miri, Sarawak</p>
+                        </div>
+                    </div>
+                    <div class="h-px w-full bg-outline-variant"></div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
+                        <div>
+                            <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
+                            <a href="tel:085427880" class="font-label-md text-label-md text-on-surface-variant mt-1 hover:text-on-surface transition-colors">085427880</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permy Branch Card -->
+                <div class="flex flex-col gap-6 p-6 md:p-md bg-surface-container border border-outline-variant relative rounded-md mt-2">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-on-surface-variant mt-1">store</span>
+                        <div>
+                            <p class="font-body-md text-body-md text-on-surface font-semibold">Hiap Ho Cycle Works (Permy)</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 5562 (6), Ground floor, Pusat Bandar<br>Bandar Baru Permyjaya, 98000 Miri, Sarawak</p>
+                        </div>
+                    </div>
+                    <div class="h-px w-full bg-outline-variant"></div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
+                        <div>
+                            <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
+                            <a href="tel:085651134" class="font-label-md text-label-md text-on-surface-variant mt-1 hover:text-on-surface transition-colors">085651134</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPERATING HOURS SECTION -->
+            <div class="flex flex-col gap-6">
+                <h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Operating Hours</h3>
+                <div class="flex flex-col gap-0 border border-outline-variant bg-surface-container rounded-md overflow-hidden">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 p-4 border-b border-outline-variant">
+                        <div class="flex flex-col">
+                            <span class="font-body-md text-body-md text-on-surface font-semibold">HIAP HO CYCLE WORKS</span>
+                            <span class="font-label-md text-[12px] text-on-surface-variant uppercase mt-1">Mon - Sat</span>
+                        </div>
+                        <span class="font-label-md text-label-md text-on-surface">9:00AM - 6:00PM</span>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 p-4">
+                        <div class="flex flex-col">
+                            <span class="font-body-md text-body-md text-on-surface font-semibold">HIAP HO CYCLE WORKS (Permy)</span>
+                            <span class="font-label-md text-[12px] text-on-surface-variant uppercase mt-1">Tue - Sun</span>
+                        </div>
+                        <span class="font-label-md text-label-md text-on-surface">9:30AM - 7:00PM</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="h-px w-full bg-outline-variant"></div>
-        <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
-            <div>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
-                <p class="font-label-md text-label-md text-on-surface-variant mt-1">085427880</p>
-            </div>
+
+        <!-- Vertical Divider (Desktop) -->
+        <div class="hidden lg:block lg:col-span-1 relative">
+            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant"></div>
         </div>
-    </div>
 
-    <!-- Permy Branch Card -->
-    <div class="flex flex-col gap-6 p-md bg-surface-container border border-outline-variant relative rounded-md mt-2">
-        <div class="absolute left-0 top-0 bottom-0 w-1 bg-on-tertiary-container rounded-l-md"></div>
-        <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-on-surface-variant mt-1">store</span>
-            <div>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Hiap Ho Cycle Works (Permy)</p>
-                <p class="font-body-md text-body-md text-on-surface-variant mt-1">Lot 5562 (6), Ground floor, Pusat Bandar<br>Bandar Baru Permyjaya, 98000 Miri, Sarawak</p>
-            </div>
+        <!-- Inquiry Form -->
+        <div class="col-span-1 lg:col-span-6 flex flex-col gap-6 pt-8 lg:pt-0 border-t lg:border-t-0 border-outline-variant lg:border-none">
+            <h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Send a Message</h3>
+            <form id="contactForm" class="flex flex-col gap-6 mt-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="name">Name</label>
+                        <input class="w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="name" placeholder="John Doe" type="text" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="email">Email</label>
+                        <input class="w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="email" placeholder="john@example.com" type="email" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="phone">Phone Number</label>
+                        <input class="w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="phone" placeholder="+60 12-345 6789" type="tel" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="subject">Subject</label>
+                        <select class="w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors appearance-none rounded-md" id="subject">
+                            <option>General Inquiry</option>
+                            <option>Parts Availability</option>
+                            <option value="Other">Other...</option>
+                        </select>
+                        <input class="hidden w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md mt-1" id="customSubject" placeholder="Please specify your subject" type="text">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="message">Message</label>
+                    <textarea class="w-full bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 md:p-4 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors resize-none rounded-md" id="message" placeholder="How can we help?" rows="5" required></textarea>
+                </div>
+                <button class="w-full md:w-auto self-start bg-on-tertiary-container text-white font-label-md text-label-md px-8 py-4 md:py-3 uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 flex items-center justify-center gap-2 border border-on-tertiary-container mt-2 active:scale-95 rounded-md" type="submit">
+                    Submit Inquiry
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+            </form>
         </div>
-        <div class="h-px w-full bg-outline-variant"></div>
-        <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-on-surface-variant mt-1">call</span>
-            <div>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Direct Line</p>
-                <p class="font-label-md text-label-md text-on-surface-variant mt-1">085651134</p>
-            </div>
+    </section>
+
+    <!-- Permy Branch Showcase Section -->
+    <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl border-b border-outline-variant grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-xl items-center bg-background">
+        <div class="col-span-1 md:col-span-5 flex flex-col gap-4 md:gap-md">
+            <h2 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[50px] lg:leading-[50px] text-on-surface uppercase tracking-tighter">OUR PERMY<br>BRANCH</h2>
+            <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-md">
+                Expanding our legacy of mechanical precision to Bandar Baru Permyjaya. Visit our second location for the same expert service and premium selection you trust.
+            </p>
         </div>
-    </div>
-
-</div>
-
-<!-- UPDATED OPERATING HOURS SECTION -->
-<div class="flex flex-col gap-6">
-<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Operating Hours</h3>
-<div class="flex flex-col gap-0 border border-outline-variant bg-surface-container rounded-md overflow-hidden">
-    
-    <div class="flex justify-between items-center p-4 border-b border-outline-variant">
-        <div class="flex flex-col">
-            <span class="font-body-md text-body-md text-on-surface font-semibold">HIAP HO CYCLE WORKS</span>
-            <span class="font-label-md text-[12px] text-on-surface-variant uppercase mt-1">Mon - Sat</span>
+        <div class="col-span-1 md:col-span-7 w-full h-[300px] md:h-[450px] bg-surface-container border border-outline-variant overflow-hidden p-2 rounded-md">
+            <img alt="Hiap Ho Cycle Works Permy Branch" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90 rounded-sm" src="../HiaphoUserPage/ImageStorage/Permyshop.png">
         </div>
-        <span class="font-label-md text-label-md text-on-surface">9:00AM - 6:00PM</span>
-    </div>
-    
-    <div class="flex justify-between items-center p-4">
-        <div class="flex flex-col">
-            <span class="font-body-md text-body-md text-on-surface font-semibold">HIAP HO CYCLE WORKS (Permy)</span>
-            <span class="font-label-md text-[12px] text-on-surface-variant uppercase mt-1">Tue - Sun</span>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="w-full h-[800px] md:h-[750px] relative border-b border-outline-variant overflow-hidden flex items-center py-12 md:py-0">
+        <!-- Background Interactive Map -->
+        <div class="absolute inset-0 z-0">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=Hiap%20Ho%20Cycle%20Works,%20Miri,%20Sarawak&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+            </iframe>
+            <div class="absolute inset-0 bg-background/20 pointer-events-none"></div>
         </div>
-        <span class="font-label-md text-label-md text-on-surface">9:30AM - 7:00PM</span>
-    </div>
-
-</div>
-</div>
-</div>
-
-<!-- Vertical Divider (Desktop) -->
-<div class="hidden lg:block lg:col-span-1 relative">
-<div class="absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant"></div>
-</div>
-<!-- Inquiry Form -->
-<div class="lg:col-span-6 flex flex-col gap-6">
-<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest border-b border-outline-variant pb-2 w-max">Send a Message</h3>
-<form id="contactForm" class="flex flex-col gap-6 mt-2">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="name">Name</label>
-<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="name" placeholder="John Doe" type="text" required>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="email">Email</label>
-<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="email" placeholder="john@example.com" type="email" required>
-</div>
-<!-- Phone Number Field -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="phone">Phone Number</label>
-<input class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md" id="phone" placeholder="+60 12-345 6789" type="tel" required>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="subject">Subject</label>
-<select class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors appearance-none rounded-md" id="subject">
-<option>General Inquiry</option>
-<option>Service Booking</option>
-<option>Parts Availability</option>
-<option value="Other">Other...</option>
-</select>
-<input class="hidden bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors rounded-md mt-1" id="customSubject" placeholder="Please specify your subject" type="text">
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase" for="message">Message</label>
-<textarea class="bg-surface-container border border-outline-variant text-on-surface font-body-md text-body-md p-3 focus:border-on-tertiary-container focus:ring-1 focus:ring-on-tertiary-container outline-none transition-colors resize-none rounded-md" id="message" placeholder="How can we help?" rows="5" required></textarea>
-</div>
-<button class="bg-on-tertiary-container text-white font-label-md text-label-md px-8 py-3 uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 w-full md:w-auto self-start flex items-center justify-center gap-2 border border-on-tertiary-container mt-2 active:scale-95 rounded-md" type="submit">
-                        Submit Inquiry
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</form>
-</div>
-</section>
-
-<!-- Permy Branch Showcase Section -->
-<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl border-b border-outline-variant grid grid-cols-1 md:grid-cols-12 gap-xl items-center bg-background">
-    <div class="md:col-span-5 flex flex-col gap-md">
-        <h2 class="font-display-lg text-display-lg text-on-surface uppercase tracking-tighter">OUR PERMY<br>BRANCH</h2>
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
-            Expanding our legacy of mechanical precision to Bandar Baru Permyjaya. Visit our second location for the same expert service and premium selection you trust.
-        </p>
-    </div>
-    <div class="md:col-span-7 w-full h-[450px] bg-surface-container border border-outline-variant overflow-hidden p-2 rounded-md">
-        <img alt="Hiap Ho Cycle Works Permy Branch" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 opacity-90" src="../HiaphoUserPage/ImageStorage/Permyshop.png">
-    </div>
-</section>
-
-<!-- Interactive Map Section -->
-<section class="w-full h-auto md:h-[750px] relative border-b border-outline-variant overflow-hidden flex items-center py-xl md:py-0">
-    
-    <!-- Background Interactive Map (Set to z-0) -->
-    <div class="absolute inset-0 z-0">
-        <!-- Google Maps Embed centered on Miri to show both areas -->
-        <iframe 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=Hiap%20Ho%20Cycle%20Works,%20Miri,%20Sarawak&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-        </iframe>
         
-        <!-- Subtle dark overlay so the cards and map blend nicely -->
-        <div class="absolute inset-0 bg-background/20 pointer-events-none"></div>
-    </div>
-    
-    <!-- Foreground Content (Cards on the Left) -->
-    <!-- 'pointer-events-none' allows the user to click/drag the map through the invisible parts of this container -->
-    <div class="relative z-10 w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop h-full flex items-center justify-start pointer-events-none">
-        
-        <!-- Cards Wrapper ('pointer-events-auto' makes the cards themselves clickable) -->
-        <div class="flex flex-col gap-6 w-full max-w-md pointer-events-auto py-8">
+        <!-- Foreground Content (Cards on the Left) -->
+        <div class="relative z-10 w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop h-full flex items-center justify-center md:justify-start pointer-events-none">
             
-            <!-- HQ Floating Info Card -->
-            <div class="w-full bg-background/95 backdrop-blur-md p-lg border border-outline-variant flex flex-col items-start text-left shadow-2xl rounded-md">
-                <div class="flex items-center gap-3 mb-sm">
-                    <span class="material-symbols-outlined text-[32px] text-on-tertiary-container">location_on</span>
-                    <h4 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">
-                        Main HQ
-                    </h4>
+            <div class="flex flex-col gap-6 w-full max-w-md pointer-events-auto py-8">
+                <!-- HQ Floating Info Card -->
+                <div class="w-full bg-background/95 backdrop-blur-md p-6 md:p-lg border border-outline-variant flex flex-col items-start text-left shadow-2xl rounded-md">
+                    <div class="flex items-center gap-3 mb-sm">
+                        <span class="material-symbols-outlined text-[32px] text-on-tertiary-container">location_on</span>
+                        <h4 class="font-headline-md text-[20px] md:text-headline-md text-on-surface uppercase tracking-wider">
+                            Main HQ
+                        </h4>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4 md:pl-11">
+                        Lot 2397, Boulevard Commercial Centre<br>
+                        98000 Miri, Sarawak
+                    </p>
+                    <div class="md:pl-11 flex flex-col gap-2 w-full">
+                        <p class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
+                            085427880
+                        </p>
+                        <p class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-6">
+                            <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
+                            Mon-Sat, 9:00AM - 6:00PM
+                        </p>
+                        <a href="https://maps.app.goo.gl/idssrBAnKYFJ4jwU7" target="_blank" rel="noopener noreferrer" class="bg-on-tertiary-container text-white px-md py-4 md:py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
+                            <span class="material-symbols-outlined text-[20px]">directions</span>
+                            Get HQ Directions
+                        </a>
+                    </div>
                 </div>
-                
-                <p class="font-body-md text-body-md text-on-surface-variant mb-4 md:pl-11">
-                    Lot 2397, Boulevard Commercial Centre<br>
-                    98000 Miri, Sarawak
-                </p>
-                
-                <div class="md:pl-11 flex flex-col gap-2 w-full">
-                    <p class="font-label-md text-label-md text-on-surface flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
-                        085427880
+
+                <!-- Permy Floating Info Card -->
+                <div class="w-full bg-background/95 backdrop-blur-md p-6 md:p-lg border border-outline-variant flex flex-col items-start text-left shadow-2xl rounded-md">
+                    <div class="flex items-center gap-3 mb-sm">
+                        <span class="material-symbols-outlined text-[32px] text-on-tertiary-container">store</span>
+                        <h4 class="font-headline-md text-[20px] md:text-headline-md text-on-surface uppercase tracking-wider">
+                            Permy Branch
+                        </h4>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4 md:pl-11">
+                        Lot 5562 (6), Ground floor, Pusat Bandar<br>
+                        Bandar Baru Permyjaya, 98000 Miri, Sarawak
                     </p>
-                    <p class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-6">
-                        <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
-                        Mon-Sat, 9:00AM - 6:00PM
-                    </p>
-                    
-                    <a href="https://maps.app.goo.gl/idssrBAnKYFJ4jwU7" target="_blank" rel="noopener noreferrer" class="bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
-                        <span class="material-symbols-outlined text-[20px]">directions</span>
-                        Get HQ Directions
-                    </a>
+                    <div class="md:pl-11 flex flex-col gap-2 w-full">
+                        <p class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
+                            085651134
+                        </p>
+                        <p class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-6">
+                            <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
+                            Tue-Sun, 9:30AM - 7:00PM
+                        </p>
+                        <a href="https://maps.app.goo.gl/eFBDMQnkCBHAok339" target="_blank" rel="noopener noreferrer" class="bg-on-tertiary-container text-white px-md py-4 md:py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
+                            <span class="material-symbols-outlined text-[20px]">directions</span>
+                            Get Permy Directions
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Permy Floating Info Card -->
-            <div class="w-full bg-background/95 backdrop-blur-md p-lg border border-outline-variant flex flex-col items-start text-left shadow-2xl rounded-md">
-                <div class="flex items-center gap-3 mb-sm">
-                    <span class="material-symbols-outlined text-[32px] text-on-tertiary-container">store</span>
-                    <h4 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">
-                        Permy Branch
-                    </h4>
-                </div>
-                
-                <p class="font-body-md text-body-md text-on-surface-variant mb-4 md:pl-11">
-                    Lot 5562 (6), Ground floor, Pusat Bandar<br>
-                    Bandar Baru Permyjaya, 98000 Miri, Sarawak
-                </p>
-                
-                <div class="md:pl-11 flex flex-col gap-2 w-full">
-                    <p class="font-label-md text-label-md text-on-surface flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">call</span> 
-                        085651134
-                    </p>
-                    <p class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-6">
-                        <span class="material-symbols-outlined text-[18px] text-on-tertiary-container">schedule</span> 
-                        Tue-Sun, 9:30AM - 7:00PM
-                    </p>
-                    
-                    <a href="https://maps.app.goo.gl/eFBDMQnkCBHAok339" target="_blank" rel="noopener noreferrer" class="bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container flex items-center justify-center gap-xs active:scale-95 rounded-md w-full">
-                        <span class="material-symbols-outlined text-[20px]">directions</span>
-                        Get Permy Directions
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 </main>
-<!-- Footer (UPDATED ALIGNMENT) -->
+
+<!-- Footer (UPDATED MOBILE CENTERING) -->
 <footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden">
-  <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-12 gap-lg">
-    
-    <!-- Brand Info (Left Side) -->
-    <div class="md:col-span-5 flex flex-col gap-md">
-      <div class="flex items-center gap-sm">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63" alt="Hiap Ho Cycle Works Logo" class="h-12 w-auto object-contain">
-        <span class="font-headline-md text-on-surface uppercase tracking-tighter">HIAP HO CYCLE WORKS</span>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-lg">
+      
+      <!-- Brand Info -->
+      <div class="md:col-span-5 flex flex-col gap-6 md:gap-md text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-3 md:gap-sm">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63" alt="Hiap Ho Cycle Works Logo" class="h-10 md:h-12 w-auto object-contain">
+          <span class="font-headline-md text-[18px] md:text-headline-md text-on-surface uppercase tracking-tighter">HIAP HO CYCLE WORKS</span>
+        </div>
+        <p class="font-label-md text-xs md:text-label-md text-on-tertiary-container tracking-widest uppercase md:border-l-2 md:border-on-tertiary-container md:pl-sm">
+          Legacy of Mechanical Precision
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto md:mx-0">
+          Your trusted local destination for premium cycling equipment and expert mechanical services since 1984.
+        </p>
       </div>
-      <p class="font-label-md text-on-tertiary-container tracking-widest uppercase border-l-2 border-on-tertiary-container pl-sm">
-        Legacy of Mechanical Precision
-      </p>
-      <p class="font-body-md text-on-surface-variant max-w-xs">
-        Your trusted local destination for premium cycling equipment and expert mechanical services since 1984.
-      </p>
-    </div>
-    
-    <!-- Connect Section (Pushed to the Right using md:col-start-9) -->
-    <div class="md:col-span-4 md:col-start-9 flex flex-col gap-sm">
-      <h4 class="font-label-md text-on-surface uppercase border-b border-outline-variant pb-xs mb-xs">Connect</h4>
-      <div class="flex flex-wrap gap-sm">
-        
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        
-        <!-- TikTok -->
-        <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
-          </svg>
-        </a>
-        
-        <!-- Shopee (Using Material Icon Shopping Bag) -->
-        <a href="https://shopee.com.my/hhbicycle" target="_blank" rel="noopener noreferrer" aria-label="Shopee" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-        </a>
-        
+      
+      <!-- Connect Section -->
+      <div class="md:col-span-4 md:col-start-9 flex flex-col gap-4 md:gap-sm items-center md:items-start mt-4 md:mt-0">
+        <h4 class="font-label-md text-label-md text-on-surface uppercase border-b border-outline-variant pb-2 md:pb-xs mb-2 md:mb-xs w-full text-center md:text-left">Connect</h4>
+        <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-sm">
+          <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+            <svg class="w-6 h-6 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+          </a>
+          <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+            <svg class="w-6 h-6 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+          </a>
+          <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+            <svg class="w-6 h-6 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
+          </a>
+          <a href="https://shopee.com.my/hhbicycle" target="_blank" class="w-12 h-12 md:w-10 md:h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+            <span class="material-symbols-outlined text-[24px] md:text-[20px]">shopping_bag</span>
+          </a>
+        </div>
       </div>
     </div>
     
-  </div>
-  
-  <div class="border-t border-outline-variant py-md">
-    <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center">
-      <p class="font-label-md text-[12px] text-on-surface-variant uppercase">© 2026 HIAP HO CYCLE WORKS. ALL RIGHTS RESERVED.</p>
+    <div class="border-t border-outline-variant py-6 md:py-4">
+      <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop flex justify-center md:justify-between items-center text-center">
+        <p class="font-label-md text-[10px] md:text-[12px] text-on-surface-variant uppercase">© 2026 HIAP HO CYCLE WORKS. ALL RIGHTS RESERVED.</p>
+      </div>
     </div>
-  </div>
 </footer>
 
 <script>
+    // --- MOBILE MENU LOGIC ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- FORM LOGIC ---
     const subjectSelect = document.getElementById('subject');
     const customSubjectInput = document.getElementById('customSubject');
 
-    // Listen for changes on the dropdown to show/hide the custom input
     subjectSelect.addEventListener('change', (e) => {
         if (e.target.value === 'Other') {
-            // Unhide the input and make it a required field
             customSubjectInput.classList.remove('hidden');
             customSubjectInput.required = true;
         } else {
-            // Hide the input, remove requirement, and clear its text
             customSubjectInput.classList.add('hidden');
             customSubjectInput.required = false;
             customSubjectInput.value = ''; 
         }
     });
 
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
         e.preventDefault(); 
         
         const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -533,7 +385,6 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             finalSubject = customSubjectInput.value;
         }
 
-        // Data to send to your backend API
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -543,7 +394,6 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         };
 
         try {
-            // Send to the API (which writes to inquiriesData.json)
             const response = await fetch('/api/inquiries', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -567,4 +417,5 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     });
 </script>
 
-</body></html>
+</body>
+</html>
