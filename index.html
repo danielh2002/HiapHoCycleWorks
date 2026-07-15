@@ -1,389 +1,321 @@
-<!DOCTYPE html><html class="dark" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Hiap Ho Cycle Works - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Hanken+Grotesk:wght@700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Corrected CSS Link -->
-<link rel="stylesheet" href="index.css">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Hiap Ho Cycle Works - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Hanken+Grotesk:wght@700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-tertiary-fixed": "#410002",
-                      "tertiary-fixed-dim": "#ffb4ab",
-                      "on-secondary-container": "#b4b5b5",
-                      "error-container": "#93000a",
-                      "secondary-fixed": "#e2e2e2",
-                      "outline-variant": "#444748",
-                      "inverse-primary": "#5f5e5e",
-                      "surface-container": "#1f2020",
-                      "on-surface-variant": "#c4c7c7",
-                      "on-error": "#690005",
-                      "secondary-fixed-dim": "#c6c6c7",
-                      "tertiary-container": "#2f0001",
-                      "secondary-container": "#454747",
-                      "surface-container-low": "#1b1c1c",
-                      "on-tertiary": "#690006",
-                      "on-background": "#e4e2e1",
-                      "on-primary-container": "#7e7d7d",
-                      "secondary": "#c6c6c7",
-                      "on-tertiary-container": "#f12b2c",
-                      "on-primary": "#313030",
-                      "primary-fixed-dim": "#c8c6c5",
-                      "tertiary-fixed": "#ffdad6",
-                      "primary-fixed": "#e5e2e1",
-                      "inverse-on-surface": "#303030",
-                      "surface-bright": "#393939",
-                      "on-primary-fixed-variant": "#474646",
-                      "background": "#131313",
-                      "surface": "#131313",
-                      "inverse-surface": "#e4e2e1",
-                      "outline": "#8e9192",
-                      "on-primary-fixed": "#1c1b1b",
-                      "on-error-container": "#ffdad6",
-                      "primary-container": "#121212",
-                      "on-secondary": "#2f3131",
-                      "surface-tint": "#c8c6c5",
-                      "surface-container-high": "#2a2a2a",
-                      "on-secondary-fixed-variant": "#454747",
-                      "error": "#ffb4ab",
-                      "on-secondary-fixed": "#1a1c1c",
-                      "primary": "#c8c6c5",
-                      "surface-container-highest": "#353535",
-                      "surface-variant": "#353535",
-                      "surface-dim": "#131313",
-                      "on-tertiary-fixed-variant": "#93000d",
-                      "surface-container-lowest": "#0e0e0e",
-                      "on-surface": "#e4e2e1",
-                      "tertiary": "#ffb4ab"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "spacing": {
-                      "gutter": "24px",
-                      "margin-desktop": "64px",
-                      "sm": "12px",
-                      "md": "24px",
-                      "lg": "48px",
-                      "margin-mobile": "16px",
-                      "base": "8px",
-                      "xs": "4px",
-                      "xl": "80px"
-              },
-              "fontFamily": {
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "label-md": [
-                              "JetBrains Mono"
-                      ],
-                      "display-lg": [
-                              "Hanken Grotesk"
-                      ],
-                      "headline-lg": [
-                              "Hanken Grotesk"
-                      ],
-                      "headline-lg-mobile": [
-                              "Hanken Grotesk"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ],
-                      "headline-md": [
-                              "Hanken Grotesk"
-                      ]
-              },
-              "fontSize": {
-                      "body-md": [
-                              "16px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "label-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "20px",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "display-lg": [
-                              "48px",
-                              {
-                                      "lineHeight": "56px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "800"
-                              }
-                      ],
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "40px",
-                                      "letterSpacing": "-0.01em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "28px",
-                              {
-                                      "lineHeight": "36px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "body-lg": [
-                              "18px",
-                              {
-                                      "lineHeight": "28px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-md": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "700"
-                              }
-                      ]
-              }
-      },
-          },
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#410002",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "on-secondary-container": "#b4b5b5",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-container": "#1f2020",
+                        "on-surface-variant": "#c4c7c7",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary-container": "#2f0001",
+                        "secondary-container": "#454747",
+                        "surface-container-low": "#1b1c1c",
+                        "on-tertiary": "#690006",
+                        "on-background": "#e4e2e1",
+                        "on-primary-container": "#7e7d7d",
+                        "secondary": "#c6c6c7",
+                        "on-tertiary-container": "#f12b2c",
+                        "on-primary": "#313030",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#ffdad6",
+                        "primary-fixed": "#e5e2e1",
+                        "inverse-on-surface": "#303030",
+                        "surface-bright": "#393939",
+                        "on-primary-fixed-variant": "#474646",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "inverse-surface": "#e4e2e1",
+                        "outline": "#8e9192",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#121212",
+                        "on-secondary": "#2f3131",
+                        "surface-tint": "#c8c6c5",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed-variant": "#454747",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary": "#c8c6c5",
+                        "surface-container-highest": "#353535",
+                        "surface-variant": "#353535",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#93000d",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e4e2e1",
+                        "tertiary": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "xl": "80px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"]
+                    }
+                }
+            },
         }
-      </script>
+    </script>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background">
-<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0" id="top-nav">
-<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
-  
-  <!-- Left: Branding (UPDATED BRAND LOGO SIZE) -->
-  <div class="flex-1 flex items-center">
-    <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="index.html">
-      <img alt="Hiap Ho Cycle Works Logo" class="h-12 md:h-16 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
-      <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
-    </a>
-  </div>
 
-  <!-- Center: Navigation Links -->
-  <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
-    <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="index.html">Home</a>
-    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
-    <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
-  </div>
-
-  <!-- Right: Primary Action -->
-  <div class="flex-1 flex justify-end items-center gap-sm">
-    <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
-      <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
-    </a>
-    
-    <!-- Mobile Menu Button -->
-    <button aria-label="Menu" class="md:hidden text-on-surface p-xs hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
-      <span class="material-symbols-outlined text-[28px]">menu</span>
-    </button>
-  </div>
-</div>
-</nav>
-<main class="flex-grow">
-<!-- Hero Section -->
-<!-- Hero Section -->
-<section class="relative w-full h-[80vh] min-h-[600px] flex items-center bg-background border-b border-outline-variant overflow-hidden">
-  
-  <!-- Background Image Area (Optimized for Portrait Image) -->
-  <!-- We push the image to the right on desktop (md:left-1/3) so the container is taller/narrower, preventing the top and bottom from being cropped out. -->
-  <div class="absolute inset-0 md:left-1/3 z-0">
-    <div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent z-10"></div>
-    <img alt="Hiap Ho Cycle Works storefront" class="w-full h-full object-cover object-center opacity-80" src="../HiaphoUserPage/ImageStorage/HiapHoNewNew.png">
-  </div>
-
-  <!-- Content Area -->
-  <div class="relative z-20 w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
-    <div class="md:col-span-8 flex flex-col justify-center gap-lg border-l-2 border-on-tertiary-container pl-md">
-      <div>
-        <h1 class="font-display-lg text-display-lg text-on-surface uppercase mb-sm drop-shadow-md">
-          Welcome to <br> <span class="text-on-tertiary-container">Hiap Ho Cycle Works</span>
-        </h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-md border-l border-outline-variant pl-sm ml-xs">
-          Your trusted local destination for all things cycling. Whether you are a daily commuter, a weekend trail rider, or looking for your child's first bike, we have the right ride for you. Legacy of mechanical precision.
-        </p>
-      </div>
-      <div class="flex flex-col sm:flex-row gap-md mt-sm">
-        <a class="inline-flex items-center justify-center bg-on-tertiary-container text-white px-xl py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors border border-on-tertiary-container group" href="#contact">
-          Visit Our Shop
-          <span class="material-symbols-outlined ml-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+<!-- NAVBAR (UPDATED FOR MOBILE MENU) -->
+<nav class="bg-background w-full border-b border-outline-variant z-50 sticky top-0 relative" id="top-nav">
+    <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-md max-w-screen-2xl mx-auto">
+      
+      <!-- Left: Branding -->
+      <div class="flex-1 flex items-center">
+        <a class="flex items-center gap-sm group active:scale-95 transition-all duration-300" href="index.html">
+          <img alt="Hiap Ho Cycle Works Logo" class="h-10 md:h-16 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63">
+          <span class="font-headline-md text-on-surface uppercase tracking-tighter hidden lg:inline-block group-hover:text-on-tertiary-container transition-colors duration-300">HIAP HO CYCLE WORKS</span>
         </a>
       </div>
-    </div>
-  </div>
-</section>
-<section class="py-xl bg-surface-container-lowest border-b border-outline-variant"><div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-3 gap-lg"><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">build</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Expert Mechanics</h3><p class="font-body-md text-on-surface-variant">Decades of experience in precision tuning and complex repairs for all types of bicycles.</p></div><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">groups</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Community First</h3><p class="font-body-md text-on-surface-variant">We don't just sell bikes; we support the local cycling culture through rides and events.</p></div><div class="flex flex-col gap-sm"><span class="material-symbols-outlined text-on-tertiary-container text-[48px]">verified</span><h3 class="font-headline-md text-headline-md text-on-surface uppercase">Premium Selection</h3><p class="font-body-md text-on-surface-variant">Hand-picked inventory from the world's leading brands, ensuring quality in every ride.</p></div></div></div></section>
-
-
-<!-- DYNAMIC BRANDS SHOWCASE SECTION (UPDATED DYNAMIC LOGO MAX HEIGHT CONTAINER) -->
-<section class="py-xl bg-background border-b border-outline-variant">
-    <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
-        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase mb-lg tracking-widest text-center">Authorized Dealer For</h2>
-        
-        <!-- Target container for the backend API values -->
-        <div id="brand-logos-container" class="flex flex-wrap justify-center gap-xl items-center opacity-60 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500">
-            <p class="text-on-surface-variant uppercase font-label-md tracking-wider text-sm">Loading Brands...</p>
-        </div>
-    </div>
-</section>
-
-<!-- Social Media / Connect Section -->
-<section class="py-xl bg-background border-b border-outline-variant w-full overflow-hidden">
-  <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop">
     
-    <!-- Section Header -->
-    <div class="flex flex-col items-center text-center mb-xl">
-      <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest mb-3">
-        Join Our Community
-      </h2>
-      <h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface uppercase tracking-tighter max-w-2xl">
-        Stay Connected With Us
-      </h3>
-      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">
-        Follow us across our platforms for the latest premium builds, behind-the-scenes mechanic action, event updates, and exclusive online deals.
-      </p>
+      <!-- Center: Navigation Links (Hidden on Mobile) -->
+      <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
+        <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
+      </div>
+    
+      <!-- Right: Primary Action -->
+      <div class="flex-1 flex justify-end items-center gap-sm">
+        <a href="contact.html" class="hidden md:flex bg-on-tertiary-container text-white px-md py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors duration-300 border border-on-tertiary-container items-center gap-xs active:scale-95 rounded-md">
+          <span class="material-symbols-outlined text-[20px]">build</span> Contact Us Now
+        </a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden text-on-surface p-2 hover:bg-surface-container-high rounded-md transition-all duration-300 active:scale-95">
+          <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Social Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      
-      <!-- Facebook Card -->
-      <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white group-hover:bg-[#1877F2] transition-colors duration-300 mb-6">
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Facebook</h4>
-        <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
-          Join our local cycling community for ride announcements and shop updates.
-        </p>
-        <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Follow Page</span>
-      </a>
-
-      <!-- Instagram Card -->
-      <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white transition-colors duration-300 mb-6 relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
-          <svg class="w-8 h-8 relative z-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Instagram</h4>
-        <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
-          Check out our premium custom builds, new arrivals, and daily shop life.
-        </p>
-        <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">View Gallery</span>
-      </a>
-
-      <!-- TikTok Card -->
-      <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-black group-hover:bg-[#00f2fe] transition-colors duration-300 mb-6">
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
-          </svg>
-        </div>
-        <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">TikTok</h4>
-        <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
-          Watch our mechanics in action with quick service tips, tricks, and ASMR builds.
-        </p>
-        <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Watch Videos</span>
-      </a>
-
-      <!-- Shopee Card -->
-      <a href="https://shopee.com.my/hhbicycle" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
-        <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white group-hover:bg-[#ee4d2d] transition-colors duration-300 mb-6">
-          <span class="material-symbols-outlined text-[32px]">shopping_bag</span>
-        </div>
-        <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Shopee</h4>
-        <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
-          Shop premium parts, gear, and accessories online with nationwide delivery.
-        </p>
-        <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Shop Now</span>
-      </a>
-
+    <!-- Mobile Menu Dropdown (Hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant flex flex-col items-center py-6 gap-6 shadow-2xl z-40">
+        <a class="text-on-surface font-label-md text-label-md uppercase tracking-widest border-b border-on-tertiary-container pb-1" href="index.html">Home</a>
+        <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="about.html">About</a>
+        <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="contact.html">Contact</a>
+        <a href="contact.html" class="w-11/12 mt-4 bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md text-center uppercase tracking-wider rounded-md active:scale-95 transition-transform">
+            Contact Us Now
+        </a>
     </div>
-  </div>
-</section>
+</nav>
+
+<main class="flex-grow">
+    
+    <!-- Hero Section (UPDATED SCALING FOR MOBILE) -->
+    <section class="relative w-full h-[70vh] md:h-[80vh] min-h-[500px] md:min-h-[600px] flex items-center bg-background border-b border-outline-variant overflow-hidden">
+      <div class="absolute inset-0 md:left-1/3 z-0">
+        <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/90 md:via-background/80 to-transparent z-10"></div>
+        <img alt="Hiap Ho Cycle Works storefront" class="w-full h-full object-cover object-[center_30%] opacity-80" src="../HiaphoUserPage/ImageStorage/HiapHoNewNew.png">
+      </div>
+    
+      <div class="relative z-20 w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter mt-12 md:mt-0">
+        <div class="md:col-span-8 flex flex-col justify-center gap-6 border-l-2 border-on-tertiary-container pl-4 md:pl-md">
+          <div>
+            <h1 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface uppercase mb-sm drop-shadow-md leading-tight md:leading-[56px]">
+              Welcome to <br> <span class="text-on-tertiary-container">Hiap Ho Cycle Works</span>
+            </h1>
+            <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-2xl mt-4 md:mt-md border-l border-outline-variant pl-4 ml-1">
+              Your trusted local destination for all things cycling. Whether you are a daily commuter, a weekend trail rider, or looking for your child's first bike, we have the right ride for you. Legacy of mechanical precision.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 mt-2 md:mt-sm">
+            <a class="w-full sm:w-auto inline-flex items-center justify-center bg-on-tertiary-container text-white px-xl py-4 md:py-sm font-label-md text-label-md uppercase tracking-wider hover:bg-tertiary transition-colors border border-on-tertiary-container rounded-md group" href="#contact">
+              Visit Our Shop
+              <span class="material-symbols-outlined ml-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-xl bg-surface-container-lowest border-b border-outline-variant">
+        <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-lg">
+                <div class="flex flex-col gap-sm">
+                    <span class="material-symbols-outlined text-on-tertiary-container text-[48px]">build</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface uppercase">Expert Mechanics</h3>
+                    <p class="font-body-md text-on-surface-variant">Decades of experience in precision tuning and complex repairs for all types of bicycles.</p>
+                </div>
+                <div class="flex flex-col gap-sm">
+                    <span class="material-symbols-outlined text-on-tertiary-container text-[48px]">groups</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface uppercase">Community First</h3>
+                    <p class="font-body-md text-on-surface-variant">We don't just sell bikes; we support the local cycling culture through rides and events.</p>
+                </div>
+                <div class="flex flex-col gap-sm">
+                    <span class="material-symbols-outlined text-on-tertiary-container text-[48px]">verified</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface uppercase">Premium Selection</h3>
+                    <p class="font-body-md text-on-surface-variant">Hand-picked inventory from the world's leading brands, ensuring quality in every ride.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC BRANDS SHOWCASE SECTION (UPDATED FOR MOBILE GRID) -->
+    <section class="py-xl bg-background border-b border-outline-variant">
+        <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop">
+            <h2 class="font-label-md text-label-md text-on-surface-variant uppercase mb-12 tracking-widest text-center">Authorized Dealer For</h2>
+            
+            <!-- Target container fixed to responsive grid layout -->
+            <div id="brand-logos-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+                <p class="col-span-full text-on-surface-variant uppercase font-label-md tracking-wider text-sm text-center">Loading Brands...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media / Connect Section -->
+    <section class="py-xl bg-background border-b border-outline-variant w-full overflow-hidden">
+      <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop">
+        
+        <div class="flex flex-col items-center text-center mb-12 md:mb-xl">
+          <h2 class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-widest mb-3">Join Our Community</h2>
+          <h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface uppercase tracking-tighter max-w-2xl">Stay Connected With Us</h3>
+          <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-2xl mt-4">
+            Follow us across our platforms for the latest premium builds, behind-the-scenes mechanic action, event updates, and exclusive online deals.
+          </p>
+        </div>
+    
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-gutter">
+          
+          <!-- Facebook Card -->
+          <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-8 md:p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
+            <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white group-hover:bg-[#1877F2] transition-colors duration-300 mb-6">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+            </div>
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Facebook</h4>
+            <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Join our local cycling community for ride announcements and shop updates.</p>
+            <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Follow Page</span>
+          </a>
+    
+          <!-- Instagram Card -->
+          <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-8 md:p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
+            <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white transition-colors duration-300 mb-6 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+              <svg class="w-8 h-8 relative z-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+            </div>
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Instagram</h4>
+            <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Check out our premium custom builds, new arrivals, and daily shop life.</p>
+            <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">View Gallery</span>
+          </a>
+    
+          <!-- TikTok Card -->
+          <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-8 md:p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
+            <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-black group-hover:bg-[#00f2fe] transition-colors duration-300 mb-6">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
+            </div>
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">TikTok</h4>
+            <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Watch our mechanics in action with quick service tips, tricks, and ASMR builds.</p>
+            <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Watch Videos</span>
+          </a>
+    
+          <!-- Shopee Card -->
+          <a href="https://shopee.com.my/hhbicycle" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center bg-surface-container p-8 md:p-lg border border-outline-variant rounded-md hover:border-on-tertiary-container hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl">
+            <div class="w-16 h-16 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-on-surface group-hover:text-white group-hover:bg-[#ee4d2d] transition-colors duration-300 mb-6">
+              <span class="material-symbols-outlined text-[32px]">shopping_bag</span>
+            </div>
+            <h4 class="font-headline-md text-headline-md text-on-surface uppercase mb-2">Shopee</h4>
+            <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Shop premium parts, gear, and accessories online with nationwide delivery.</p>
+            <span class="font-label-md text-label-md text-on-tertiary-container uppercase tracking-wider mt-6 group-hover:underline">Shop Now</span>
+          </a>
+    
+        </div>
+      </div>
+    </section>
 
 </main>
 
-<!-- Footer (UPDATED ALIGNMENT) -->
+<!-- Footer -->
 <footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden">
-  <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-12 gap-lg">
+  <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-12 gap-lg">
     
-    <!-- Brand Info (Left Side) -->
-    <div class="md:col-span-5 flex flex-col gap-md">
-      <div class="flex items-center gap-sm">
+    <div class="md:col-span-5 flex flex-col gap-md text-center md:text-left">
+      <div class="flex items-center justify-center md:justify-start gap-sm">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIeUFsFTM95hKoa2u7spszE2RZLjVB-z4jHJ1aR8pBDaFSFAhROybMyCX8V8Mhtulof34JAl_jpmjJlqPdATBBFlPOsDex36-IPpdznioufPPi88itK-5xxx-XR9S2xjMK2lumceNqxwkXYcZ6_8euPH8wi3vMiQwxPSju5iI49nVaX0tHWJ5TDMK4KyHxLk0VoGScqFhYC94_XL8UMTAeBp_tj5whkSQO4CrOhGrskdfsWBOyLQ5RECXGEXLgVlVU4e32-l9OpP63" alt="Hiap Ho Cycle Works Logo" class="h-12 w-auto object-contain">
         <span class="font-headline-md text-on-surface uppercase tracking-tighter">HIAP HO CYCLE WORKS</span>
       </div>
-      <p class="font-label-md text-on-tertiary-container tracking-widest uppercase border-l-2 border-on-tertiary-container pl-sm">
+      <p class="font-label-md text-on-tertiary-container tracking-widest uppercase md:border-l-2 md:border-on-tertiary-container md:pl-sm">
         Legacy of Mechanical Precision
       </p>
-      <p class="font-body-md text-on-surface-variant max-w-xs">
+      <p class="font-body-md text-on-surface-variant max-w-xs mx-auto md:mx-0">
         Your trusted local destination for premium cycling equipment and expert mechanical services since 1984.
       </p>
     </div>
     
-    <!-- Connect Section (Pushed to the Right using md:col-start-9) -->
-    <div class="md:col-span-4 md:col-start-9 flex flex-col gap-sm">
-      <h4 class="font-label-md text-on-surface uppercase border-b border-outline-variant pb-xs mb-xs">Connect</h4>
-      <div class="flex flex-wrap gap-sm">
-        
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-          </svg>
+    <div class="md:col-span-4 md:col-start-9 flex flex-col gap-sm items-center md:items-start mt-8 md:mt-0">
+      <h4 class="font-label-md text-on-surface uppercase border-b border-outline-variant pb-xs mb-xs w-full text-center md:text-left">Connect</h4>
+      <div class="flex flex-wrap justify-center md:justify-start gap-sm">
+        <a href="https://www.facebook.com/Hiaphocycleworksmiri/" target="_blank" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
         </a>
-        
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-          </svg>
+        <a href="https://www.instagram.com/hiaphocycleworks/?hl=en" target="_blank" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
         </a>
-        
-        <!-- TikTok -->
-        <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
-          </svg>
+        <a href="https://www.tiktok.com/@hiap.ho.cycle.wor" target="_blank" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
         </a>
-        
-        <!-- Shopee (Using Material Icon Shopping Bag) -->
-        <a href="https://shopee.com.my/hhbicycle" target="_blank" rel="noopener noreferrer" aria-label="Shopee" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
+        <a href="https://shopee.com.my/hhbicycle" target="_blank" class="w-10 h-10 border border-outline-variant flex items-center justify-center text-on-surface hover:text-on-tertiary-container hover:border-on-tertiary-container transition-colors rounded-md">
           <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
         </a>
-        
       </div>
     </div>
-    
   </div>
   
-  <div class="border-t border-outline-variant py-md">
-    <div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center">
+  <div class="border-t border-outline-variant py-4">
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop flex justify-center md:justify-between items-center text-center">
       <p class="font-label-md text-[12px] text-on-surface-variant uppercase">© 2026 HIAP HO CYCLE WORKS. ALL RIGHTS RESERVED.</p>
     </div>
   </div>
 </footer>
 
-<!-- JAVASCRIPT FOR DYNAMIC LOGO LOADING -->
+<!-- JAVASCRIPT FOR MOBILE MENU & DYNAMIC LOGO LOADING -->
 <script>
+    // Handle Mobile Menu Toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Handle Brands Loading
     async function fetchActiveBrands() {
         try {
             const res = await fetch('/api/brands', { cache: 'no-store' });
@@ -391,21 +323,18 @@
             const container = document.getElementById('brand-logos-container');
 
             if (!brands || brands.length === 0) {
-                container.innerHTML = '<p class="text-on-surface-variant font-label-md uppercase text-xs tracking-wider">No brands currently registered</p>';
+                container.innerHTML = '<p class="col-span-full text-on-surface-variant font-label-md uppercase text-xs tracking-wider">No brands currently registered</p>';
                 return;
             }
 
-            // Map and generate the elements
             container.innerHTML = brands.map(brand => {
                 if (brand.imageUrl) {
-                    // Render clean image logo (UPDATED LOGO SHOWCASE MAX HEIGHT CONTAINER TO h-12 md:h-16)
                     return `
-                        <div class="h-15 md:h-20 flex items-center justify-center max-w-[200px] px-4 transition-transform duration-300 hover:scale-105" title="${brand.name} (${brand.category})">
+                        <div class="h-16 md:h-20 flex items-center justify-center max-w-[160px] md:max-w-[200px] px-2 md:px-4 transition-transform duration-300 hover:scale-105" title="${brand.name} (${brand.category})">
                             <img src="${brand.imageUrl}" alt="${brand.name} Logo" class="max-w-full max-h-full object-contain brightness-90 contrast-125">
                         </div>
                     `;
                 } else {
-                    // Fallback to high-contrast corporate typography if logo file is empty
                     return `
                         <div class="px-md py-xs border border-outline-variant/30 font-label-md text-label-md uppercase text-on-surface-variant bg-surface-container/20 tracking-widest font-semibold transition-transform duration-300 hover:scale-105" title="${brand.category}">
                             ${brand.name}
@@ -416,11 +345,11 @@
 
         } catch (error) {
             console.error('Error fetching home page showcase brands:', error);
-            document.getElementById('brand-logos-container').innerHTML = '<p class="text-on-error font-label-md uppercase text-xs">Roster synchronization error</p>';
+            document.getElementById('brand-logos-container').innerHTML = '<p class="col-span-full text-on-error font-label-md uppercase text-xs">Roster synchronization error</p>';
         }
     }
 
-    // Initialize layout population
     fetchActiveBrands();
 </script>
-</body></html>
+</body>
+</html>
