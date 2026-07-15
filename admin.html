@@ -9,6 +9,8 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    
+    <script async src="//www.instagram.com/embed.js"></script>
 
     <script id="tailwind-config">
         try {
@@ -98,6 +100,7 @@
                 <button id="tabBtn-addWorker" onclick="showTab('addWorker')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Add Worker</button>
                 <button id="tabBtn-manageWorkers" onclick="showTab('manageWorkers')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Workers</button>
                 <button id="tabBtn-brands" onclick="showTab('brands')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Brands</button>
+                <button id="tabBtn-socials" onclick="showTab('socials')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition border border-on-tertiary-container text-on-tertiary-container">Social Posts</button>
             </div>
 
             <div class="flex flex-col gap-gutter">
@@ -282,6 +285,51 @@
                     </div>
                 </section>
 
+                <section id="socialsTab" class="hidden flex-col gap-gutter">
+                    <div class="bg-surface-container-low border border-outline-variant p-lg slat-divider relative overflow-hidden">
+                        <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
+                            <h3 class="font-headline-md text-headline-md uppercase">Add Social Media Post</h3>
+                            <span class="material-symbols-outlined text-outline">share</span>
+                        </div>
+                        
+                        <form id="socialForm" class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md uppercase text-on-surface-variant">Platform</label>
+                                <select id="sPlatform" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-on-tertiary-container appearance-none transition-all" required>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="TikTok">TikTok</option>
+                                    <option value="Facebook">Facebook</option>
+                                </select>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-end">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Paste Embed Code (HTML)</label>
+                                    <span class="font-label-md text-[10px] text-outline uppercase tracking-widest">Go to post -> Share -> Embed</span>
+                                </div>
+                                <textarea id="sEmbed" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-label-md text-xs text-on-surface-variant font-mono outline-none focus:border-on-tertiary-container transition-all resize-none industrial-scrollbar" rows="8" placeholder="<blockquote class='instagram-media'...></script>" required></textarea>
+                            </div>
+                            
+                            <div class="flex items-end border-t border-outline-variant pt-6 mt-6">
+                                <button class="w-full md:w-auto bg-on-tertiary-container text-white px-xl py-4 font-label-md text-label-md uppercase font-bold hover:brightness-110 active:scale-95 transition-all" type="submit">
+                                    Publish to Website
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-surface-container-low border border-outline-variant slat-divider">
+                        <div class="p-lg border-b border-outline-variant flex justify-between items-center">
+                            <h3 class="font-headline-md text-headline-md uppercase">Active Embedded Posts</h3>
+                        </div>
+                        <div class="p-lg">
+                            <div id="socialsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                                <p class="col-span-full text-center text-on-surface-variant uppercase font-label-md tracking-widest py-8">Loading Posts...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
 
@@ -300,7 +348,9 @@
                 </div>
             </div>
         </footer>
-    </div> <div id="editWorkerModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
+    </div> 
+
+    <div id="editWorkerModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
         <div class="bg-surface-container border border-outline-variant p-lg max-w-2xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
             <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
                 <h3 class="font-headline-md text-headline-md uppercase text-on-surface">Edit Personnel Info</h3>
@@ -400,6 +450,7 @@
     let allInquiries = [];
     let allWorkers = [];
     let allBrands = [];
+    let allSocials = []; // Added
 
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -433,12 +484,17 @@
 
     // --- 1. TAB SWITCHING LOGIC ---
     function showTab(tabName) {
-        ['inquiries', 'addWorker', 'manageWorkers', 'brands'].forEach(btn => {
-            document.getElementById(btn + 'Tab').classList.add('hidden');
+        ['inquiries', 'addWorker', 'manageWorkers', 'brands', 'socials'].forEach(btn => {
+            const tabSection = document.getElementById(btn + 'Tab');
+            if(tabSection) tabSection.classList.add('hidden');
+            
             const el = document.getElementById('tabBtn-' + btn);
-            el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
-            el.classList.add('bg-surface-container-high', 'text-on-surface');
+            if(el) {
+                el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
+                el.classList.add('bg-surface-container-high', 'text-on-surface');
+            }
         });
+        
         document.getElementById(tabName + 'Tab').classList.remove('hidden');
         const activeBtn = document.getElementById('tabBtn-' + tabName);
         activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface');
@@ -547,6 +603,32 @@
         } catch (err) { alert("Error saving brand."); } finally { btn.innerText = oldText; }
     });
 
+    // SOCIAL MEDIA FORM SUBMIT
+    document.getElementById('socialForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const oldText = btn.innerText; btn.innerText = "Publishing...";
+        
+        const newPost = {
+            platform: document.getElementById('sPlatform').value,
+            embedCode: document.getElementById('sEmbed').value
+        };
+
+        try {
+            const res = await fetch('/api/socials', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(newPost) 
+            });
+            if(res.ok) {
+                alert('Post embedded successfully.');
+                e.target.reset(); 
+                loadSocials(); 
+            }
+        } catch (err) { alert("Error saving post."); } 
+        finally { btn.innerText = oldText; }
+    });
+
 
     // --- 5. FETCH DATA & RENDER ---
     async function loadWorkers() {
@@ -617,7 +699,6 @@
         } catch(e) { console.error(e); }
     }
 
-    // --- UPDATED RENDER INQUIRIES WITH FIXED TEXT OVERFLOW ---
     function renderInquiries(data) {
         const tbody = document.getElementById('inquiryTableBody');
         if (!data || data.length === 0) { 
@@ -639,10 +720,41 @@
         `).join('');
     }
 
+    async function loadSocials() {
+        try {
+            const res = await fetch('/api/socials', { cache: 'no-store' });
+            allSocials = await res.json();
+            const grid = document.getElementById('socialsGrid');
+            
+            if (!allSocials || allSocials.length === 0) { 
+                grid.innerHTML = '<p class="col-span-full text-center text-on-surface-variant uppercase font-label-md tracking-widest py-8">No embedded posts found</p>'; 
+                return; 
+            }
+
+            grid.innerHTML = allSocials.map(post => `
+                <div class="flex flex-col border border-outline-variant bg-surface-container rounded-md overflow-hidden">
+                    <div class="flex justify-between items-center bg-surface-container-high p-4 border-b border-outline-variant">
+                        <span class="font-label-md text-label-md uppercase font-bold text-on-tertiary-container">${post.platform}</span>
+                        <button onclick="deleteSocial(${post.id})" class="text-on-error hover:text-white bg-error-container/20 hover:bg-error-container border border-on-error/30 px-3 py-1 rounded transition-colors font-label-md text-[10px] uppercase">Remove Post</button>
+                    </div>
+                    <div class="p-4 bg-white flex justify-center items-center min-h-[300px] overflow-hidden">
+                        ${post.embed_code}
+                    </div>
+                </div>
+            `).join('');
+
+            // Automatically re-render any newly injected Instagram blockquotes
+            setTimeout(() => {
+                if (window.instgrm) { window.instgrm.Embeds.process(); }
+            }, 500);
+
+        } catch(e) { console.error(e); }
+    }
+
     // --- 6. ADVANCED INQUIRY FILTERING (SOLVES DATE MISMATCH) ---
     function filterInquiries() {
-        const exactDate = document.getElementById('inquiryDateFilter').value; // HTML gives YYYY-MM-DD
-        const monthYear = document.getElementById('inquiryMonthFilter').value; // HTML gives YYYY-MM
+        const exactDate = document.getElementById('inquiryDateFilter').value; 
+        const monthYear = document.getElementById('inquiryMonthFilter').value; 
 
         if (!exactDate && !monthYear) {
             renderInquiries(allInquiries);
@@ -652,17 +764,14 @@
         const filtered = allInquiries.filter(inq => {
             if (!inq.date) return false;
 
-            // Attempt to turn the DB date string into a real Date Object
             const inqDateObj = new Date(inq.date);
             
-            // If the date format from the DB is weird and can't be parsed, fallback to simple string search
             if (isNaN(inqDateObj.getTime())) {
                 if (exactDate && !inq.date.includes(exactDate)) return false;
                 if (monthYear && !inq.date.includes(monthYear)) return false;
                 return true;
             }
 
-            // Convert DB date into HTML formats so they match perfectly
             const inqYear = inqDateObj.getFullYear();
             const inqMonth = String(inqDateObj.getMonth() + 1).padStart(2, '0');
             const inqDay = String(inqDateObj.getDate()).padStart(2, '0');
@@ -670,7 +779,6 @@
             const formattedDate = `${inqYear}-${inqMonth}-${inqDay}`;
             const formattedMonth = `${inqYear}-${inqMonth}`;
 
-            // Check filters
             if (exactDate && formattedDate !== exactDate) return false;
             if (monthYear && formattedMonth !== monthYear) return false;
 
@@ -791,10 +899,18 @@
         }
     }
 
+    window.deleteSocial = async function(id) {
+        if(confirm("Remove this post from the website?")) {
+            await fetch(`/api/socials?id=${id}`, { method: 'DELETE' });
+            loadSocials(); 
+        }
+    }
+
     window.refreshData = function() {
         loadWorkers();
         loadInquiries();
         loadBrands();
+        loadSocials();
     }
 </script>
 </body>
