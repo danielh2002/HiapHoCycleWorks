@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client
 const supabase = createClient(
-  process.env.wnfjwcwcswbkpupivnfi.supabase.co, 
-  process.env.sb_publishable_AtX9PSZJlKyCkluez_Zofg_r5frIha9
+  process.env.SUPABASE_URL, 
+  process.env.SUPABASE_ANON_KEY
 );
 
 export default async function handler(req, res) {
