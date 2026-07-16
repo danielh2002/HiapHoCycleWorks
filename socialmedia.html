@@ -253,7 +253,8 @@
                 return { ...post, embed_code: code };
             });
 
-            const renderSection = (postsArray, containerId, sectionId, hoverGlowClass) => {
+            // Added 'bgClass' parameter to separate Facebook/IG backgrounds from TikTok
+            const renderSection = (postsArray, containerId, sectionId, hoverGlowClass, bgClass) => {
                 const section = document.getElementById(sectionId);
                 const container = document.getElementById(containerId);
                 
@@ -262,7 +263,7 @@
                     section.classList.add('flex');
                     
                     container.innerHTML = postsArray.map((post, index) => `
-                        <div class="embed-wrapper w-full max-w-[500px] bg-transparent rounded-2xl border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${hoverGlowClass} opacity-0" style="animation: fadeInUp 0.6s ease-out ${index * 0.15}s forwards; overflow: hidden;">
+                        <div class="embed-wrapper w-full max-w-[500px] ${bgClass} rounded-2xl border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${hoverGlowClass} opacity-0" style="animation: fadeInUp 0.6s ease-out ${index * 0.15}s forwards; overflow: hidden;">
                             ${post.embed_code}
                         </div>
                     `).join('');
@@ -273,9 +274,10 @@
                 }
             };
 
-            renderSection(fbPosts, 'fb-feed-container', 'facebook-section', 'hover:shadow-blue-500/20');
-            renderSection(igPosts, 'ig-feed-container', 'instagram-section', 'hover:shadow-pink-500/20');
-            renderSection(ttPosts, 'tiktok-feed-container', 'tiktok-section', 'hover:shadow-cyan-500/20');
+            // Pass 'bg-white' for FB and IG, but 'bg-transparent' for TikTok!
+            renderSection(fbPosts, 'fb-feed-container', 'facebook-section', 'hover:shadow-blue-500/20', 'bg-white');
+            renderSection(igPosts, 'ig-feed-container', 'instagram-section', 'hover:shadow-pink-500/20', 'bg-white');
+            renderSection(ttPosts, 'tiktok-feed-container', 'tiktok-section', 'hover:shadow-cyan-500/20', 'bg-transparent');
             
             feedsWrapper.classList.remove('hidden');
             feedsWrapper.classList.add('flex');
