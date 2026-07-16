@@ -28,11 +28,11 @@ export default async function handler(req, res) {
 
     // NEW: Handle PUT requests for updating existing brands
     if (req.method === 'PUT') {
-        const { id, name, category, imageUrl } = req.body;
+        const { id, name, title, phone, description, imageUrl} = req.body;
         
         const { data, error } = await supabase
-            .from('brands')
-            .update({ name, category, imageUrl })
+            .from('workers')
+            .update({ name, title, phone, description, imageUrl })
             .eq('id', id);
             
         if (error) return res.status(500).json({ error: error.message });
