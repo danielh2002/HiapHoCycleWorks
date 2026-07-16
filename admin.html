@@ -11,8 +11,6 @@
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     
     <script async src="//www.instagram.com/embed.js"></script>
-    <script async src="https://www.tiktok.com/embed.js"></script>
-
     <script id="tailwind-config">
         try {
             tailwind.config = {
@@ -30,6 +28,22 @@
             }
         } catch (_e) { }
     </script>
+    <style>
+        /* Force TikTok to be transparent, rounded, and centered inside the admin dashboard */
+        .tiktok-embed { 
+            margin: 0 auto !important; 
+            background: transparent !important; 
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            border: none !important;
+        }
+        iframe[src*="tiktok.com"] {
+            border-radius: 12px !important;
+            background: transparent !important;
+        }
+        /* Forces Instagram embeds to stay within bounds */
+        .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
+    </style>
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col relative">
 
@@ -451,7 +465,7 @@
     let allInquiries = [];
     let allWorkers = [];
     let allBrands = [];
-    let allSocials = []; // Added
+    let allSocials = []; 
 
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -733,11 +747,16 @@
             }
 
             grid.innerHTML = allSocials.map(post => {
-                // If it's a TikTok post, automatically inject data-theme="dark" into the blockquote 
-                // so it matches the admin dashboard dark theme!
                 let codeToRender = post.embed_code;
-                if (post.platform.toLowerCase() === 'tiktok' && codeToRender.includes('<blockquote')) {
+                
+                // Force dark theme so it matches the admin dashboard
+                if (codeToRender.includes('<blockquote') && post.platform.toLowerCase() === 'tiktok') {
                     codeToRender = codeToRender.replace('<blockquote', '<blockquote data-theme="dark"');
+                }
+                
+                // Strip the script tag to prevent double execution errors
+                if (codeToRender.includes('<script')) {
+                    codeToRender = codeToRender.split('<script')[0];
                 }
 
                 return `
@@ -746,16 +765,24 @@
                         <span class="font-label-md text-label-md uppercase font-bold text-on-tertiary-container">${post.platform}</span>
                         <button onclick="deleteSocial(${post.id})" class="text-on-error hover:text-white bg-error-container/20 hover:bg-error-container border border-on-error/30 px-3 py-1 rounded transition-colors font-label-md text-[10px] uppercase">Remove Post</button>
                     </div>
-                    <div class="p-4 bg-background flex justify-center items-center min-h-[300px] overflow-hidden">
+                    <div class="p-4 bg-background flex justify-center items-center min-h-[300px] overflow-hidden w-full">
                         ${codeToRender}
                     </div>
                 </div>
                 `;
             }).join('');
 
-            // Automatically re-render any newly injected Instagram or TikTok scripts
+            // Automatically re-render newly injected scripts
             setTimeout(() => {
                 if (window.instgrm) { window.instgrm.Embeds.process(); }
+                if (window.FB) { window.FB.XFBML.parse(); }
+                
+                // Force TikTok to re-parse
+                document.querySelectorAll('script[src="https://www.tiktok.com/embed.js"]').forEach(s => s.remove());
+                const ttScript = document.createElement('script');
+                ttScript.src = "https://www.tiktok.com/embed.js";
+                ttScript.async = true;
+                document.body.appendChild(ttScript);
             }, 500);
 
         } catch(e) { console.error(e); }

@@ -46,6 +46,19 @@
         .embed-wrapper { display: flex; justify-content: center; }
         .embed-wrapper iframe, .embed-wrapper blockquote, .embed-wrapper > div { margin: 0 auto !important; max-width: 100% !important; width: 100% !important; border-radius: 16px !important; }
         
+        /* Force TikTok to be transparent, rounded, and centered */
+        .tiktok-embed { 
+            margin: 0 auto !important; 
+            background: transparent !important; 
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            border: none !important;
+        }
+        iframe[src*="tiktok.com"] {
+            border-radius: 16px !important;
+            background: transparent !important;
+        }
+
         /* Fade In Up Animation for Staggered Load */
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(40px); }
@@ -76,8 +89,8 @@
       <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="index.html">Home</a>
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
-        <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="socialmedia.html">Social Feed</a>
-                <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
+        <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="social.html">Social Feed</a>
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
       </div>
     
       <div class="flex-1 flex justify-end items-center gap-sm">
@@ -94,7 +107,7 @@
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant flex flex-col items-center py-6 gap-6 shadow-2xl z-40">
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="index.html">Home</a>
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="about.html">About</a>
-        <a class="text-on-surface font-label-md text-label-md uppercase tracking-widest border-b border-on-tertiary-container pb-1" href="socialmedia.html">Social Feed</a>
+        <a class="text-on-surface font-label-md text-label-md uppercase tracking-widest border-b border-on-tertiary-container pb-1" href="social.html">Social Feed</a>
         <a class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest" href="contact.html">Contact</a>
         <a href="contact.html" class="w-11/12 mt-4 bg-on-tertiary-container text-white px-md py-4 font-label-md text-label-md text-center uppercase tracking-wider rounded-md active:scale-95 transition-transform">
             Contact Us Now
@@ -131,7 +144,6 @@
         
         <!-- FACEBOOK SECTION -->
         <section id="facebook-section" class="hidden flex-col w-full">
-            <!-- Glassmorphic Header Badge -->
             <div class="inline-flex items-center gap-4 mb-8 bg-surface-container-high/30 backdrop-blur-md border border-white/5 pl-2 pr-6 py-2 rounded-full w-max shadow-lg">
                 <div class="p-2 bg-[#1877F2]/20 border border-[#1877F2]/30 rounded-full">
                     <svg class="w-6 h-6 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
@@ -179,7 +191,6 @@
 
 </main>
 
-<!-- Standardized Footer -->
 <footer class="bg-surface-container-lowest border-t border-white/5 w-full relative overflow-hidden mt-auto z-10">
     <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-lg">
       <div class="md:col-span-5 flex flex-col gap-6 md:gap-md text-center md:text-left">
@@ -229,9 +240,19 @@
 
             const fbPosts = posts.filter(p => p.platform.toLowerCase() === 'facebook');
             const igPosts = posts.filter(p => p.platform.toLowerCase() === 'instagram');
-            const ttPosts = posts.filter(p => p.platform.toLowerCase() === 'tiktok');
+            
+            // TIKTOK FIX: Apply Data-Theme & strip dead scripts
+            const ttPosts = posts.filter(p => p.platform.toLowerCase() === 'tiktok').map(post => {
+                let code = post.embed_code;
+                if (code.includes('<blockquote')) {
+                    code = code.replace('<blockquote', '<blockquote data-theme="dark"');
+                }
+                if (code.includes('<script')) {
+                    code = code.split('<script')[0]; // Removes the script tag
+                }
+                return { ...post, embed_code: code };
+            });
 
-            // Render function with modern hover states & staggered animations
             const renderSection = (postsArray, containerId, sectionId, hoverGlowClass) => {
                 const section = document.getElementById(sectionId);
                 const container = document.getElementById(containerId);
@@ -241,7 +262,7 @@
                     section.classList.add('flex');
                     
                     container.innerHTML = postsArray.map((post, index) => `
-                        <div class="embed-wrapper w-full max-w-[500px] bg-white rounded-2xl border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${hoverGlowClass} opacity-0" style="animation: fadeInUp 0.6s ease-out ${index * 0.15}s forwards; overflow: hidden;">
+                        <div class="embed-wrapper w-full max-w-[500px] bg-transparent rounded-2xl border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${hoverGlowClass} opacity-0" style="animation: fadeInUp 0.6s ease-out ${index * 0.15}s forwards; overflow: hidden;">
                             ${post.embed_code}
                         </div>
                     `).join('');
@@ -252,7 +273,6 @@
                 }
             };
 
-            // Apply different colored shadow glows based on the social platform!
             renderSection(fbPosts, 'fb-feed-container', 'facebook-section', 'hover:shadow-blue-500/20');
             renderSection(igPosts, 'ig-feed-container', 'instagram-section', 'hover:shadow-pink-500/20');
             renderSection(ttPosts, 'tiktok-feed-container', 'tiktok-section', 'hover:shadow-cyan-500/20');
@@ -263,6 +283,13 @@
             setTimeout(() => {
                 if (window.instgrm) { window.instgrm.Embeds.process(); }
                 if (window.FB) { window.FB.XFBML.parse(); }
+                
+                // TIKTOK FIX: Re-inject script
+                document.querySelectorAll('script[src="https://www.tiktok.com/embed.js"]').forEach(s => s.remove());
+                const ttScript = document.createElement('script');
+                ttScript.src = "https://www.tiktok.com/embed.js";
+                ttScript.async = true;
+                document.body.appendChild(ttScript);
             }, 500);
 
         } catch (error) {

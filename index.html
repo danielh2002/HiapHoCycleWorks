@@ -39,8 +39,22 @@
     </script>
     <style>
         .slat-bg { background-image: repeating-linear-gradient(90deg, transparent, transparent 31px, #1E1E1E 31px, #1E1E1E 32px); }
-        /* Forces Instagram embeds to stay within their containers on mobile */
+        
+        /* Force Instagram to stay within bounds */
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
+        
+        /* Force TikTok to be transparent, rounded, and centered */
+        .tiktok-embed { 
+            margin: 0 auto !important; 
+            background: transparent !important; 
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            border: none !important;
+        }
+        iframe[src*="tiktok.com"] {
+            border-radius: 12px !important;
+            background: transparent !important;
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background overflow-x-hidden">
@@ -58,7 +72,7 @@
       <div class="hidden md:flex items-center justify-center gap-gutter flex-1">
         <a class="text-on-tertiary-container border-b-2 border-on-tertiary-container pb-1 font-label-md text-label-md uppercase transition-all duration-300 active:scale-95" href="index.html">Home</a>
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="about.html">About</a>
-        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="socialmedia.html">Social Feed</a>
+        <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="social.html">Social Feed</a>
         <a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-all duration-300 px-sm py-xs font-label-md text-label-md uppercase active:scale-95" href="contact.html">Contact</a>
       </div>
     
@@ -191,8 +205,8 @@
                 </div>
 
                 <div class="group bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 hover:border-on-tertiary-container/50 p-4 md:p-6 rounded-xl transition-all duration-300 flex flex-col items-center text-center gap-2 md:gap-4 hover:-translate-y-1 shadow-lg">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                        <img src="image_790406.png" alt="Folding Bike Icon" class="w-6 h-6 md:w-8 md:h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 group-hover:text-on-tertiary-container transition-all duration-300 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[24px] md:text-[32px]">pedal_bike</span>
                     </div>
                     <h4 class="font-headline-md text-[14px] md:text-[18px] lg:text-[20px] text-on-surface uppercase tracking-wider">Folding Bikes</h4>
                     <div class="mt-auto flex flex-col gap-1">
@@ -365,9 +379,7 @@
       </div>
     </section>
 
-<!-- LIVE & TRENDING SECTION (DYNAMIC) -->
-    <section class="py-12 md:py-xl bg-surface-container-lowest border-b border-outline-variant relative overflow-hidden">
-        <!-- Background Glows -->
+        <section class="py-12 md:py-xl bg-surface-container-lowest border-b border-outline-variant relative overflow-hidden">
         <div class="absolute top-0 left-[-10%] w-[300px] h-[300px] bg-[#00f2fe]/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-0 right-[-10%] w-[300px] h-[300px] bg-[#bc1888]/10 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -379,7 +391,6 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 
-                <!-- TikTok Trending Card -->
                 <div class="flex flex-col gap-6 p-6 md:p-8 bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl relative overflow-hidden group hover:border-[#00f2fe]/50 transition-colors duration-500">
                     <div class="relative z-10 flex flex-col gap-4 h-full w-full">
                         <div class="flex items-center gap-3">
@@ -387,14 +398,12 @@
                             <h4 class="font-headline-md text-[20px] md:text-[24px] text-on-surface uppercase tracking-wider">Trending on TikTok</h4>
                         </div>
                         
-                        <!-- Dynamic Embed Wrapper -->
                         <div id="latest-tiktok-container" class="w-full bg-background rounded-xl overflow-hidden flex justify-center mt-2 border border-white/5 min-h-[300px] items-center relative">
                             <p class="font-label-md text-sm text-on-surface-variant uppercase tracking-widest animate-pulse">Syncing feed...</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Instagram Hot Card -->
                 <div class="flex flex-col gap-6 p-6 md:p-8 bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl relative overflow-hidden group hover:border-[#bc1888]/50 transition-colors duration-500">
                     <div class="relative z-10 flex flex-col gap-4 h-full w-full">
                         <div class="flex items-center gap-3">
@@ -402,7 +411,6 @@
                             <h4 class="font-headline-md text-[20px] md:text-[24px] text-on-surface uppercase tracking-wider">What's Hot on Instagram</h4>
                         </div>
                         
-                        <!-- Dynamic Embed Wrapper -->
                         <div id="latest-instagram-container" class="w-full bg-background rounded-xl overflow-hidden flex justify-center mt-2 border border-white/5 min-h-[300px] items-center relative">
                             <p class="font-label-md text-sm text-on-surface-variant uppercase tracking-widest animate-pulse">Syncing feed...</p>
                         </div>
@@ -458,7 +466,7 @@
 </footer>
 
 <script>
-// Handle Mobile Menu Toggle
+    // Handle Mobile Menu Toggle
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
@@ -573,7 +581,5 @@
     // Call the function immediately
     fetchLatestSocials();
 </script>
-
-
 </body>
 </html>
