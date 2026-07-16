@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=JetBrains+Mono:wght@500&family=Hanken+Grotesk:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script async src="//www.instagram.com/embed.js"></script>
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -36,9 +39,11 @@
     </script>
     <style>
         .slat-bg { background-image: repeating-linear-gradient(90deg, transparent, transparent 31px, #1E1E1E 31px, #1E1E1E 32px); }
+        /* Forces Instagram embeds to stay within their containers on mobile */
+        .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background">
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-background overflow-x-hidden">
 
 <nav class="bg-background/80 backdrop-blur-xl w-full border-b border-white/5 z-50 sticky top-0 relative" id="top-nav">
     <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-4 md:py-md max-w-screen-2xl mx-auto">
@@ -186,8 +191,8 @@
                 </div>
 
                 <div class="group bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 hover:border-on-tertiary-container/50 p-4 md:p-6 rounded-xl transition-all duration-300 flex flex-col items-center text-center gap-2 md:gap-4 hover:-translate-y-1 shadow-lg">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 group-hover:text-on-tertiary-container transition-all duration-300 text-on-surface-variant">
-                        <span class="material-symbols-outlined text-[24px] md:text-[32px]">pedal_bike</span>
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                        <img src="image_790406.png" alt="Folding Bike Icon" class="w-6 h-6 md:w-8 md:h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity">
                     </div>
                     <h4 class="font-headline-md text-[14px] md:text-[18px] lg:text-[20px] text-on-surface uppercase tracking-wider">Folding Bikes</h4>
                     <div class="mt-auto flex flex-col gap-1">
@@ -288,7 +293,7 @@
                     <div class="absolute inset-0 bg-gradient-to-tr from-[#ee4d2d]/20 to-transparent rounded-xl transform rotate-3 scale-105 transition-transform duration-500 group-hover:rotate-6"></div>
                     <div class="relative bg-surface-container-highest border border-white/10 p-2 rounded-xl shadow-2xl overflow-hidden z-10">
                         <div class="overflow-hidden rounded-lg">
-                            <img src="../HiaphoUserPage/ImageStorage/hhbicycle.png" alt="Hiap Ho Cycle Works Shopee Store" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <img src="https://down-aka-my.img.susercontent.com/f6d18fae86ae9b44426038b31806cd8e_tn.webp" alt="Hiap Ho Cycle Works Shopee Store" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none rounded-xl"></div>
                         <div class="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex items-center justify-between">
@@ -360,6 +365,54 @@
       </div>
     </section>
 
+<!-- LIVE & TRENDING SECTION (DYNAMIC) -->
+    <section class="py-12 md:py-xl bg-surface-container-lowest border-b border-outline-variant relative overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-[-10%] w-[300px] h-[300px] bg-[#00f2fe]/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-[-10%] w-[300px] h-[300px] bg-[#bc1888]/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-screen-2xl mx-auto px-4 md:px-margin-desktop relative z-10">
+            <div class="flex flex-col items-center text-center mb-8 md:mb-12">
+                <h2 class="font-label-md text-[12px] md:text-label-md text-on-tertiary-container uppercase tracking-widest mb-2 md:mb-3">Live & Trending</h2>
+                <h3 class="font-display-lg text-[28px] md:text-[40px] text-on-surface uppercase tracking-tighter">Catch the Action</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                
+                <!-- TikTok Trending Card -->
+                <div class="flex flex-col gap-6 p-6 md:p-8 bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl relative overflow-hidden group hover:border-[#00f2fe]/50 transition-colors duration-500">
+                    <div class="relative z-10 flex flex-col gap-4 h-full w-full">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#00f2fe] text-[24px]">local_fire_department</span>
+                            <h4 class="font-headline-md text-[20px] md:text-[24px] text-on-surface uppercase tracking-wider">Trending on TikTok</h4>
+                        </div>
+                        
+                        <!-- Dynamic Embed Wrapper -->
+                        <div id="latest-tiktok-container" class="w-full bg-background rounded-xl overflow-hidden flex justify-center mt-2 border border-white/5 min-h-[300px] items-center relative">
+                            <p class="font-label-md text-sm text-on-surface-variant uppercase tracking-widest animate-pulse">Syncing feed...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instagram Hot Card -->
+                <div class="flex flex-col gap-6 p-6 md:p-8 bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl relative overflow-hidden group hover:border-[#bc1888]/50 transition-colors duration-500">
+                    <div class="relative z-10 flex flex-col gap-4 h-full w-full">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#bc1888] text-[24px]">local_fire_department</span>
+                            <h4 class="font-headline-md text-[20px] md:text-[24px] text-on-surface uppercase tracking-wider">What's Hot on Instagram</h4>
+                        </div>
+                        
+                        <!-- Dynamic Embed Wrapper -->
+                        <div id="latest-instagram-container" class="w-full bg-background rounded-xl overflow-hidden flex justify-center mt-2 border border-white/5 min-h-[300px] items-center relative">
+                            <p class="font-label-md text-sm text-on-surface-variant uppercase tracking-widest animate-pulse">Syncing feed...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <footer class="bg-surface-container-lowest border-t border-outline-variant w-full relative overflow-hidden">
@@ -405,6 +458,71 @@
 </footer>
 
 <script>
+
+  // --- FETCH LATEST SOCIAL POSTS ---
+    async function fetchLatestSocials() {
+        try {
+            const res = await fetch('/api/socials', { cache: 'no-store' });
+            const posts = await res.json();
+            
+            const ttContainer = document.getElementById('latest-tiktok-container');
+            const igContainer = document.getElementById('latest-instagram-container');
+
+            if (!posts || posts.length === 0) {
+                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
+                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
+                return;
+            }
+
+            // Find the most recently uploaded post for each platform
+            const latestTT = posts.find(p => p.platform.toLowerCase() === 'tiktok');
+            const latestIG = posts.find(p => p.platform.toLowerCase() === 'instagram');
+
+            // Render TikTok
+            if (latestTT) {
+                // Force dark mode onto the TikTok widget
+                let codeToRender = latestTT.embed_code;
+                if (codeToRender.includes('<blockquote')) {
+                    codeToRender = codeToRender.replace('<blockquote', '<blockquote data-theme="dark"');
+                }
+                ttContainer.innerHTML = codeToRender;
+                ttContainer.classList.remove('items-center'); // Removes centering from the loading text
+            } else {
+                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
+            }
+
+            // Render Instagram
+            if (latestIG) {
+                igContainer.innerHTML = latestIG.embed_code;
+                igContainer.classList.remove('items-center');
+            } else {
+                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
+            }
+
+            // Tell Instagram & TikTok scripts to process the newly injected HTML
+            setTimeout(() => {
+                if (window.instgrm) { window.instgrm.Embeds.process(); }
+                
+                // If TikTok script fails to auto-render, force a reload
+                const existingScript = document.querySelector('script[src="https://www.tiktok.com/embed.js"]');
+                if (!existingScript) {
+                    const script = document.createElement('script');
+                    script.src = "https://www.tiktok.com/embed.js";
+                    script.async = true;
+                    document.body.appendChild(script);
+                }
+            }, 500);
+
+        } catch (error) {
+            console.error('Error fetching latest socials:', error);
+            document.getElementById('latest-tiktok-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
+            document.getElementById('latest-instagram-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
+        }
+    }
+
+    // Call the function on page load
+    fetchLatestSocials();
+    
     // Handle Mobile Menu Toggle
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -448,5 +566,7 @@
 
     fetchActiveBrands();
 </script>
+
+
 </body>
 </html>
