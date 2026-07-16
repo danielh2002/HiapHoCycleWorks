@@ -458,72 +458,7 @@
 </footer>
 
 <script>
-
-  // --- FETCH LATEST SOCIAL POSTS ---
-    async function fetchLatestSocials() {
-        try {
-            const res = await fetch('/api/socials', { cache: 'no-store' });
-            const posts = await res.json();
-            
-            const ttContainer = document.getElementById('latest-tiktok-container');
-            const igContainer = document.getElementById('latest-instagram-container');
-
-            if (!posts || posts.length === 0) {
-                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
-                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
-                return;
-            }
-
-            // Find the most recently uploaded post for each platform
-            const latestTT = posts.find(p => p.platform.toLowerCase() === 'tiktok');
-            const latestIG = posts.find(p => p.platform.toLowerCase() === 'instagram');
-
-            // Render TikTok
-            if (latestTT) {
-                // Force dark mode onto the TikTok widget
-                let codeToRender = latestTT.embed_code;
-                if (codeToRender.includes('<blockquote')) {
-                    codeToRender = codeToRender.replace('<blockquote', '<blockquote data-theme="dark"');
-                }
-                ttContainer.innerHTML = codeToRender;
-                ttContainer.classList.remove('items-center'); // Removes centering from the loading text
-            } else {
-                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
-            }
-
-            // Render Instagram
-            if (latestIG) {
-                igContainer.innerHTML = latestIG.embed_code;
-                igContainer.classList.remove('items-center');
-            } else {
-                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
-            }
-
-            // Tell Instagram & TikTok scripts to process the newly injected HTML
-            setTimeout(() => {
-                if (window.instgrm) { window.instgrm.Embeds.process(); }
-                
-                // If TikTok script fails to auto-render, force a reload
-                const existingScript = document.querySelector('script[src="https://www.tiktok.com/embed.js"]');
-                if (!existingScript) {
-                    const script = document.createElement('script');
-                    script.src = "https://www.tiktok.com/embed.js";
-                    script.async = true;
-                    document.body.appendChild(script);
-                }
-            }, 500);
-
-        } catch (error) {
-            console.error('Error fetching latest socials:', error);
-            document.getElementById('latest-tiktok-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
-            document.getElementById('latest-instagram-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
-        }
-    }
-
-    // Call the function on page load
-    fetchLatestSocials();
-    
-    // Handle Mobile Menu Toggle
+// Handle Mobile Menu Toggle
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
@@ -565,6 +500,78 @@
     }
 
     fetchActiveBrands();
+
+    // --- FETCH LATEST SOCIAL POSTS ---
+    async function fetchLatestSocials() {
+        try {
+            const res = await fetch('/api/socials', { cache: 'no-store' });
+            const posts = await res.json();
+            
+            const ttContainer = document.getElementById('latest-tiktok-container');
+            const igContainer = document.getElementById('latest-instagram-container');
+
+            if (!posts || posts.length === 0) {
+                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
+                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
+                return;
+            }
+
+            // Find the most recently uploaded post for each platform
+            const latestTT = posts.find(p => p.platform.toLowerCase() === 'tiktok');
+            const latestIG = posts.find(p => p.platform.toLowerCase() === 'instagram');
+
+            // Render TikTok
+            if (latestTT) {
+                let codeToRender = latestTT.embed_code;
+                
+                // Force dark theme so it matches the website
+                if (codeToRender.includes('<blockquote')) {
+                    codeToRender = codeToRender.replace('<blockquote', '<blockquote data-theme="dark"');
+                }
+                
+                // 1. Remove the "dead" script tag from the database string
+                if (codeToRender.includes('<script')) {
+                    codeToRender = codeToRender.split('<script')[0];
+                }
+                
+                ttContainer.innerHTML = codeToRender;
+                ttContainer.classList.remove('items-center');
+                
+                // 2. Remove any old, stuck TikTok scripts from the page
+                document.querySelectorAll('script[src="https://www.tiktok.com/embed.js"]').forEach(s => s.remove());
+                
+                // 3. Manually inject a fresh, living script tag to force the video to render
+                const ttScript = document.createElement('script');
+                ttScript.src = "https://www.tiktok.com/embed.js";
+                ttScript.async = true;
+                document.body.appendChild(ttScript);
+
+            } else {
+                ttContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No TikToks found</p>';
+            }
+
+            // Render Instagram
+            if (latestIG) {
+                igContainer.innerHTML = latestIG.embed_code;
+                igContainer.classList.remove('items-center');
+                
+                // Force Instagram to render
+                setTimeout(() => {
+                    if (window.instgrm) { window.instgrm.Embeds.process(); }
+                }, 500);
+            } else {
+                igContainer.innerHTML = '<p class="text-on-surface-variant font-label-md text-xs uppercase tracking-widest">No Instagram posts found</p>';
+            }
+
+        } catch (error) {
+            console.error('Error fetching latest socials:', error);
+            document.getElementById('latest-tiktok-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
+            document.getElementById('latest-instagram-container').innerHTML = '<p class="text-on-error font-label-md text-xs uppercase tracking-widest">Connection Error</p>';
+        }
+    }
+
+    // Call the function immediately
+    fetchLatestSocials();
 </script>
 
 
