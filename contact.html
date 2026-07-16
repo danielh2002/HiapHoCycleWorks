@@ -35,7 +35,7 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white">
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white relative">
 
 <!-- UPDATED GLASSMORPHISM TOP NAVIGATION BAR -->
 <nav class="bg-background/80 backdrop-blur-xl w-full border-b border-white/5 z-50 sticky top-0 relative" id="top-nav">
@@ -90,6 +90,21 @@
 <!-- Main Content -->
 <main class="flex-grow flex flex-col bg-background">
 
+    <!-- Header Section -->
+    <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl border-b border-outline-variant flex flex-col md:flex-row gap-8 md:gap-xl items-center">
+        <div class="w-full md:w-1/2 flex flex-col gap-4 md:gap-md border-l-4 border-on-tertiary-container pl-4 md:pl-6">
+            <h1 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[64px] text-on-surface uppercase tracking-tighter drop-shadow-lg">
+                Hiap Ho Cycle Works <br><span class="text-on-surface-variant text-[32px] md:text-[48px]"></span>
+            </h1>
+            <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+                Ready to upgrade your ride or need expert advice? Visit Hiap Ho Cycle Works today. Our team of mechanical specialists is standing by.
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 bg-surface-container border border-white/5 overflow-hidden relative h-[300px] md:h-[600px] p-2 rounded-2xl shadow-xl">
+            <img alt="Hiap Ho Cycle Works HQ storefront" class="w-full h-full object-cover opacity-90 rounded-xl" src="../HiaphoUserPage/ImageStorage/Boulevardshop.png">
+        </div>
+    </section>
+
     <!-- Details & Form Section -->
     <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-gutter bg-background border-b border-outline-variant">
         
@@ -105,7 +120,10 @@
                         <span class="material-symbols-outlined text-on-tertiary-container mt-1">location_on</span>
                         <div>
                             <p class="font-body-md text-body-md text-on-surface font-semibold tracking-wide">HIAP HO CYCLE WORKS (HQ)</p>
-                            <p class="font-body-md text-sm md:text-body-md text-on-surface-variant mt-2 leading-relaxed">Lot 2397, Boulevard Commercial Centre<br>98000 Miri, Sarawak</p>
+                            <a href="https://maps.app.goo.gl/4fH14SwRijg3Kfn38" target="_blank" rel="noopener noreferrer" class="group font-body-md text-sm md:text-body-md text-on-surface-variant mt-2 leading-relaxed block hover:text-on-tertiary-container transition-colors">
+                                Lot 2397, Boulevard Commercial Centre<br>98000 Miri, Sarawak
+                                <span class="material-symbols-outlined text-[14px] inline-block align-middle opacity-0 group-hover:opacity-100 transition-opacity ml-1">open_in_new</span>
+                            </a>
                         </div>
                     </div>
                     <div class="h-px w-full bg-white/5"></div>
@@ -117,12 +135,11 @@
                         </div>
                     </div>
                     <div class="h-px w-full bg-white/5"></div>
-                    
                     <div class="flex items-start gap-4">
                         <span class="material-symbols-outlined text-on-tertiary-container mt-1">forum</span>
                         <div>
                             <p class="font-body-md text-body-md text-on-surface font-semibold tracking-wide">WhatsApp</p>
-                            <a href="https://wa.me/60165767790" target="_blank" rel="noopener noreferrer" class="font-label-md text-sm md:text-label-md text-on-surface-variant mt-2 hover:text-[#25D366] transition-colors block flex items-center gap-2">
+                            <a href="https://wa.me/60165767790" target="_blank" rel="noopener noreferrer" class="font-label-md text-sm md:text-label-md text-on-surface-variant mt-2 hover:text-[#25D366] transition-colors flex items-center gap-2 w-max">
                                 +60 16-576 7790
                                 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
                             </a>
@@ -137,7 +154,10 @@
                         <span class="material-symbols-outlined text-on-surface-variant mt-1">store</span>
                         <div>
                             <p class="font-body-md text-body-md text-on-surface font-semibold tracking-wide">HIAP HO CYCLE WORKS (Permy)</p>
-                            <p class="font-body-md text-sm md:text-body-md text-on-surface-variant mt-2 leading-relaxed">Lot 5562 (6), Ground floor, Pusat Bandar<br>Bandar Baru Permyjaya, 98000 Miri, Sarawak</p>
+                            <a href="https://maps.app.goo.gl/9cGrjjabm3GLQCoFA" target="_blank" rel="noopener noreferrer" class="group font-body-md text-sm md:text-body-md text-on-surface-variant mt-2 leading-relaxed block hover:text-white transition-colors">
+                                Lot 5562 (6), Ground floor, Pusat Bandar<br>Bandar Baru Permyjaya, 98000 Miri, Sarawak
+                                <span class="material-symbols-outlined text-[14px] inline-block align-middle opacity-0 group-hover:opacity-100 transition-opacity ml-1">open_in_new</span>
+                            </a>
                         </div>
                     </div>
                     <div class="h-px w-full bg-white/5"></div>
@@ -149,12 +169,11 @@
                         </div>
                     </div>
                     <div class="h-px w-full bg-white/5"></div>
-                    
                     <div class="flex items-start gap-4">
                         <span class="material-symbols-outlined text-on-surface-variant mt-1">forum</span>
                         <div>
                             <p class="font-body-md text-body-md text-on-surface font-semibold tracking-wide">WhatsApp</p>
-                            <a href="https://wa.me/601116461018" target="_blank" rel="noopener noreferrer" class="font-label-md text-sm md:text-label-md text-on-surface-variant mt-2 hover:text-[#25D366] transition-colors block flex items-center gap-2">
+                            <a href="https://wa.me/601116461018" target="_blank" rel="noopener noreferrer" class="font-label-md text-sm md:text-label-md text-on-surface-variant mt-2 hover:text-[#25D366] transition-colors flex items-center gap-2 w-max">
                                 +60 11-1646 1018
                                 <span class="material-symbols-outlined text-[14px]">open_in_new</span>
                             </a>
@@ -228,21 +247,6 @@
                     <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </button>
             </form>
-        </div>
-    </section>
-
-        <!-- Header Section -->
-    <section class="w-full max-w-screen-2xl mx-auto px-4 md:px-margin-desktop py-12 md:py-xl border-b border-outline-variant flex flex-col md:flex-row gap-8 md:gap-xl items-center">
-        <div class="w-full md:w-1/2 flex flex-col gap-4 md:gap-md border-l-4 border-on-tertiary-container pl-4 md:pl-6">
-            <h1 class="font-display-lg text-[40px] leading-[48px] md:text-display-lg lg:text-[64px] text-on-surface uppercase tracking-tighter drop-shadow-lg">
-                Hiap Ho Cycle Works <br><span class="text-on-surface-variant text-[32px] md:text-[48px]"></span>
-            </h1>
-            <p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
-                Ready to upgrade your ride or need expert advice? Visit Hiap Ho Cycle Works today. Our team of mechanical specialists is standing by.
-            </p>
-        </div>
-        <div class="w-full md:w-1/2 bg-surface-container border border-white/5 overflow-hidden relative h-[300px] md:h-[600px] p-2 rounded-2xl shadow-xl">
-            <img alt="Hiap Ho Cycle Works HQ storefront" class="w-full h-full object-cover opacity-90 rounded-xl" src="../HiaphoUserPage/ImageStorage/Boulevardshop.png">
         </div>
     </section>
 
@@ -374,6 +378,20 @@
     </div>
 </footer>
 
+<!-- Toast Notification -->
+<div id="toast-notification" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100] transform transition-all duration-500 translate-y-[150%] opacity-0 pointer-events-none w-[90%] max-w-md">
+    <div class="bg-surface-container-highest border border-green-500/30 p-4 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.15)] flex items-center gap-4 text-on-surface">
+        <span class="material-symbols-outlined text-green-500 text-[28px]">check_circle</span>
+        <div class="flex flex-col">
+            <p class="font-headline-md text-sm md:text-base uppercase tracking-wider text-green-400">Inquiry Received</p>
+            <p class="font-body-md text-xs md:text-sm text-on-surface-variant mt-1">We'll get back to you shortly.</p>
+        </div>
+        <button onclick="closeToast()" class="ml-auto text-on-surface-variant hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+    </div>
+</div>
+
 <script>
     // --- MOBILE MENU LOGIC ---
     const menuBtn = document.getElementById('mobile-menu-btn');
@@ -382,9 +400,26 @@
         mobileMenu.classList.toggle('hidden');
     });
 
-    // --- FORM LOGIC ---
+    // --- FORM & TOAST LOGIC ---
     const subjectSelect = document.getElementById('subject');
     const customSubjectInput = document.getElementById('customSubject');
+    const toast = document.getElementById('toast-notification');
+    let toastTimeout;
+
+    function showToast() {
+        toast.classList.remove('translate-y-[150%]', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            closeToast();
+        }, 5000); 
+    }
+
+    function closeToast() {
+        toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        toast.classList.add('translate-y-[150%]', 'opacity-0', 'pointer-events-none');
+    }
 
     subjectSelect.addEventListener('change', (e) => {
         if (e.target.value === 'Other') {
@@ -425,7 +460,7 @@
             });
             
             if(response.ok) {
-                alert('Thank you! Your inquiry has been received.');
+                showToast(); // Trigger custom toast notification
                 e.target.reset();
                 customSubjectInput.classList.add('hidden');
                 customSubjectInput.required = false;
