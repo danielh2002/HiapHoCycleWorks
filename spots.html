@@ -42,11 +42,19 @@
         }
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
         
-/* Ensures the Strava block is sized correctly in our custom layout */
+        /* Strava Centering and Sizing Fixes */
         .strava-embed-placeholder {
+            margin: 0 auto !important; /* Forces the block to the center */
             width: 100% !important;
-            height: 100% !important;
-            min-height: 400px;
+            max-width: 550px !important; /* Perfect width for the standard white card */
+            min-height: 550px !important; /* Enough height so the map doesn't get cropped */
+            border-radius: 12px !important;
+            display: block !important;
+        }
+        iframe[src*="strava"] {
+            min-height: 550px !important;
+            border-radius: 12px !important;
+            margin: 0 auto !important;
         }
     </style>
 </head>
@@ -351,8 +359,6 @@
             btn.classList.add('text-on-surface', 'border-transparent');
         });
 
-        // The exact button clicked might be tricky to target by ID, so we use event target or find by text
-        // (For simplicity, assuming this function gets the exact string 'easy', 'moderate', etc.)
         const activeBtn = Array.from(btns).find(b => b.getAttribute('onclick').includes(`'${diffLevel}'`));
         if(activeBtn) {
             activeBtn.classList.remove('text-on-surface', 'border-transparent');
@@ -428,7 +434,7 @@
         }
         
         // If there are images, the map takes 8 columns. If no images, center it in 8 columns to prevent ugly stretching!
-        let mapSpan = (trail.image1 || trail.image2) ? "col-span-1 lg:col-span-8" : "col-span-1 lg:col-span-8 lg:col-start-3";
+        let mapSpan = (trail.image1 || trail.image2) ? "col-span-1 lg:col-span-8" : "col-span-1 lg:col-span-12";
         
         return `
         <div class="w-full flex flex-col bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-3xl shadow-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
@@ -453,8 +459,10 @@
             <div class="w-full bg-background p-4 md:p-6 flex-grow">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 items-start">
                     ${imagesHtml}
-                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 relative map-container shadow-inner">
-                        ${trail.embedCode || '<div class="absolute inset-0 flex items-center justify-center"><span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span></div>'}
+                    <div class="${mapSpan} flex items-center justify-center min-h-[550px] w-full">
+                        <div class="w-full flex justify-center items-center">
+                            ${trail.embedCode || '<div class="w-full max-w-[500px] h-[550px] rounded-2xl border border-white/5 bg-neutral-900 flex items-center justify-center shadow-inner"><span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span></div>'}
+                        </div>
                     </div>
                 </div>
             </div>
