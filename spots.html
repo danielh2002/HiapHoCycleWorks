@@ -21,10 +21,19 @@
                             "on-tertiary-fixed": "#410002", "tertiary-fixed-dim": "#ffb4ab", "on-secondary-container": "#b4b5b5", "error-container": "#93000a", "secondary-fixed": "#e2e2e2", "outline-variant": "#444748", "inverse-primary": "#5f5e5e", "surface-container": "#1f2020", "on-surface-variant": "#c4c7c7", "on-error": "#690005", "secondary-fixed-dim": "#c6c6c7", "tertiary-container": "#2f0001", "secondary-container": "#454747", "surface-container-low": "#1b1c1c", "on-tertiary": "#690006", "on-background": "#e4e2e1", "on-primary-container": "#7e7d7d", "secondary": "#c6c6c7", "on-tertiary-container": "#f12b2c", "on-primary": "#313030", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed": "#ffdad6", "primary-fixed": "#e5e2e1", "inverse-on-surface": "#303030", "surface-bright": "#393939", "on-primary-fixed-variant": "#474646", "background": "#131313", "surface": "#131313", "inverse-surface": "#e4e2e1", "outline": "#8e9192", "on-primary-fixed": "#1c1b1b", "on-error-container": "#ffdad6", "primary-container": "#121212", "on-secondary": "#2f3131", "surface-tint": "#c8c6c5", "surface-container-high": "#2a2a2a", "on-secondary-fixed-variant": "#454747", "error": "#ffb4ab", "on-secondary-fixed": "#1a1c1c", "primary": "#c8c6c5", "surface-container-highest": "#353535", "surface-variant": "#353535", "surface-dim": "#131313", "on-tertiary-fixed-variant": "#93000d", "surface-container-lowest": "#0e0e0e", "on-surface": "#e4e2e1", "tertiary": "#ffb4ab"
                         },
                         "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                        "spacing": { "xs": "4px", "base": "8px", "lg": "48px", "sm": "12px", "md": "24px", "margin-desktop": "64px", "margin-mobile": "16px", "gutter": "24px", "xl": "80px" },
-                        "fontFamily": { "headline-lg-mobile": ["Hanken Grotesk"], "body-md": ["Inter"], "body-lg": ["Inter"], "label-md": ["JetBrains Mono"], "headline-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"] }
-                    }
-                }
+                        "spacing": { "gutter": "24px", "margin-desktop": "64px", "sm": "12px", "md": "24px", "lg": "48px", "margin-mobile": "16px", "base": "8px", "xs": "4px", "xl": "80px" },
+                        "fontFamily": { "body-md": ["Inter"], "label-md": ["JetBrains Mono"], "display-lg": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "body-lg": ["Inter"], "headline-md": ["Hanken Grotesk"] },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                        }
+                    },
+                },
             }
         } catch (_e) { }
     </script>
@@ -42,19 +51,25 @@
         }
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
         
-/* Force Strava embeds to fill the container and match border radius */
-        .strava-embed-placeholder {
-            width: 100% !important;
-            height: 100% !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Dynamic Map Container Fixes for Strava & External embeds */
+        .map-container {
+            display: block !important;
+            width: 100%;
+            min-height: 450px;
         }
-        iframe[src*="strava"] {
+        .map-container iframe, 
+        .map-container .strava-embed-placeholder {
             width: 100% !important;
             height: 100% !important;
-            min-height: 400px;
+            min-height: 450px !important;
             border-radius: 16px !important;
+            display: block !important;
+            border: none !important;
+        }
+        /* Give Strava extra height to account for its forced white header */
+        iframe[src*="strava"] {
+            min-height: 550px !important; 
+            background-color: transparent !important;
         }
     </style>
 </head>
@@ -111,7 +126,7 @@
             From world-class asphalt pump tracks and vibrant skateparks to the intense jungle descents of Canada Hill. Explore the best places to ride in Miri.
         </p>
 
-        <!-- Dynamic Category Selection Menu -->
+        <!-- Main Category Selection Menu -->
         <div class="flex flex-wrap items-center gap-3 mt-8">
             <button onclick="filterSpots('all')" id="btn-all" class="cat-btn bg-on-tertiary-container text-white px-6 py-2.5 rounded-full font-label-md text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-on-tertiary-container/20 active:scale-95">All Spots</button>
             <button onclick="filterSpots('bmx')" id="btn-bmx" class="cat-btn bg-surface-container-highest hover:bg-white/10 text-on-surface border border-white/10 px-6 py-2.5 rounded-full font-label-md text-xs uppercase tracking-widest transition-all duration-300 active:scale-95">BMX & Skate</button>
@@ -225,9 +240,18 @@
             <span class="material-symbols-outlined text-emerald-500 text-[32px] md:text-[40px]">terrain</span>
             <h2 class="font-display-lg text-[28px] md:text-[36px] text-on-surface uppercase tracking-tighter">Mountain Trails</h2>
         </div>
-        <p class="font-body-md text-on-surface-variant max-w-3xl border-l-2 border-emerald-500/50 pl-4 mb-10 leading-relaxed">
+        <p class="font-body-md text-on-surface-variant max-w-3xl border-l-2 border-emerald-500/50 pl-4 mb-8 leading-relaxed">
             Explore Miri's premier mountain bike destinations. Discover thrilling descents, natural technical features, and dense jungle cover directly verified by our mechanics.
         </p>
+
+        <!-- MTB Difficulty Filters -->
+        <div class="flex flex-wrap items-center gap-3 mb-8 bg-surface-container-low p-2 rounded-xl border border-white/5 w-fit">
+            <span class="font-label-md text-[10px] uppercase text-on-surface-variant px-2">Filter Level:</span>
+            <button onclick="filterDifficulty('mtb', 'all')" class="mtb-diff-btn active px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition-all">All Levels</button>
+            <button onclick="filterDifficulty('mtb', 'easy')" class="mtb-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-green-500/20 text-on-surface border border-transparent transition-all">Easy</button>
+            <button onclick="filterDifficulty('mtb', 'moderate')" class="mtb-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-yellow-500/20 text-on-surface border border-transparent transition-all">Moderate</button>
+            <button onclick="filterDifficulty('mtb', 'hard')" class="mtb-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-orange-500/20 text-on-surface border border-transparent transition-all">Hard</button>
+        </div>
 
         <!-- Dynamic Grid Container -->
         <div id="mtb-trails-grid" class="flex flex-col gap-12">
@@ -243,9 +267,18 @@
             <span class="material-symbols-outlined text-[#00f2fe] text-[32px] md:text-[40px]">add_road</span>
             <h2 class="font-display-lg text-[28px] md:text-[36px] text-on-surface uppercase tracking-tighter">Road Routes</h2>
         </div>
-        <p class="font-body-md text-on-surface-variant max-w-3xl border-l-2 border-[#00f2fe]/50 pl-4 mb-10 leading-relaxed">
+        <p class="font-body-md text-on-surface-variant max-w-3xl border-l-2 border-[#00f2fe]/50 pl-4 mb-8 leading-relaxed">
             Whether you're pushing watts on the coastal highway or organizing a weekend peloton group ride, our recommended road routes will give you the safest and fastest segments around Miri.
         </p>
+
+        <!-- Road Difficulty Filters -->
+        <div class="flex flex-wrap items-center gap-3 mb-8 bg-surface-container-low p-2 rounded-xl border border-white/5 w-fit">
+            <span class="font-label-md text-[10px] uppercase text-on-surface-variant px-2">Filter Level:</span>
+            <button onclick="filterDifficulty('road', 'all')" class="road-diff-btn active px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest bg-[#00f2fe]/20 text-[#00f2fe] border border-[#00f2fe]/30 transition-all">All Distances</button>
+            <button onclick="filterDifficulty('road', 'easy')" class="road-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-green-500/20 text-on-surface border border-transparent transition-all">Easy</button>
+            <button onclick="filterDifficulty('road', 'moderate')" class="road-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-yellow-500/20 text-on-surface border border-transparent transition-all">Moderate</button>
+            <button onclick="filterDifficulty('road', 'hard')" class="road-diff-btn px-4 py-1.5 rounded-lg font-label-md text-xs uppercase tracking-widest hover:bg-orange-500/20 text-on-surface border border-transparent transition-all">Hard</button>
+        </div>
 
         <!-- Dynamic Grid Container -->
         <div id="road-trails-grid" class="flex flex-col gap-12">
@@ -288,7 +321,7 @@
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-    // FILTER LOGIC FOR RIDING SPOTS
+    // FILTER LOGIC FOR RIDING SPOTS (MAIN TABS)
     const transitionTimeouts = {};
 
     function filterSpots(category) {
@@ -310,13 +343,11 @@
         Object.keys(sections).forEach(key => {
             const sec = sections[key];
             
-            if (transitionTimeouts[key]) {
-                clearTimeout(transitionTimeouts[key]);
-            }
+            if (transitionTimeouts[key]) clearTimeout(transitionTimeouts[key]);
 
             if (category === 'all' || category === key) {
                 sec.classList.remove('hidden');
-                transitionTimeouts[key] = setTimeout(() => {
+                setTimeout(() => {
                     sec.classList.remove('opacity-0', 'translate-y-4', 'scale-95');
                 }, 20);
             } else {
@@ -328,6 +359,53 @@
         });
     }
 
+    // --- NEW: DIFFICULTY FILTER LOGIC ---
+    let globalTrailsData = []; // Store trails so we can filter them without re-fetching
+
+    function filterDifficulty(category, diffLevel) {
+        // 1. Update active button styles for the specific category
+        const btns = document.querySelectorAll(`.${category}-diff-btn`);
+        const catColorClass = category === 'road' ? 'text-[#00f2fe]' : 'text-emerald-400';
+        const catBgClass = category === 'road' ? 'bg-[#00f2fe]/20' : 'bg-emerald-500/20';
+        const catBorderClass = category === 'road' ? 'border-[#00f2fe]/30' : 'border-emerald-500/30';
+
+        btns.forEach(btn => {
+            btn.classList.remove('active', catBgClass, catColorClass, catBorderClass);
+            btn.classList.add('text-on-surface', 'border-transparent');
+        });
+
+        // The exact button clicked might be tricky to target by ID, so we use event target or find by text
+        // (For simplicity, assuming this function gets the exact string 'easy', 'moderate', etc.)
+        const activeBtn = Array.from(btns).find(b => b.getAttribute('onclick').includes(`'${diffLevel}'`));
+        if(activeBtn) {
+            activeBtn.classList.remove('text-on-surface', 'border-transparent');
+            activeBtn.classList.add('active', catBgClass, catColorClass, catBorderClass);
+        }
+
+        // 2. Filter the data and re-render
+        const gridId = `${category}-trails-grid`;
+        const grid = document.getElementById(gridId);
+        
+        let filteredTrails = globalTrailsData.filter(t => t.category && t.category.toLowerCase().includes(category === 'mtb' ? 'mountain' : 'road'));
+        
+        if (diffLevel !== 'all') {
+            filteredTrails = filteredTrails.filter(t => t.difficulty && t.difficulty.toLowerCase().includes(diffLevel));
+        }
+
+        // 3. Render
+        if (filteredTrails.length > 0) {
+            grid.innerHTML = filteredTrails.map(createTrailCard).join('');
+        } else {
+            const icon = category === 'road' ? 'add_road' : 'terrain';
+            const color = category === 'road' ? '[#00f2fe]' : 'emerald-500';
+            grid.innerHTML = createEmptyState(icon, color, `No ${diffLevel} routes found`);
+        }
+
+        // 4. Re-inject Strava Script
+        reloadStravaScripts();
+    }
+
+
     // DYNAMIC TRAILS FETCH LOGIC
     document.addEventListener('DOMContentLoaded', () => {
         loadTrails();
@@ -337,38 +415,11 @@
         try {
             const res = await fetch('/api/trails');
             if (!res.ok) throw new Error('Failed to load trails');
-            const trails = await res.json();
+            globalTrailsData = await res.json();
             
-            const mtbGrid = document.getElementById('mtb-trails-grid');
-            const roadGrid = document.getElementById('road-trails-grid');
-            
-            const mtbTrails = trails.filter(t => t.category && t.category.toLowerCase() === 'mountain');
-            const roadTrails = trails.filter(t => t.category && t.category.toLowerCase() === 'road');
-            
-            if (mtbTrails.length > 0) {
-                mtbGrid.innerHTML = mtbTrails.map(createTrailCard).join('');
-            } else {
-                mtbGrid.innerHTML = createEmptyState('terrain', 'emerald-500', 'No Mountain Trails Yet');
-            }
-            
-            if (roadTrails.length > 0) {
-                roadGrid.innerHTML = roadTrails.map(createTrailCard).join('');
-            } else {
-                roadGrid.innerHTML = createEmptyState('add_road', '[#00f2fe]', 'No Road Routes Yet');
-            }
-            
-            // --- FIX FOR STRAVA / EXTERNAL SCRIPT EMBEDS ---
-            // Because innerHTML does not execute <script> tags, we manually append them.
-            setTimeout(() => {
-                // Clear any old strava scripts so we don't multiply them
-                document.querySelectorAll('script[src="https://strava-embeds.com/embed.js"]').forEach(s => s.remove());
-                
-                // Add the Strava script tag back to the DOM to trigger the map load
-                const stravaScript = document.createElement('script');
-                stravaScript.src = "https://strava-embeds.com/embed.js";
-                stravaScript.async = true;
-                document.body.appendChild(stravaScript);
-            }, 500);
+            // Initial Render (Show 'All')
+            filterDifficulty('mtb', 'all');
+            filterDifficulty('road', 'all');
             
         } catch (err) {
             console.error('Error loading trails:', err);
@@ -388,7 +439,7 @@
         const icon = isRoad ? 'directions_bike' : 'terrain';
         const catColorClass = isRoad ? 'text-[#00f2fe]' : 'text-emerald-500';
         
-        // --- NEW LAYOUT: Dynamic Image Column ---
+        // --- LAYOUT: Dynamic Image Column ---
         let imagesHtml = '';
         if (trail.image1 || trail.image2) {
             imagesHtml = `
@@ -425,8 +476,8 @@
             <div class="w-full bg-background p-4 md:p-6 flex-grow">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 min-h-[400px]">
                     ${imagesHtml}
-                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 flex items-center justify-center relative [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:min-h-[400px]">
-                        ${trail.embedCode || '<span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span>'}
+                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 relative map-container">
+                        ${trail.embedCode || '<div class="absolute inset-0 flex items-center justify-center"><span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span></div>'}
                     </div>
                 </div>
             </div>
@@ -455,10 +506,20 @@
             </div>
             <h4 class="font-headline-md text-sm uppercase tracking-widest text-on-surface mb-2">${title}</h4>
             <p class="font-body-md text-xs max-w-xs text-outline leading-relaxed">
-                Routes are currently being finalized. Check back soon for updates!
+                Check back soon for updates!
             </p>
         </div>
         `;
+    }
+
+    function reloadStravaScripts() {
+        setTimeout(() => {
+            document.querySelectorAll('script[src="https://strava-embeds.com/embed.js"]').forEach(s => s.remove());
+            const stravaScript = document.createElement('script');
+            stravaScript.src = "https://strava-embeds.com/embed.js";
+            stravaScript.async = true;
+            document.body.appendChild(stravaScript);
+        }, 300);
     }
 </script>
 
