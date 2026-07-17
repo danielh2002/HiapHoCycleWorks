@@ -29,7 +29,6 @@
         } catch (_e) { }
     </script>
     <style>
-        /* Force TikTok to be transparent, rounded, and centered inside the admin dashboard */
         .tiktok-embed { 
             margin: 0 auto !important; 
             background: transparent !important; 
@@ -41,7 +40,6 @@
             border-radius: 12px !important;
             background: transparent !important;
         }
-        /* Forces Instagram embeds to stay within bounds */
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
     </style>
 </head>
@@ -116,6 +114,7 @@
                 <button id="tabBtn-manageWorkers" onclick="showTab('manageWorkers')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Workers</button>
                 <button id="tabBtn-brands" onclick="showTab('brands')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition">Manage Brands</button>
                 <button id="tabBtn-socials" onclick="showTab('socials')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition border border-on-tertiary-container text-on-tertiary-container">Social Posts</button>
+                <button id="tabBtn-trails" onclick="showTab('trails')" class="px-6 py-2 bg-surface-container-high hover:bg-outline-variant uppercase rounded transition border border-emerald-500/50 text-emerald-400">Manage Trails</button>
             </div>
 
             <div class="flex flex-col gap-gutter">
@@ -345,6 +344,108 @@
                     </div>
                 </section>
 
+                <!-- MANAGE TRAILS TAB -->
+                <section id="trailsTab" class="hidden flex-col gap-gutter">
+                    
+                    <div class="bg-surface-container-low border border-outline-variant p-lg slat-divider overflow-hidden relative">
+                        <div class="flex justify-between items-center mb-lg border-b border-outline-variant pb-4">
+                            <h3 class="font-headline-md text-headline-md uppercase text-emerald-400">Add New Trail / Route</h3>
+                            <span class="material-symbols-outlined text-emerald-500">terrain</span>
+                        </div>
+                        
+                        <form id="trailForm" class="space-y-md">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Trail Name</label>
+                                    <input id="tName" type="text" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500" required>
+                                </div>
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Category</label>
+                                    <select id="tCategory" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 appearance-none" required>
+                                        <option value="Mountain">Mountain Bike</option>
+                                        <option value="Road">Road Bike</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Difficulty</label>
+                                    <select id="tDifficulty" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 appearance-none" required>
+                                        <option value="Easy">Easy / Scenic</option>
+                                        <option value="Moderate">Moderate / Distance</option>
+                                        <option value="Hard">Hard / Technical</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-xs">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Location Link (URL)</label>
+                                    <input id="tLink" type="url" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500" placeholder="https://maps.app.goo.gl/..." required>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-xs">
+                                <label class="font-label-md text-label-md uppercase text-on-surface-variant">Description</label>
+                                <textarea id="tDesc" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 resize-none" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="space-y-xs">
+                                <div class="flex justify-between items-end">
+                                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Map Embed Code (HTML)</label>
+                                    <span class="font-label-md text-[10px] text-outline uppercase tracking-widest">AllTrails, Strava, Komoot</span>
+                                </div>
+                                <textarea id="tEmbed" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-label-md text-xs text-on-surface-variant font-mono outline-none focus:border-emerald-500 resize-none" rows="4" placeholder="<iframe src='...' width='100%' height='400'></iframe>" required></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md pt-4">
+                                <div class="flex flex-col gap-4 bg-surface-container p-4 border border-outline-variant rounded">
+                                    <div class="flex justify-between items-center">
+                                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Cover Image (Opt)</label>
+                                        <button id="upload_trail_img1" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-emerald-500 hover:text-black transition-all" type="button">Upload</button>
+                                    </div>
+                                    <input type="hidden" id="tImage1">
+                                    <div id="tImagePreviewContainer1" class="hidden flex-col items-center gap-2">
+                                        <img id="tImagePreview1" src="" class="h-24 w-full object-cover border border-outline-variant rounded">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-4 bg-surface-container p-4 border border-outline-variant rounded">
+                                    <div class="flex justify-between items-center">
+                                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Additional Image (Opt)</label>
+                                        <button id="upload_trail_img2" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-emerald-500 hover:text-black transition-all" type="button">Upload</button>
+                                    </div>
+                                    <input type="hidden" id="tImage2">
+                                    <div id="tImagePreviewContainer2" class="hidden flex-col items-center gap-2">
+                                        <img id="tImagePreview2" src="" class="h-24 w-full object-cover border border-outline-variant rounded">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-end border-t border-outline-variant pt-6 mt-6">
+                                <button class="w-full md:w-auto bg-emerald-600 text-black px-xl py-4 font-label-md text-label-md uppercase font-bold hover:bg-emerald-500 active:scale-95 transition-all" type="submit">
+                                    Publish Trail to Website
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-surface-container-low border border-outline-variant slat-divider">
+                        <div class="p-lg border-b border-outline-variant flex justify-between items-center">
+                            <h3 class="font-headline-md text-headline-md uppercase">Active Trails & Routes</h3>
+                        </div>
+                        <div class="overflow-x-auto industrial-scrollbar">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-surface-container-high">
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Trail Info</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Category</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant border-r border-outline-variant/30">Difficulty</th>
+                                        <th class="px-lg py-md font-label-md text-label-md uppercase text-on-surface-variant text-center w-32">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trailTableBody" class="divide-y divide-outline-variant">
+                                    <tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">Loading Trails...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
 
@@ -365,6 +466,7 @@
         </footer>
     </div> 
 
+    <!-- EDIT WORKER MODAL -->
     <div id="editWorkerModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
         <div class="bg-surface-container border border-outline-variant p-lg max-w-2xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
             <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
@@ -414,6 +516,7 @@
         </div>
     </div>
 
+    <!-- EDIT BRAND MODAL -->
     <div id="editBrandModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
         <div class="bg-surface-container border border-outline-variant p-lg max-w-2xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
             <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
@@ -455,6 +558,83 @@
         </div>
     </div>
 
+    <!-- EDIT TRAIL MODAL -->
+    <div id="editTrailModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-background/90 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-surface-container border border-outline-variant p-lg max-w-3xl w-full mx-4 shadow-2xl relative overflow-hidden h-max max-h-[90vh] overflow-y-auto industrial-scrollbar">
+            <div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
+                <h3 class="font-headline-md text-headline-md uppercase text-emerald-400">Edit Trail / Route</h3>
+                <button onclick="closeEditTrailModal()" class="text-on-surface-variant hover:text-on-error transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <form id="editTrailForm" class="space-y-md">
+                <input type="hidden" id="editTId">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Trail Name</label>
+                        <input id="editTName" type="text" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500" required>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Category</label>
+                        <select id="editTCategory" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 appearance-none" required>
+                            <option value="Mountain">Mountain Bike</option>
+                            <option value="Road">Road Bike</option>
+                        </select>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Difficulty</label>
+                        <select id="editTDifficulty" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 appearance-none" required>
+                            <option value="Easy">Easy / Scenic</option>
+                            <option value="Moderate">Moderate / Distance</option>
+                            <option value="Hard">Hard / Technical</option>
+                        </select>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md uppercase text-on-surface-variant">Location Link (URL)</label>
+                        <input id="editTLink" type="url" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500" required>
+                    </div>
+                </div>
+                
+                <div class="space-y-xs">
+                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Description</label>
+                    <textarea id="editTDesc" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-body-md text-on-surface outline-none focus:border-emerald-500 resize-none" rows="3" required></textarea>
+                </div>
+                
+                <div class="space-y-xs">
+                    <label class="font-label-md text-label-md uppercase text-on-surface-variant">Map Embed Code</label>
+                    <textarea id="editTEmbed" class="w-full bg-surface-container-high border border-outline-variant px-md py-sm font-label-md text-xs text-on-surface-variant font-mono outline-none focus:border-emerald-500 resize-none" rows="3" required></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md pt-4 border-t border-outline-variant">
+                    <div class="flex flex-col gap-4 bg-surface-container-low p-4 border border-outline-variant rounded">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label-md text-label-md uppercase text-on-surface-variant">Cover Image</label>
+                            <button id="upload_edit_trail_img1" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-emerald-500 hover:text-black transition-all" type="button">Change Image</button>
+                        </div>
+                        <input type="hidden" id="editTImage1">
+                        <div id="editTrailImagePreviewContainer1" class="flex flex-col items-center gap-2">
+                            <img id="editTrailImagePreview1" src="" alt="Preview" class="h-24 w-full object-cover rounded border border-outline-variant">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4 bg-surface-container-low p-4 border border-outline-variant rounded">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label-md text-label-md uppercase text-on-surface-variant">Additional Image</label>
+                            <button id="upload_edit_trail_img2" class="bg-surface-container-high border border-outline-variant px-4 py-2 font-label-md text-[12px] uppercase hover:bg-emerald-500 hover:text-black transition-all" type="button">Change Image</button>
+                        </div>
+                        <input type="hidden" id="editTImage2">
+                        <div id="editTrailImagePreviewContainer2" class="flex flex-col items-center gap-2">
+                            <img id="editTrailImagePreview2" src="" alt="Preview" class="h-24 w-full object-cover rounded border border-outline-variant">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-end mt-4">
+                    <button class="w-full bg-emerald-600 text-black px-md py-4 font-label-md text-label-md uppercase font-bold hover:bg-emerald-500 active:scale-95 transition-all" type="submit">Update Trail</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 <script>
     // --- 0. LOGIN LOGIC ---
@@ -466,6 +646,7 @@
     let allWorkers = [];
     let allBrands = [];
     let allSocials = []; 
+    let allTrails = [];
 
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -499,21 +680,36 @@
 
     // --- 1. TAB SWITCHING LOGIC ---
     function showTab(tabName) {
-        ['inquiries', 'addWorker', 'manageWorkers', 'brands', 'socials'].forEach(btn => {
+        ['inquiries', 'addWorker', 'manageWorkers', 'brands', 'socials', 'trails'].forEach(btn => {
             const tabSection = document.getElementById(btn + 'Tab');
             if(tabSection) tabSection.classList.add('hidden');
             
             const el = document.getElementById('tabBtn-' + btn);
             if(el) {
-                el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
-                el.classList.add('bg-surface-container-high', 'text-on-surface');
+                if (btn === 'trails') {
+                    el.classList.remove('bg-emerald-600', 'text-black', 'font-bold', 'border-emerald-600');
+                    el.classList.add('bg-surface-container-high', 'text-emerald-400', 'border', 'border-emerald-500/50');
+                } else if (btn === 'socials') {
+                    el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
+                    el.classList.add('bg-surface-container-high', 'text-on-tertiary-container');
+                } else {
+                    el.classList.remove('bg-on-surface', 'text-background', 'font-bold');
+                    el.classList.add('bg-surface-container-high', 'text-on-surface');
+                }
             }
         });
         
         document.getElementById(tabName + 'Tab').classList.remove('hidden');
+        if(tabName === 'trails') document.getElementById(tabName + 'Tab').classList.add('flex');
+        
         const activeBtn = document.getElementById('tabBtn-' + tabName);
-        activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface');
-        activeBtn.classList.add('bg-on-surface', 'text-background', 'font-bold');
+        if (tabName === 'trails') {
+            activeBtn.classList.remove('bg-surface-container-high', 'text-emerald-400', 'border-emerald-500/50');
+            activeBtn.classList.add('bg-emerald-600', 'text-black', 'font-bold', 'border-emerald-600');
+        } else {
+            activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface', 'text-on-tertiary-container');
+            activeBtn.classList.add('bg-on-surface', 'text-background', 'font-bold');
+        }
     }
 
     // --- 2. CATEGORY DROPDOWN LOGIC ---
@@ -533,43 +729,31 @@
     // --- 3. CLOUDINARY UPLOADS ---
     const cloudinaryConfig = { cloudName: 'gkdibcl3', uploadPreset: 'hiapho_preset' };
 
-    document.getElementById("upload_widget").addEventListener("click", () => {
-        cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
-            if (!err && res && res.event === "success") { 
-                document.getElementById('wImage').value = res.info.secure_url;
-                document.getElementById('imagePreview').src = res.info.secure_url;
-                document.getElementById('imagePreviewContainer').classList.remove('hidden');
-            }
-        }).open();
-    }, false);
+    function bindCloudinaryWidget(btnId, inputId, previewImgId, previewContainerId) {
+        document.getElementById(btnId).addEventListener("click", () => {
+            cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
+                if (!err && res && res.event === "success") { 
+                    document.getElementById(inputId).value = res.info.secure_url;
+                    document.getElementById(previewImgId).src = res.info.secure_url;
+                    if(previewContainerId) {
+                        document.getElementById(previewContainerId).classList.remove('hidden');
+                        document.getElementById(previewContainerId).classList.add('flex');
+                    }
+                }
+            }).open();
+        }, false);
+    }
 
-    document.getElementById("upload_brand_widget").addEventListener("click", () => {
-        cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
-            if (!err && res && res.event === "success") { 
-                document.getElementById('bImage').value = res.info.secure_url;
-                document.getElementById('brandImagePreview').src = res.info.secure_url;
-                document.getElementById('brandImagePreviewContainer').classList.remove('hidden');
-            }
-        }).open();
-    }, false);
-
-    document.getElementById("upload_edit_worker_widget").addEventListener("click", () => {
-        cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
-            if (!err && res && res.event === "success") { 
-                document.getElementById('editWImage').value = res.info.secure_url;
-                document.getElementById('editWorkerImagePreview').src = res.info.secure_url;
-            }
-        }).open();
-    }, false);
-
-    document.getElementById("upload_edit_brand_widget").addEventListener("click", () => {
-        cloudinary.createUploadWidget(cloudinaryConfig, (err, res) => {
-            if (!err && res && res.event === "success") { 
-                document.getElementById('editBImage').value = res.info.secure_url;
-                document.getElementById('editBrandImagePreview').src = res.info.secure_url;
-            }
-        }).open();
-    }, false);
+    bindCloudinaryWidget("upload_widget", "wImage", "imagePreview", "imagePreviewContainer");
+    bindCloudinaryWidget("upload_brand_widget", "bImage", "brandImagePreview", "brandImagePreviewContainer");
+    bindCloudinaryWidget("upload_edit_worker_widget", "editWImage", "editWorkerImagePreview", null);
+    bindCloudinaryWidget("upload_edit_brand_widget", "editBImage", "editBrandImagePreview", null);
+    
+    // Trail Upload Bindings
+    bindCloudinaryWidget("upload_trail_img1", "tImage1", "tImagePreview1", "tImagePreviewContainer1");
+    bindCloudinaryWidget("upload_trail_img2", "tImage2", "tImagePreview2", "tImagePreviewContainer2");
+    bindCloudinaryWidget("upload_edit_trail_img1", "editTImage1", "editTrailImagePreview1", null);
+    bindCloudinaryWidget("upload_edit_trail_img2", "editTImage2", "editTrailImagePreview2", null);
 
 
     // --- 4. SUBMIT FORMS (CREATE) ---
@@ -618,7 +802,6 @@
         } catch (err) { alert("Error saving brand."); } finally { btn.innerText = oldText; }
     });
 
-    // SOCIAL MEDIA FORM SUBMIT
     document.getElementById('socialForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -630,18 +813,43 @@
         };
 
         try {
-            const res = await fetch('/api/socials', { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify(newPost) 
-            });
+            const res = await fetch('/api/socials', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newPost) });
             if(res.ok) {
                 alert('Post embedded successfully.');
                 e.target.reset(); 
                 loadSocials(); 
             }
-        } catch (err) { alert("Error saving post."); } 
-        finally { btn.innerText = oldText; }
+        } catch (err) { alert("Error saving post."); } finally { btn.innerText = oldText; }
+    });
+
+    document.getElementById('trailForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const oldText = btn.innerText; btn.innerText = "Publishing...";
+        
+        const newTrail = {
+            name: document.getElementById('tName').value,
+            category: document.getElementById('tCategory').value,
+            difficulty: document.getElementById('tDifficulty').value,
+            description: document.getElementById('tDesc').value,
+            embedCode: document.getElementById('tEmbed').value,
+            locationLink: document.getElementById('tLink').value,
+            image1: document.getElementById('tImage1').value,
+            image2: document.getElementById('tImage2').value
+        };
+
+        try {
+            const res = await fetch('/api/trails', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newTrail) });
+            if(res.ok) {
+                alert('Trail successfully added to catalog.');
+                e.target.reset(); 
+                document.getElementById('tImagePreviewContainer1').classList.add('hidden');
+                document.getElementById('tImagePreviewContainer2').classList.add('hidden');
+                document.getElementById('tImage1').value = '';
+                document.getElementById('tImage2').value = '';
+                loadTrails(); 
+            }
+        } catch (err) { alert("Error saving trail."); } finally { btn.innerText = oldText; }
     });
 
 
@@ -721,24 +929,20 @@
             return; 
         }
         tbody.innerHTML = data.map(inq => {
-            const dateStr = inq.date || inq.created_at || inq.createdAt || 'N/A';
+            const dateStr = inq.date || inq.created_at || inq.createdAt;
             let displayDate = dateStr;
-            if (dateStr !== 'N/A') {
+            if (dateStr) {
                 const d = new Date(dateStr);
-                if (!isNaN(d.getTime())) {
-                    displayDate = d.toISOString().split('T')[0];
-                }
+                if (!isNaN(d.getTime())) displayDate = d.toISOString().split('T')[0];
             }
             return `
             <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
-                <td class="px-4 py-lg font-label-md text-xs md:text-sm border-r border-outline-variant/30 text-on-surface-variant truncate">${displayDate}</td>
+                <td class="px-4 py-lg font-label-md text-xs md:text-sm border-r border-outline-variant/30 text-on-surface-variant truncate">${displayDate || 'N/A'}</td>
                 <td class="px-4 py-lg border-r border-outline-variant/30 truncate">
                     <div class="flex flex-col"><span class="font-bold">${inq.name}</span><span class="font-label-md text-[10px] text-on-surface-variant lowercase">${inq.email}</span></div>
                 </td>
                 <td class="px-4 py-lg font-bold border-r border-outline-variant/30 truncate">${inq.subject}</td>
-                
                 <td class="px-4 py-lg text-on-surface-variant text-sm border-r border-outline-variant/30 break-all whitespace-normal">${inq.message}</td>
-                
                 <td class="px-4 py-lg text-center"><button onclick="deleteInquiry(${inq.id})" class="text-green-500 hover:text-white bg-green-900/20 hover:bg-green-700 border border-green-500/30 px-3 py-2 rounded transition-colors font-label-md text-xs uppercase flex items-center justify-center gap-1 mx-auto"><span class="material-symbols-outlined text-sm">done</span> Resolve</button></td>
             </tr>
             `;
@@ -758,17 +962,12 @@
 
             grid.innerHTML = allSocials.map(post => {
                 let codeToRender = post.embed_code;
-                
-                // Force dark theme so it matches the admin dashboard
                 if (codeToRender.includes('<blockquote') && post.platform.toLowerCase() === 'tiktok') {
                     codeToRender = codeToRender.replace('<blockquote', '<blockquote data-theme="dark"');
                 }
-                
-                // Strip the script tag to prevent double execution errors
                 if (codeToRender.includes('<script')) {
                     codeToRender = codeToRender.split('<script')[0];
                 }
-
                 return `
                 <div class="flex flex-col border border-outline-variant bg-surface-container rounded-md overflow-hidden">
                     <div class="flex justify-between items-center bg-surface-container-high p-4 border-b border-outline-variant">
@@ -782,12 +981,9 @@
                 `;
             }).join('');
 
-            // Automatically re-render newly injected scripts
             setTimeout(() => {
                 if (window.instgrm) { window.instgrm.Embeds.process(); }
                 if (window.FB) { window.FB.XFBML.parse(); }
-                
-                // Force TikTok to re-parse
                 document.querySelectorAll('script[src="https://www.tiktok.com/embed.js"]').forEach(s => s.remove());
                 const ttScript = document.createElement('script');
                 ttScript.src = "https://www.tiktok.com/embed.js";
@@ -798,7 +994,43 @@
         } catch(e) { console.error(e); }
     }
 
-    // --- 6. ADVANCED INQUIRY FILTERING (SOLVES DATE MISMATCH) ---
+    async function loadTrails() {
+        try {
+            const res = await fetch('/api/trails', { cache: 'no-store' });
+            allTrails = await res.json();
+            const tbody = document.getElementById('trailTableBody');
+            
+            if (!allTrails || allTrails.length === 0) { 
+                tbody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-on-surface-variant uppercase">No trails found in database</td></tr>'; 
+                return; 
+            }
+
+            tbody.innerHTML = allTrails.map(t => {
+                let diffColor = 'text-on-surface';
+                if(t.difficulty.includes('Easy')) diffColor = 'text-green-400';
+                if(t.difficulty.includes('Moderate')) diffColor = 'text-yellow-400';
+                if(t.difficulty.includes('Hard')) diffColor = 'text-orange-400';
+
+                return `
+                <tr class="hover:bg-surface-container-high transition-colors group border-b border-outline-variant/30">
+                    <td class="px-lg py-lg border-r border-outline-variant/30">
+                        <span class="font-bold text-lg">${t.name}</span><br>
+                        <a href="${t.locationLink}" target="_blank" class="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">map</span> View Link</a>
+                    </td>
+                    <td class="px-lg py-lg font-label-md text-sm border-r border-outline-variant/30 text-on-surface-variant uppercase">${t.category}</td>
+                    <td class="px-lg py-lg font-label-md text-sm border-r border-outline-variant/30 uppercase font-bold ${diffColor}">${t.difficulty}</td>
+                    <td class="px-lg py-lg text-center flex flex-col gap-2 justify-center h-full min-h-[80px]">
+                        <button onclick="openEditTrailModal(${t.id})" class="text-blue-400 hover:text-white bg-blue-900/20 hover:bg-blue-800 border border-blue-500/30 px-3 py-1 rounded transition-colors font-label-md text-xs uppercase">Edit</button>
+                        <button onclick="deleteTrail(${t.id})" class="text-on-error hover:text-white bg-error-container/20 hover:bg-error-container border border-on-error/30 px-3 py-1 rounded transition-colors font-label-md text-xs uppercase">Remove</button>
+                    </td>
+                </tr>
+            `;
+            }).join('');
+        } catch(e) { console.error(e); }
+    }
+
+
+    // --- 6. ADVANCED INQUIRY FILTERING ---
     function filterInquiries() {
         const exactDate = document.getElementById('inquiryDateFilter').value; 
         const monthYear = document.getElementById('inquiryMonthFilter').value; 
@@ -923,6 +1155,53 @@
         } catch (err) { alert("Error updating brand."); } finally { btn.innerText = oldText; }
     });
 
+    // EDIT TRAIL
+    function openEditTrailModal(id) {
+        const trail = allTrails.find(t => t.id == id);
+        if(!trail) return;
+        document.getElementById('editTId').value = trail.id;
+        document.getElementById('editTName').value = trail.name;
+        document.getElementById('editTCategory').value = trail.category;
+        document.getElementById('editTDifficulty').value = trail.difficulty;
+        document.getElementById('editTDesc').value = trail.description;
+        document.getElementById('editTEmbed').value = trail.embedCode;
+        document.getElementById('editTLink').value = trail.locationLink;
+        document.getElementById('editTImage1').value = trail.image1 || "";
+        document.getElementById('editTImage2').value = trail.image2 || "";
+        document.getElementById('editTrailImagePreview1').src = trail.image1 || "";
+        document.getElementById('editTrailImagePreview2').src = trail.image2 || "";
+        
+        document.getElementById('editTrailModal').classList.remove('hidden');
+    }
+    
+    function closeEditTrailModal() {
+        document.getElementById('editTrailModal').classList.add('hidden');
+    }
+
+    document.getElementById('editTrailForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const oldText = btn.innerText; btn.innerText = "Updating...";
+        const updatedTrail = {
+            id: document.getElementById('editTId').value,
+            name: document.getElementById('editTName').value,
+            category: document.getElementById('editTCategory').value,
+            difficulty: document.getElementById('editTDifficulty').value,
+            description: document.getElementById('editTDesc').value,
+            embedCode: document.getElementById('editTEmbed').value,
+            locationLink: document.getElementById('editTLink').value,
+            image1: document.getElementById('editTImage1').value,
+            image2: document.getElementById('editTImage2').value
+        };
+
+        try {
+            const res = await fetch(`/api/trails?id=${updatedTrail.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedTrail) });
+            if(res.ok) {
+                closeEditTrailModal();
+                loadTrails();
+            } else { alert("Failed to update trail."); }
+        } catch (err) { alert("Error updating trail."); } finally { btn.innerText = oldText; }
+    });
 
     // DELETION LOGIC
     window.deleteWorker = async function(id) {
@@ -953,13 +1232,20 @@
         }
     }
 
+    window.deleteTrail = async function(id) {
+        if(confirm("Permanently remove this trail from the website?")) {
+            await fetch(`/api/trails?id=${id}`, { method: 'DELETE' });
+            loadTrails(); 
+        }
+    }
+
     window.refreshData = function() {
         loadWorkers();
         loadInquiries();
         loadBrands();
         loadSocials();
+        loadTrails();
     }
 </script>
 </body>
 </html>
-
