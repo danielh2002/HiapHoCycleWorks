@@ -21,19 +21,10 @@
                             "on-tertiary-fixed": "#410002", "tertiary-fixed-dim": "#ffb4ab", "on-secondary-container": "#b4b5b5", "error-container": "#93000a", "secondary-fixed": "#e2e2e2", "outline-variant": "#444748", "inverse-primary": "#5f5e5e", "surface-container": "#1f2020", "on-surface-variant": "#c4c7c7", "on-error": "#690005", "secondary-fixed-dim": "#c6c6c7", "tertiary-container": "#2f0001", "secondary-container": "#454747", "surface-container-low": "#1b1c1c", "on-tertiary": "#690006", "on-background": "#e4e2e1", "on-primary-container": "#7e7d7d", "secondary": "#c6c6c7", "on-tertiary-container": "#f12b2c", "on-primary": "#313030", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed": "#ffdad6", "primary-fixed": "#e5e2e1", "inverse-on-surface": "#303030", "surface-bright": "#393939", "on-primary-fixed-variant": "#474646", "background": "#131313", "surface": "#131313", "inverse-surface": "#e4e2e1", "outline": "#8e9192", "on-primary-fixed": "#1c1b1b", "on-error-container": "#ffdad6", "primary-container": "#121212", "on-secondary": "#2f3131", "surface-tint": "#c8c6c5", "surface-container-high": "#2a2a2a", "on-secondary-fixed-variant": "#454747", "error": "#ffb4ab", "on-secondary-fixed": "#1a1c1c", "primary": "#c8c6c5", "surface-container-highest": "#353535", "surface-variant": "#353535", "surface-dim": "#131313", "on-tertiary-fixed-variant": "#93000d", "surface-container-lowest": "#0e0e0e", "on-surface": "#e4e2e1", "tertiary": "#ffb4ab"
                         },
                         "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                        "spacing": { "gutter": "24px", "margin-desktop": "64px", "sm": "12px", "md": "24px", "lg": "48px", "margin-mobile": "16px", "base": "8px", "xs": "4px", "xl": "80px" },
-                        "fontFamily": { "body-md": ["Inter"], "label-md": ["JetBrains Mono"], "display-lg": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "body-lg": ["Inter"], "headline-md": ["Hanken Grotesk"] },
-                        "fontSize": {
-                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
-                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
-                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
-                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
-                        }
-                    },
-                },
+                        "spacing": { "xs": "4px", "base": "8px", "lg": "48px", "sm": "12px", "md": "24px", "margin-desktop": "64px", "margin-mobile": "16px", "gutter": "24px", "xl": "80px" },
+                        "fontFamily": { "headline-lg-mobile": ["Hanken Grotesk"], "body-md": ["Inter"], "body-lg": ["Inter"], "label-md": ["JetBrains Mono"], "headline-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"] }
+                    }
+                }
             }
         } catch (_e) { }
     </script>
@@ -55,21 +46,21 @@
         .map-container {
             display: block !important;
             width: 100%;
-            min-height: 450px;
+            min-height: 550px; /* Increased base height */
         }
         .map-container iframe, 
         .map-container .strava-embed-placeholder {
             width: 100% !important;
             height: 100% !important;
-            min-height: 450px !important;
-            border-radius: 16px !important;
+            min-height: 550px !important; /* Forces it to stay tall */
+            border-radius: 12px !important;
             display: block !important;
             border: none !important;
-        }
-        /* Give Strava extra height to account for its forced white header */
-        iframe[src*="strava"] {
-            min-height: 550px !important; 
             background-color: transparent !important;
+        }
+        /* Extra safety for Standard Strava layout so it doesn't crush the map */
+        iframe[src*="strava"] {
+            min-height: 600px !important; 
         }
     </style>
 </head>
@@ -126,7 +117,7 @@
             From world-class asphalt pump tracks and vibrant skateparks to the intense jungle descents of Canada Hill. Explore the best places to ride in Miri.
         </p>
 
-        <!-- Main Category Selection Menu -->
+        <!-- Dynamic Category Selection Menu -->
         <div class="flex flex-wrap items-center gap-3 mt-8">
             <button onclick="filterSpots('all')" id="btn-all" class="cat-btn bg-on-tertiary-container text-white px-6 py-2.5 rounded-full font-label-md text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-on-tertiary-container/20 active:scale-95">All Spots</button>
             <button onclick="filterSpots('bmx')" id="btn-bmx" class="cat-btn bg-surface-container-highest hover:bg-white/10 text-on-surface border border-white/10 px-6 py-2.5 rounded-full font-label-md text-xs uppercase tracking-widest transition-all duration-300 active:scale-95">BMX & Skate</button>
@@ -444,14 +435,14 @@
         if (trail.image1 || trail.image2) {
             imagesHtml = `
             <div class="col-span-1 lg:col-span-4 flex flex-col gap-4">
-                ${trail.image1 ? `<img src="${trail.image1}" class="w-full h-[200px] lg:h-full object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 1">` : ''}
-                ${trail.image2 ? `<img src="${trail.image2}" class="w-full h-[200px] lg:h-full object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 2">` : ''}
+                ${trail.image1 ? `<img src="${trail.image1}" class="w-full h-[200px] lg:h-[267px] object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 1">` : ''}
+                ${trail.image2 ? `<img src="${trail.image2}" class="w-full h-[200px] lg:h-[267px] object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 2">` : ''}
             </div>
             `;
         }
         
-        // If there are images, the map takes 8 columns. If no images, the map takes all 12 columns.
-        let mapSpan = (trail.image1 || trail.image2) ? "col-span-1 lg:col-span-8" : "col-span-1 lg:col-span-12";
+        // If there are images, the map takes 8 columns. If no images, center it in 8 columns to prevent ugly stretching!
+        let mapSpan = (trail.image1 || trail.image2) ? "col-span-1 lg:col-span-8" : "col-span-1 lg:col-span-10 lg:col-start-2";
         
         return `
         <div class="w-full flex flex-col bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-3xl shadow-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
@@ -474,9 +465,9 @@
             </div>
             
             <div class="w-full bg-background p-4 md:p-6 flex-grow">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 min-h-[400px]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 items-stretch">
                     ${imagesHtml}
-                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 relative map-container">
+                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 relative map-container shadow-inner">
                         ${trail.embedCode || '<div class="absolute inset-0 flex items-center justify-center"><span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span></div>'}
                     </div>
                 </div>
@@ -610,3 +601,5 @@
 
 </body>
 </html>
+
+What did u do to make it centered to prevent it from getting squished if there are no images provided? so next time i know what kind of logic u using for future reference so i don't need to struggle alone finding out
