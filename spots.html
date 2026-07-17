@@ -42,11 +42,19 @@
         }
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
         
-        /* Ensures the Strava block is sized correctly in our custom layout */
+/* Force Strava embeds to fill the container and match border radius */
         .strava-embed-placeholder {
             width: 100% !important;
             height: 100% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe[src*="strava"] {
+            width: 100% !important;
+            height: 100% !important;
             min-height: 400px;
+            border-radius: 16px !important;
         }
     </style>
 </head>
