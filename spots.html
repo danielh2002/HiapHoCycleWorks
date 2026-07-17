@@ -41,6 +41,13 @@
             background: transparent !important;
         }
         .instagram-media { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; }
+        
+        /* Ensures the Strava block is sized correctly in our custom layout */
+        .strava-embed-placeholder {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 400px;
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white relative overflow-x-hidden">
@@ -199,6 +206,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -214,9 +222,9 @@
         </p>
 
         <!-- Dynamic Grid Container -->
-        <div id="mtb-trails-grid" class="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12">
+        <div id="mtb-trails-grid" class="flex flex-col gap-12">
             <!-- Content injected by JavaScript -->
-            <div class="col-span-full text-center text-on-surface-variant font-label-md uppercase py-10">Loading Trails...</div>
+            <div class="w-full text-center text-on-surface-variant font-label-md uppercase py-10">Loading Trails...</div>
         </div>
     </section>
 
@@ -232,9 +240,9 @@
         </p>
 
         <!-- Dynamic Grid Container -->
-        <div id="road-trails-grid" class="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12">
+        <div id="road-trails-grid" class="flex flex-col gap-12">
              <!-- Content injected by JavaScript -->
-             <div class="col-span-full text-center text-on-surface-variant font-label-md uppercase py-10">Loading Routes...</div>
+             <div class="w-full text-center text-on-surface-variant font-label-md uppercase py-10">Loading Routes...</div>
         </div>
     </section>
 
@@ -341,6 +349,19 @@
                 roadGrid.innerHTML = createEmptyState('add_road', '[#00f2fe]', 'No Road Routes Yet');
             }
             
+            // --- FIX FOR STRAVA / EXTERNAL SCRIPT EMBEDS ---
+            // Because innerHTML does not execute <script> tags, we manually append them.
+            setTimeout(() => {
+                // Clear any old strava scripts so we don't multiply them
+                document.querySelectorAll('script[src="https://strava-embeds.com/embed.js"]').forEach(s => s.remove());
+                
+                // Add the Strava script tag back to the DOM to trigger the map load
+                const stravaScript = document.createElement('script');
+                stravaScript.src = "https://strava-embeds.com/embed.js";
+                stravaScript.async = true;
+                document.body.appendChild(stravaScript);
+            }, 500);
+            
         } catch (err) {
             console.error('Error loading trails:', err);
         }
@@ -357,11 +378,24 @@
 
         const isRoad = trail.category.toLowerCase() === 'road';
         const icon = isRoad ? 'directions_bike' : 'terrain';
-        // Hardcode colors to ensure Tailwind compilation
         const catColorClass = isRoad ? 'text-[#00f2fe]' : 'text-emerald-500';
         
+        // --- NEW LAYOUT: Dynamic Image Column ---
+        let imagesHtml = '';
+        if (trail.image1 || trail.image2) {
+            imagesHtml = `
+            <div class="col-span-1 lg:col-span-4 flex flex-col gap-4">
+                ${trail.image1 ? `<img src="${trail.image1}" class="w-full h-[200px] lg:h-full object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 1">` : ''}
+                ${trail.image2 ? `<img src="${trail.image2}" class="w-full h-[200px] lg:h-full object-cover rounded-2xl border border-white/5 bg-neutral-900" alt="${trail.name} image 2">` : ''}
+            </div>
+            `;
+        }
+        
+        // If there are images, the map takes 8 columns. If no images, the map takes all 12 columns.
+        let mapSpan = (trail.image1 || trail.image2) ? "col-span-1 lg:col-span-8" : "col-span-1 lg:col-span-12";
+        
         return `
-        <div class="col-span-1 xl:col-span-6 flex flex-col bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-3xl shadow-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
+        <div class="w-full flex flex-col bg-surface-container-low/80 backdrop-blur-xl border border-white/5 rounded-3xl shadow-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
             <div class="p-6 md:p-8 flex flex-col gap-4 border-b border-white/5 bg-surface-container-high/40">
                 <div class="flex items-start justify-between gap-4">
                     <div class="flex flex-col">
@@ -380,9 +414,12 @@
                 </p>
             </div>
             
-            <div class="w-full bg-background p-3 flex-grow flex justify-center items-center">
-                <div class="w-full rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 min-h-[400px] flex items-center justify-center relative [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:min-h-[400px]">
-                    ${trail.embedCode || '<span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span>'}
+            <div class="w-full bg-background p-4 md:p-6 flex-grow">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 min-h-[400px]">
+                    ${imagesHtml}
+                    <div class="${mapSpan} rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 flex items-center justify-center relative [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:min-h-[400px]">
+                        ${trail.embedCode || '<span class="text-on-surface-variant font-label-md uppercase tracking-widest">Map Unavailable</span>'}
+                    </div>
                 </div>
             </div>
             
@@ -404,7 +441,7 @@
 
     function createEmptyState(icon, colorClass, title) {
         return `
-        <div class="col-span-1 xl:col-span-12 flex flex-col bg-surface-container-low/30 border border-white/5 border-dashed rounded-3xl p-8 justify-center items-center text-center text-on-surface-variant min-h-[350px]">
+        <div class="w-full flex flex-col bg-surface-container-low/30 border border-white/5 border-dashed rounded-3xl p-8 justify-center items-center text-center text-on-surface-variant min-h-[350px]">
             <div class="w-16 h-16 bg-surface-container-high/50 border border-white/5 flex items-center justify-center rounded-full mb-4">
                 <span class="material-symbols-outlined text-[32px] text-${colorClass} block transition-colors">${icon}</span>
             </div>
@@ -504,4 +541,3 @@
 
 </body>
 </html>
-
