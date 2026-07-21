@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>SOCIAL FEED</title>
+    <title>Social Feed</title>
     <link rel="icon" type="image/png" href="../HiaphoUserPage/ImageStorage/hhlogo.png">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -69,10 +69,11 @@
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white relative overflow-x-hidden">
 
-<!-- Ambient Background Glows -->
-<div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-on-tertiary-container/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-<div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] bg-outline-variant/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-
+<!-- Ambient Background Glows (Wrapped to prevent mobile scroll bug) -->
+<div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-on-tertiary-container/10 rounded-full blur-[120px]"></div>
+    <div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] bg-outline-variant/10 rounded-full blur-[120px]"></div>
+</div>
 <!-- Required for some Facebook embeds -->
 <div id="fb-root"></div>
 
