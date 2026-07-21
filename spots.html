@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Local Riding Spots - HIAP HO CYCLE WORKS</title>
+    <title>RIDING SPOTS</title>
+    <link rel="icon" type="image/png" href="../HiaphoUserPage/ImageStorage/hhlogo.png">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -69,9 +70,11 @@
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-on-tertiary-container selection:text-white relative overflow-x-hidden">
 
-<!-- Ambient Background Glows -->
-<div class="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-on-tertiary-container/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-<div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- Ambient Background Glows (Wrapped to prevent mobile scroll bug) -->
+<div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-on-tertiary-container/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]"></div>
+</div>
 
 <!-- TopNavBar -->
 <nav class="bg-background/80 backdrop-blur-xl w-full border-b border-white/5 z-50 sticky top-0 relative" id="top-nav">
@@ -282,12 +285,13 @@
         </div>
     </section>
 
-    <!-- IMAGE POP-OUT MODAL (Properly placed outside the section above!) -->
-    <div id="image-modal" class="hidden fixed inset-0 z-[9999] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300 cursor-zoom-out">
+    <!-- IMAGE POP-OUT MODAL -->
+    <div id="image-modal" class="hidden fixed inset-0 z-[9999] bg-background/95 backdrop-blur-md items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300 cursor-zoom-out w-screen h-screen">
         <button onclick="closeModal()" aria-label="Close modal" class="absolute top-6 right-6 md:top-8 md:right-8 text-on-surface-variant hover:text-on-tertiary-container transition-colors p-2 bg-surface-container-highest/80 rounded-full backdrop-blur-lg hover:scale-110 active:scale-95 duration-300 z-50">
             <span class="material-symbols-outlined text-[32px]">close</span>
         </button>
-        <img id="modal-image" src="" alt="Enlarged view" class="w-auto h-auto max-w-[95vw] max-h-[90vh] object-contain rounded-xl shadow-2xl scale-95 transition-transform duration-300 pointer-events-none">
+        <!-- m-auto added below to guarantee center alignment on mobile -->
+        <img id="modal-image" src="" alt="Enlarged view" class="m-auto w-auto h-auto max-w-[95vw] max-h-[90vh] object-contain rounded-xl shadow-2xl scale-95 transition-transform duration-300 pointer-events-none">
     </div>
     
     <!-- Script for Image Pop-out -->
@@ -297,10 +301,11 @@
             const modalImg = document.getElementById('modal-image');
             modalImg.src = src;
             
+            // Explicitly swap hidden for flex
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevents background scrolling
+            modal.classList.add('flex'); 
+            document.body.style.overflow = 'hidden'; 
             
-            // Slight delay to trigger CSS transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalImg.classList.remove('scale-95');
@@ -317,9 +322,11 @@
             modalImg.classList.add('scale-95');
             
             setTimeout(() => {
+                // Explicitly swap flex for hidden
+                modal.classList.remove('flex');
                 modal.classList.add('hidden');
                 modalImg.src = '';
-                document.body.style.overflow = ''; // Restores background scrolling
+                document.body.style.overflow = ''; 
             }, 300);
         }
 
