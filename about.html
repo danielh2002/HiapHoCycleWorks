@@ -417,46 +417,46 @@
         mobileMenu.classList.toggle('hidden');
     });
 
-    // --- FETCH DYNAMIC TEAM MEMBERS FROM API ---
     async function loadTeamMembers() {
-        try {
-            const res = await fetch('/api/workers');
-            const data = await res.json();
-            const container = document.getElementById('team-container');
+            try {
+                const res = await fetch('/api/workers');
+                const data = await res.json();
+                const container = document.getElementById('team-container');
 
-            if (!data || data.length === 0) {
-                container.innerHTML = '<p class="text-on-surface-variant col-span-1 sm:col-span-2 md:col-span-3 text-center uppercase tracking-widest font-label-md">No engineers found in the roster.</p>';
-                return;
-            }
+                if (!data || data.length === 0) {
+                    container.innerHTML = '<p class="text-on-surface-variant col-span-1 sm:col-span-2 md:col-span-3 text-center uppercase tracking-widest font-label-md">No engineers found in the roster.</p>';
+                    return;
+                }
 
-            container.innerHTML = data.map(worker => `
-                <div class="group bg-surface-container-low border border-surface-container-high rounded-DEFAULT overflow-hidden flex flex-col hover:border-on-tertiary-container transition-colors duration-300">
-                    <div class="h-64 w-full bg-surface-container relative overflow-hidden border-b border-surface-container-high flex items-center justify-center">
-                        ${worker.imageUrl 
-                            ? `<img class="w-full h-full object-cover transition-all duration-500" src="${worker.imageUrl}" alt="${worker.name}">` 
-                            : `<span class="material-symbols-outlined text-[64px] text-on-surface-variant">person</span>`
-                        }
-                    </div>
-                    <div class="p-6 md:p-md flex flex-col flex-grow">
-                        <h4 class="font-headline-md text-headline-md">${worker.name}</h4>
-                        <p class="font-label-md text-xs md:text-label-md text-on-tertiary-container uppercase mb-3 md:mb-2 tracking-widest">${worker.title}</p>
-                        
-                        <div class="flex items-center gap-2 mb-4 md:mb-sm text-on-surface-variant hover:text-on-surface transition-colors w-max">
-                            <span class="material-symbols-outlined text-[18px]">call</span>
-                            <a href="tel:${worker.phone}" class="font-label-md text-sm md:text-label-md tracking-wider">${worker.phone}</a>
+                container.innerHTML = data.map(worker => `
+                    <div class="group bg-surface-container-low border border-surface-container-high rounded-DEFAULT overflow-hidden flex flex-col hover:border-on-tertiary-container transition-colors duration-300">
+                        <div class="h-64 w-full bg-surface-container relative overflow-hidden border-b border-surface-container-high flex items-center justify-center">
+                            ${worker.imageUrl 
+                                ? `<img class="w-full h-full object-cover transition-all duration-500" src="${worker.imageUrl}" alt="${worker.name}">` 
+                                : `<span class="material-symbols-outlined text-[64px] text-on-surface-variant">person</span>`
+                            }
                         </div>
+                        <div class="p-6 md:p-md flex flex-col flex-grow">
+                            <h4 class="font-headline-md text-headline-md">${worker.name}</h4>
+                            <p class="font-label-md text-xs md:text-label-md text-on-tertiary-container uppercase mb-3 md:mb-2 tracking-widest">${worker.title}</p>
+                            
+                            <!-- UPDATED WHATSAPP LINK -->
+                            <div class="flex items-center gap-2 mb-4 md:mb-sm text-on-surface-variant hover:text-on-surface transition-colors w-max">
+                                <span class="material-symbols-outlined text-[18px]">chat</span>
+                                <a href="https://wa.me/${worker.phone.replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" class="font-label-md text-sm md:text-label-md tracking-wider">${worker.phone}</a>
+                            </div>
 
-                        <p class="font-body-md text-body-md text-on-surface-variant text-sm whitespace-pre-line border-t border-surface-container-high pt-4 md:pt-sm mt-auto">
-                            ${worker.description}
-                        </p>
+                            <p class="font-body-md text-body-md text-on-surface-variant text-sm whitespace-pre-line border-t border-surface-container-high pt-4 md:pt-sm mt-auto">
+                                ${worker.description}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            `).join('');
-        } catch (error) {
-            console.error('Error loading team members:', error);
-            document.getElementById('team-container').innerHTML = '<p class="text-on-error col-span-1 sm:col-span-2 md:col-span-3 text-center uppercase tracking-widest font-label-md">Unable to connect to the personnel database.</p>';
+                `).join('');
+            } catch (error) {
+                console.error('Error loading team members:', error);
+                document.getElementById('team-container').innerHTML = '<p class="text-on-error col-span-1 sm:col-span-2 md:col-span-3 text-center uppercase tracking-widest font-label-md">Unable to connect to the personnel database.</p>';
+            }
         }
-    }
 
     loadTeamMembers();
 
